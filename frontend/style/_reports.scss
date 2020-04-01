@@ -1,0 +1,142 @@
+.filter-container {
+  a {
+    padding:-1+$base;
+    margin:0 $base $base 0;
+    float:left;
+    background:#FFF;
+    border-radius:2px;
+    border:$color-border 1px solid;
+
+    &:hover {
+      text-decoration:none;
+      background:$color-grey-98;
+      color:#000;
+    }
+
+    &.filter-active {
+      background:$color-blue;
+      color:#FFF;
+      border-color:$color-blue;
+    }
+  }
+}
+
+.filter-projects, .filter-tasks {
+  // float:left;
+  // width:50%;
+}
+
+.distribution {
+  padding-bottom:5*$base;
+}
+
+.distribution-container {
+  div {
+    position:relative;
+    float:left;
+    padding:2*$base $base;
+    line-height:3*$base;
+
+    &:first-child {
+      border-top-left-radius:2px;
+      border-bottom-left-radius:2px;
+    }
+
+    &:last-child {
+      border-top-right-radius:2px;
+      border-bottom-right-radius:2px;
+    }
+  }
+
+  strong {
+    color:#FFF;
+    display:block;
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+
+  span {
+    position:absolute;
+    top:100%;
+    left:0;
+    color:#000;
+    display:block;
+    max-width:100%;
+    padding:$base;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+  }
+}
+
+.barchart {
+  position: relative;
+  background:$color-grey-98;
+  border-bottom: $color-grey-50 1px solid;
+
+  margin-bottom:10*$base;
+
+  i {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:1px;
+    background:$color-grey-85;
+    font-style: normal;
+
+    &.percent-75 {
+      top:25%;
+    }
+
+    &.percent-50 {
+      top:50%;
+    }
+
+    &.percent-25 {
+      top:75%;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      top:50%;
+      right:100%;
+      transform:translateY(-50%);
+      padding:0 $base 0 0;
+      color:$color-grey-50;
+    }
+  }
+
+  table {
+    width:100%;
+    height:50*$base;
+    border-spacing:0;
+  }
+
+  td {
+
+  }
+
+  div {
+    position: relative;
+    height:100%;
+  }
+
+  ul {
+    list-style: none;
+    position: absolute;
+    left:50%;
+    bottom:0;
+    background:rgba(#000, .2);
+    width:90%;
+    max-width: 10*$base;
+    transform: translateX(-50%);
+  }
+
+  li {
+
+  }
+}

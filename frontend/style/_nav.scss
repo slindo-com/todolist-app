@@ -1,0 +1,136 @@
+nav {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:8*$base;
+  text-align: center;
+  background:rgba(#FFF, .85);
+  backdrop-filter:blur(3px);
+  z-index:1000;
+
+  a {
+    display:inline-block;
+    padding:0 2*$base;
+    line-height: -1+8*$base;
+    font-weight:500;
+    text-decoration: none;
+
+    &.active {
+      position:relative;
+      color:#000;
+
+      &:after {
+        content:'';
+        display:block;
+        position:absolute;
+        left:2*$base;
+        right:2*$base;
+        top:0;
+        height:2px;
+        background:#000;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+
+      &:hover {
+        text-decoration:none;
+      }
+    }
+  }
+
+  /* TODO: Kann noch wegfallen */
+  + div {
+    height:8*$base;
+  }
+}
+
+.article-header {
+  position:static;
+  height:8*$base;
+  background:$color-background;
+  background: linear-gradient(180deg, #FFF 0%, $color-background 100%);
+  box-shadow: 0 -1px 0 $color-border inset;
+  overflow:hidden;
+  display: flex;
+  flex-direction: row;
+
+  .left-wrapper {
+    flex:1;
+    padding:0 1*$base;
+    
+    a {
+      line-height: 8*$base;
+      display:inline-block;
+      padding:0 1*$base;
+    }
+
+    .btn {
+      margin-right:1*$base;
+      display:none;
+    }
+  }
+
+  .center-wrapper {
+    flex-grow:1;
+  }
+
+  .right-wrapper {
+    padding:2*$base 2*$base 0 0;
+
+    a {
+      line-height:-2+6*$base;
+      border-radius:12px 12px 0 0;
+      border:1px transparent solid;
+      border-bottom-color:$color-border;
+      display:inline-block;
+      padding:0 2*$base;
+      font-weight:500;
+      text-decoration: none;
+
+      &.active {
+        background:#FFF;
+        border-color:$color-border;
+        border-bottom-color:#FFF;
+        box-shadow:0 2px 4px rgba(0, 0, 0, .075);
+
+        &:after {
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+.subnav {
+  position:static;
+  height:auto;
+  background:$color-background;
+  background: linear-gradient(180deg, #FFF 0%, $color-background 100%);
+  margin-top:3*$base;
+  padding:1*$base 0 0 0;
+  box-shadow: 0 -1px 0 $color-border inset;
+  overflow:hidden;
+
+  + div {
+    height:auto;
+  }
+
+  a {
+    line-height:-2+6*$base;
+    border-radius:12px 12px 0 0;
+    border:1px transparent solid;
+    border-bottom-color:$color-border;
+
+    &.active {
+      background:#FFF;
+      border-color:$color-border;
+      border-bottom-color:#FFF;
+      box-shadow:0 2px 4px rgba(0, 0, 0, .075);
+
+      &:after {
+        display:none;
+      }
+    }
+  }
+}
