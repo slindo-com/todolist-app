@@ -11,7 +11,9 @@ class AuthController extends AbstractController {
   }
 
   public function signIn() {
+
     $error = false;
+
     if (!empty($_POST['email']) AND !empty($_POST['password'])) {
       $email = $_POST['email'];
       $password = $_POST['password'];
@@ -24,7 +26,7 @@ class AuthController extends AbstractController {
       }
     }
 
-    $this->render("user/login", [
+    $this->render("auth/sign-in", [
       'error' => $error
     ]);
   }
@@ -35,7 +37,24 @@ class AuthController extends AbstractController {
   }
 
   public function newAccount($attributes) {
-    echo 'TODO: NEW ACCOUNT';
+
+    $error = false;
+
+    if (!empty($_POST['email']) AND !empty($_POST['password'])) {
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+
+      if ($this->authService->newAccount($email, $password)) {
+        header("Location: /own/");
+        return;
+      } else {
+        $error = true;
+      }
+    }
+
+    $this->render("auth/new-account", [
+      'error' => $error
+    ]);
   }
 
   public function newPassword($attributes) {

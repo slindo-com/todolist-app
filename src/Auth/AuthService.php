@@ -31,6 +31,22 @@ class AuthService {
     }
   }
 
+  public function newAccount($email, $password) {
+
+    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $lowerCaseEmail = strtolower($email);
+
+    $lastId = $this->usersRepository->new($lowerCaseEmail, $encryptedPassword);
+
+    if ($lastId != 0) {
+      $_SESSION['auth'] = lastId;
+      session_regenerate_id(true);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function logout() {
     unset($_SESSION['auth']);
     session_regenerate_id(true);

@@ -15,6 +15,23 @@ class UsersRepository extends AbstractRepository {
     return "users";
   }
 
+  public function new($email, $password) {
+      $table = $this->getTableName();
+      $stmt = $this->pdo->prepare(
+        "INSERT INTO `$table` (`email`, `password`) VALUES (:email, :password)"
+      );
+      $success = $stmt->execute([
+        'email' => $email,
+        'password' => $password
+      ]);
+
+      if($success) {
+        return $this->pdo->lastInsertId();
+      } else {
+        return 0;
+      }
+  }
+
   public function findByEmail($email) {
     $table = $this->getTableName();
     $model = $this->getModelName();
