@@ -42,5 +42,15 @@ class UsersRepository extends AbstractRepository {
 
     return $user;
   }
+
+  public function setPassword($userId, $password) {
+    $table = $this->getTableName();
+
+    $stmt = $this->pdo->prepare("UPDATE `{$table}` SET `password` = :password WHERE `id` = :id");
+    $stmt->execute([
+      'password' => $password,
+      'id' => $userId
+    ]);
+  }
 }
 ?>

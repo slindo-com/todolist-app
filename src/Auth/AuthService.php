@@ -3,8 +3,9 @@
 namespace App\Auth;
 
 class AuthService {
-  public function __construct(UsersRepository $usersRepository) {
+  public function __construct(UsersRepository $usersRepository, PasswordResetsRepository $passwordResetsRepository) {
     $this->usersRepository = $usersRepository;
+    $this->passwordResetsRepository = $passwordResetsRepository;
   }
 
   public function hasAuth() {
@@ -33,7 +34,7 @@ class AuthService {
 
   public function newAccount($email, $password) {
 
-    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT);
     $lowerCaseEmail = strtolower($email);
 
     $lastId = $this->usersRepository->new($lowerCaseEmail, $encryptedPassword);
@@ -46,6 +47,29 @@ class AuthService {
       return false;
     }
   }
+
+  public function setPassword($password) {
+    $encryptedPassword = password_hash($password, PASSWORD_BCRYPT);
+    $response = $this->usersRepository->setPassword($_SESSION['auth'], $encryptedPassword);
+    return $response;
+  }
+
+  public function newResetToken($email) {
+    $token = bin2hex(random_bytes(50));
+    $success = $this->passwordResetsRepository->new($token, $email, $_SESSION['auth']);
+
+    if($success) {
+      return $token;
+    } else {
+      return false;
+    }
+  }
+
+  public function getResetToken($token) {
+    $databaseToken = $this->passwordResetsRepository->getToken($token);
+    return $databaseToken;
+  }
+
 
   public function logout() {
     unset($_SESSION['auth']);

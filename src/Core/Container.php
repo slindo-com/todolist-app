@@ -12,6 +12,7 @@ use App\Post\PostsController;
 use App\Post\PostsAdminController;
 */
 use App\Auth\UsersRepository;
+use App\Auth\PasswordResetsRepository;
 
 use App\Common\CommonController;
 use App\Common\MailService;
@@ -29,12 +30,6 @@ class Container {
 
   public function __construct() {
     $this->receipts = [
-      /*'postsAdminController' => function() {
-        return new PostsAdminController(
-          $this->make("postsRepository"),
-          $this->make("authService")
-        );
-      }, */
       'commonController' => function() {
         return new CommonController();
       },
@@ -43,7 +38,8 @@ class Container {
       },
       'authService' => function() {
         return new AuthService(
-          $this->make("usersRepository")
+          $this->make("usersRepository"),
+          $this->make("passwordResetsRepository")
         );
       },
       'authController' => function() {
@@ -53,32 +49,21 @@ class Container {
         );
       },
       'listsController' => function() {
-        return new ListsController(
-          // $this->make('postsRepository'),
-          // $this->make('commentsRepository')
-        );
+        return new ListsController();
       },
       'settingsController' => function() {
-        return new settingsController(
-          // $this->make('postsRepository'),
-          // $this->make('commentsRepository')
-        );
+        return new settingsController();
       },
-      /*'postsRepository' => function() {
-        return new PostsRepository(
-          $this->make("pdo")
-        );
-      },*/
       'usersRepository' => function() {
         return new UsersRepository(
           $this->make("pdo")
         );
       },
-      /*'commentsRepository' => function() {
-        return new CommentsRepository(
+      'passwordResetsRepository' => function() {
+        return new PasswordResetsRepository(
           $this->make("pdo")
         );
-      },*/
+      },
       'pdo' => function() {
         try {
           $pdo = new PDO(

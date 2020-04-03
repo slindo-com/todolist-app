@@ -69,12 +69,12 @@ class AuthController extends AbstractController {
   public function newPassword($attributes) {
 
     $error = false;
-    $tokenSent = false;
+    $action = 'DEFAULT';
 
-    if ($_POST['a'] == 'send-instructions') {
+    if (!empty($_POST['a']) && $_POST['a'] == 'send-instructions') {
       $email = $_POST['email'];
 
-      $token = 'TEST'; // $this->authService->newResetToken($email);
+      $token = $this->authService->newResetToken($email);
 
       if(!empty($token)) {
         $this->mailService->send([
@@ -82,14 +82,35 @@ class AuthController extends AbstractController {
           'subject' => 'Reset Instructions',
           'message' => 'Go here: https://app.todolist.one/new-password/' . $token . '/'
         ]);
-        $tokenSent = true;
+        $action = 'TOKEN_SENT';
       } else {
         $error = true;
       }
     }
 
+    if( !empty($attributes[0])) {
+      $token = $attributes[0];
+      $databaseToken = $this->authService->getResetToken($token);
+
+      if (!empty($_POST['a']) && $_POST['a'] == 'set-password') {
+        if(!empty($databaseToken)) {
+          $this->authService->setPassword($_POST['password']);
+          $action = 'PASSWORD_SET';
+        } else {
+          $action = 'TOKEN_NOT_VALID';
+        }
+      } else {
+
+        if(!empty($databaseToken)) {
+          $action = 'PASSWORD_FORM';
+        } else {
+          $action = 'TOKEN_NOT_VALID';
+        }
+      }
+    }
+
     $this->render("auth/new-password", [
-      'tokenSent' => $tokenSent,
+      'action' => $action,
       'error' => $error
     ]);
   }
