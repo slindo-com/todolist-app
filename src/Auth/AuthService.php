@@ -39,7 +39,7 @@ class AuthService {
     $lastId = $this->usersRepository->new($lowerCaseEmail, $encryptedPassword);
 
     if ($lastId != 0) {
-      $_SESSION['auth'] = lastId;
+      $_SESSION['auth'] = $lastId;
       session_regenerate_id(true);
       return true;
     } else {

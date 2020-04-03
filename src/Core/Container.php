@@ -13,7 +13,8 @@ use App\Post\PostsAdminController;
 */
 use App\Auth\UsersRepository;
 
-use App\Auth\CommonController;
+use App\Common\CommonController;
+use App\Common\MailService;
 
 use App\Auth\AuthController;
 use App\Auth\AuthService;
@@ -21,14 +22,12 @@ use App\Auth\AuthService;
 use App\Settings\SettingsController;
 use App\Lists\ListsController;
 
-class Container
-{
+class Container {
 
   private $receipts = [];
   private $instances = [];
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->receipts = [
       /*'postsAdminController' => function() {
         return new PostsAdminController(
@@ -39,6 +38,9 @@ class Container
       'commonController' => function() {
         return new CommonController();
       },
+      'mailService' => function() {
+        return new MailService();
+      },
       'authService' => function() {
         return new AuthService(
           $this->make("usersRepository")
@@ -46,7 +48,8 @@ class Container
       },
       'authController' => function() {
         return new AuthController(
-          $this->make("authService")
+          $this->make("authService"),
+          $this->make("mailService")
         );
       },
       'listsController' => function() {
@@ -79,9 +82,9 @@ class Container
       'pdo' => function() {
         try {
           $pdo = new PDO(
-            'mysql:host=localhost;dbname=todolist_one;charset=utf8',
-            'root',
-            'root'
+            config()['databaseConnection'],
+            config()['databaseUser'],
+            config()['databasePassword']
           );
         } catch (PDOException $e) {
           echo "Verbindung zur Datenbank fehlgeschlagen";
@@ -93,10 +96,8 @@ class Container
     ];
   }
 
-  public function make($name)
-  {
-    if (!empty($this->instances[$name]))
-    {
+  public function make($name) {
+    if (!empty($this->instances[$name])) {
       return $this->instances[$name];
     }
 
@@ -106,35 +107,5 @@ class Container
 
     return $this->instances[$name];
   }
-  /*
-  private $pdo;
-  private $postsRepository;
-
-  public function getPdo()
-  {
-    if (!empty($this->pdo)) {
-      return $this->pdo;
-    }
-    $this->pdo = new PDO(
-      'mysql:host=localhost;dbname=todolist-one;charset=utf8',
-      'blog',
-      'TX4LQBEzfZfVqnLV'
-    );
-    $this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    return $this->pdo;
-  }
-
-  public function getPostsRepository()
-  {
-    if (!empty($this->postsRepository)) {
-      return $this->postsRepository;
-    }
-    $this->postsRepository = new PostsRepository(
-      $this->getPdo()
-    );
-    return $this->postsRepository;
-  }
-  */
-
 }
- ?>
+?>

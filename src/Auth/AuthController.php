@@ -3,11 +3,13 @@
 namespace App\Auth;
 
 use App\Core\AbstractController;
+use App\Common\MailService;
 
 class AuthController extends AbstractController {
 
-  public function __construct(AuthService $authService) {
+  public function __construct(AuthService $authService, MailService $mailService) {
     $this->authService = $authService;
+    $this->mailService = $mailService;
   }
 
   public function signIn() {
@@ -45,6 +47,13 @@ class AuthController extends AbstractController {
       $password = $_POST['password'];
 
       if ($this->authService->newAccount($email, $password)) {
+
+        $this->mailService->send([
+          'to' => $email,
+          'subject' => 'Welcome to Todolist One',
+          'message' => 'Welcome to Todolist One'
+        ]);
+
         header("Location: /own/");
         return;
       } else {

@@ -1,9 +1,9 @@
 <?php
 
+require __DIR__ . "/config.php";
 require __DIR__ . "/autoload.php";
 
-function e($str)
-{
+function e($str) {
   return htmlentities($str, ENT_QUOTES, 'UTF-8');
 }
 
