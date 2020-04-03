@@ -67,8 +67,31 @@ class AuthController extends AbstractController {
   }
 
   public function newPassword($attributes) {
-    // $this->authService->check();
-    echo 'TODO: NEW PASSWORD';
+
+    $error = false;
+    $tokenSent = false;
+
+    if ($_POST['a'] == 'send-instructions') {
+      $email = $_POST['email'];
+
+      $token = 'TEST'; // $this->authService->newResetToken($email);
+
+      if(!empty($token)) {
+        $this->mailService->send([
+          'to' => $email,
+          'subject' => 'Reset Instructions',
+          'message' => 'Go here: https://app.todolist.one/new-password/' . $token . '/'
+        ]);
+        $tokenSent = true;
+      } else {
+        $error = true;
+      }
+    }
+
+    $this->render("auth/new-password", [
+      'tokenSent' => $tokenSent,
+      'error' => $error
+    ]);
   }
 }
 ?>

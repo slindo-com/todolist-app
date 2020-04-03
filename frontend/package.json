@@ -2,7 +2,7 @@
   "name": "todolist-one-build-script",
   "version": "0.1.0",
   "engines": {
-    "node": "12.16.x"
+    "node": "v12.16.1"
   },
   "description": "A simple build script for todolist one.",
   "main": "build.js",

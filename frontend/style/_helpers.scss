@@ -100,6 +100,14 @@ a {
   }
 }
 
+p {
+  line-height: 4*$base;
+}
+
+small {
+  display:block;
+}
+
 
 .btn {
   border:$color-border 1px solid;
@@ -149,6 +157,10 @@ a {
 
 .mb-2 {
   margin-bottom:2*$base;
+}
+
+.mb-4 {
+  margin-bottom:4*$base;
 }
 
 
