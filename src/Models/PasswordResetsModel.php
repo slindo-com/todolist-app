@@ -19,8 +19,8 @@ class PasswordResetsAsset extends AbstractAsset {
 class PasswordResetsModel extends PasswordResetsAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\PasswordResetsAsset';
-	private $tableName = 'password_resets';
+	protected $assetName = 'App\\Models\\PasswordResetsAsset';
+	protected $tableName = 'password_resets';
 
 
 	public function new($token, $email, $created_by) {
@@ -39,18 +39,5 @@ class PasswordResetsModel extends PasswordResetsAsset {
 		} else {
 			return false;
 		}
-	}
-
-
-	public function getToken($token) {
-		$table = $this->tableName;
-		$asset = $this->assetName;
-		$stmt = $this->pdo->prepare("SELECT * FROM `$table` WHERE token = :token");
-
-		$stmt->execute(['token' => $token]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, $asset);
-		$post = $stmt->fetch(PDO::FETCH_CLASS);
-
-		return $post;
 	}
 }

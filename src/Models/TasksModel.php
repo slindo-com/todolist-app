@@ -23,6 +23,6 @@ class TasksAsset extends AbstractAsset {
 class TasksModel extends TasksAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\TasksAsset';
-	private $tableName = 'tasks';
+	protected $assetName = 'App\\Models\\TasksAsset';
+	protected $tableName = 'tasks';
 }

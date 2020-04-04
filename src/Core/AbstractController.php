@@ -2,17 +2,10 @@
 
 namespace App\Core;
 
-abstract class AbstractController
-{
+abstract class AbstractController {
 
-  protected function render($view, $params)
-  {
-    // foreach ($params AS $key => $value) {
-    //  ${$key} = $value;
-    // }
-    extract($params);
-    include __DIR__ . "/../../views/{$view}.php";
-  }
+	protected function render($view, $params) {
+		extract($params);
+		include __DIR__ . "/../../views/{$view}.php";
+	}
 }
-
-?>

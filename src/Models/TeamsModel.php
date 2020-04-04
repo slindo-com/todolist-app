@@ -19,6 +19,6 @@ class TeamsAsset extends AbstractAsset {
 class TeamsModel extends TeamsAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\TeamsAsset';
-	private $tableName = 'teams';
+	protected $assetName = 'App\\Models\\TeamsAsset';
+	protected $tableName = 'teams';
 }

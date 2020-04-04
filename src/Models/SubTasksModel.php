@@ -21,6 +21,6 @@ class SubTasksAsset extends AbstractAsset {
 class SubTasksModel extends SubTasksAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\SubTasksAsset';
-	private $tableName = 'sub_tasks';
+	protected $assetName = 'App\\Models\\SubTasksAsset';
+	protected $tableName = 'sub_tasks';
 }

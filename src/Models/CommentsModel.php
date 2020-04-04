@@ -20,6 +20,6 @@ class CommentsAsset extends AbstractAsset {
 class CommentsModel extends CommentsAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\CommentsAsset';
-	private $tableName = 'comments';
+	protected $assetName = 'App\\Models\\CommentsAsset';
+	protected $tableName = 'comments';
 }

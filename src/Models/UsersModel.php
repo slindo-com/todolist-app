@@ -22,8 +22,8 @@ class UsersAsset extends AbstractAsset {
 class UsersModel extends AbstractModel {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\UsersAsset';
-	private $tableName = 'users';
+	protected $assetName = 'App\\Models\\UsersAsset';
+	protected $tableName = 'users';
 
 
 	public function new($email, $password) {
@@ -41,19 +41,6 @@ class UsersModel extends AbstractModel {
 		} else {
 			return false;
 		}
-	}
-
-
-	public function findByEmail($email) {
-		$table = $this->tableName;
-		$asset = $this->assetName;
-		$stmt = $this->pdo->prepare("SELECT * FROM `$table` WHERE email = :email");
-		
-		$stmt->execute(['email' => $email]);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, $asset);
-		$user = $stmt->fetch(PDO::FETCH_CLASS);
-
-		return $user;
 	}
 	
 

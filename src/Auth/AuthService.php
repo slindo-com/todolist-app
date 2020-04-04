@@ -25,7 +25,7 @@ class AuthService {
 
 
 	public function auth($email, $password) {
-		$user = $this->usersModel->findByEmail($email);
+		$user = $this->usersModel->findByAttribute('email', $email);
 		if (empty($user)) {
 			return false;
 		}
@@ -76,7 +76,7 @@ class AuthService {
 
 	// TODO: Refactor completely to model
 	public function getResetToken($token) {
-		return $this->passwordResetsModel->getToken($token);
+		return $this->passwordResetsModel->findByAttribute('token', $token);
 	}
 
 

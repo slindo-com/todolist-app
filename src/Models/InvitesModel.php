@@ -21,6 +21,6 @@ class InvitesAsset extends AbstractAsset {
 class InvitesModel extends InvitesAsset {
 	
 	protected $pdo;
-	private $assetName = 'App\\Models\\InvitesAsset';
-	private $tableName = 'invites';
+	protected $assetName = 'App\\Models\\InvitesAsset';
+	protected $tableName = 'invites';
 }
