@@ -33,11 +33,6 @@ class AuthController extends AbstractController {
     ]);
   }
 
-  public function logout() {
-    $this->authService->logout();
-    header("Location: /sign-in/");
-  }
-
   public function newAccount($attributes) {
 
     $error = false;

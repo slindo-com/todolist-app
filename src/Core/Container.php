@@ -83,7 +83,9 @@ class Container {
         return new ListsController();
       },
       'settingsController' => function() {
-        return new settingsController();
+        return new settingsController(
+          $this->make("authService")
+        );
       },
       'pdo' => function() {
         try {

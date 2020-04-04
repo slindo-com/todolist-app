@@ -10,10 +10,17 @@
 
 
 		<section class="container">
-			<h2 class="mb-2">
-				Account
-			</h2>
-		</section>   
+			<header class="header">
+				<h2>
+					Account
+				</h2>
+				<form method="POST" class="button-wrapper">
+					<button type="submit" name="a" value="sign-out" class="btn">
+						Sign Out
+					</button>
+				</form>
+			</header>
+		</section> 
 
 		
 	</main>

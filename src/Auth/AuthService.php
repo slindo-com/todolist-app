@@ -14,7 +14,7 @@ class AuthService {
 	}
 
 
-	public function hasAuth() {
+	public function verifyAuth() {
 		if (isset($_SESSION['auth'])) {
 			return true;
 		} else {
@@ -67,11 +67,7 @@ class AuthService {
 		$token = bin2hex(random_bytes(50));
 		$success = $this->passwordResetsModel->new($token, $email, $_SESSION['auth']);
 
-		if($success) {
-			return $token;
-		} else {
-			return false;
-		}
+		return ($success ? $token : false);
 	}
 
 	// TODO: Refactor completely to model
@@ -80,9 +76,11 @@ class AuthService {
 	}
 
 
-	public function logout() {
+	public function signOut() {
 		unset($_SESSION['auth']);
 		session_regenerate_id(true);
+		header("Location: /sign-in/");
+		die();
 	}
 }
 ?>

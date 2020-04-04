@@ -16,10 +16,6 @@ $routes = [
     'controller' => 'authController',
     'method' => 'signIn'
   ],
-  '/logout/' => [
-    'controller' => 'authController',
-    'method' => 'logout'
-  ],
   '/new-account/' => [
     'controller' => 'authController',
     'method' => 'newAccount'

@@ -10,10 +10,12 @@
 
 
 		<section class="container">
-			<h2 class="mb-2">
-				General
-			</h2>
-		</section>   
+			<header class="header">
+				<h2>
+					General
+				</h2>
+			</header>
+		</section>
 
 		
 	</main>

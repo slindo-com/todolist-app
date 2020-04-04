@@ -3,11 +3,12 @@
 namespace App\Settings;
 
 use App\Core\AbstractController;
+use App\Auth\AuthService;
 
 class SettingsController extends AbstractController {
 
-  public function __construct() {
-
+  public function __construct(AuthService $authService) {
+    $this->authService = $authService;
   }
 
   public function index() {
@@ -31,6 +32,11 @@ class SettingsController extends AbstractController {
   }
 
   public function account() {
+    $this->authService->verifyAuth();
+    
+    if(!empty($_POST['a']) && $_POST['a'] == 'sign-out') {
+      $this->authService->signOut();
+    }
     $this->render("settings/account", []);
   }
 
