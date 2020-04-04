@@ -6,8 +6,15 @@ use PDO;
 use Exception;
 use PDOException;
 
-use App\Models\UsersModel;
+use App\Models\InvitesModel;
+use App\Models\CommentsModel;
+use App\Models\ListsModel;
 use App\Models\PasswordResetsModel;
+use App\Models\SubTasksModel;
+use App\Models\TasksModel;
+use App\Models\TeamMembersModel;
+use App\Models\TeamsModel;
+use App\Models\UsersModel;
 
 use App\Common\CommonController;
 use App\Common\MailService;
@@ -25,6 +32,35 @@ class Container {
 
   public function __construct() {
     $this->receipts = [
+
+      'invitesModel' => function() {
+        return new InvitesModel($this->make("pdo"));
+      },
+      'commentsModel' => function() {
+        return new CommentsModel($this->make("pdo"));
+      },
+      'listsModel' => function() {
+        return new ListsModel($this->make("pdo"));
+      },
+      'passwordResetsModel' => function() {
+        return new PasswordResetsModel($this->make("pdo"));
+      },
+      'subTasksModel' => function() {
+        return new SubTasksModel($this->make("pdo"));
+      },
+      'tasksModel' => function() {
+        return new TasksModel($this->make("pdo"));
+      },
+      'teamMembersModel' => function() {
+        return new TeamMembersModel($this->make("pdo"));
+      },
+      'teamsModel' => function() {
+        return new TeamsModel($this->make("pdo"));
+      },
+      'usersModel' => function() {
+        return new UsersModel($this->make("pdo"));
+      },
+
       'commonController' => function() {
         return new CommonController();
       },
@@ -48,16 +84,6 @@ class Container {
       },
       'settingsController' => function() {
         return new settingsController();
-      },
-      'usersModel' => function() {
-        return new UsersModel(
-          $this->make("pdo")
-        );
-      },
-      'passwordResetsModel' => function() {
-        return new PasswordResetsModel(
-          $this->make("pdo")
-        );
       },
       'pdo' => function() {
         try {

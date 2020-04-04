@@ -2,8 +2,16 @@
 
 namespace App\Core;
 
+use PDO;
+
 
 abstract class AbstractModel {
+
+
+  public function __construct(PDO $pdo) {
+    $this->pdo = $pdo;
+  }
+
 
   public function all() {   
      $table = $this->tableName;
@@ -12,6 +20,7 @@ abstract class AbstractModel {
      $posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
      return $posts;
   }
+
 
   public function find($id) {
     $table = $this->tableName;

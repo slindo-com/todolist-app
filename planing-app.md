@@ -87,17 +87,6 @@ note
 list
 
 
-### TASKS
-id
-title
-done
-created_by
-created_at
-due
-note
-list
-
-
 ### SUB_TASKS
 id
 title

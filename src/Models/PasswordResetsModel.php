@@ -23,11 +23,6 @@ class PasswordResetsModel extends PasswordResetsAsset {
 	private $tableName = 'password_resets';
 
 
-	public function __construct(PDO $pdo) {
-		$this->pdo = $pdo;
-	}
-
-
 	public function new($token, $email, $created_by) {
 		$table = $this->tableName;
 		$stmt = $this->pdo->prepare(

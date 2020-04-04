@@ -26,11 +26,6 @@ class UsersModel extends AbstractModel {
 	private $tableName = 'users';
 
 
-	public function __construct(PDO $pdo) {
-		$this->pdo = $pdo;
-	}
-
-
 	public function new($email, $password) {
 		$table = $this->tableName;
 		$stmt = $this->pdo->prepare(
