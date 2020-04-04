@@ -6,13 +6,8 @@ use PDO;
 use Exception;
 use PDOException;
 
-/*use App\Post\PostsRepository;
-use App\Post\CommentsRepository;
-use App\Post\PostsController;
-use App\Post\PostsAdminController;
-*/
-use App\Auth\UsersRepository;
-use App\Auth\PasswordResetsRepository;
+use App\Models\UsersModel;
+use App\Models\PasswordResetsModel;
 
 use App\Common\CommonController;
 use App\Common\MailService;
@@ -38,8 +33,8 @@ class Container {
       },
       'authService' => function() {
         return new AuthService(
-          $this->make("usersRepository"),
-          $this->make("passwordResetsRepository")
+          $this->make("usersModel"),
+          $this->make("passwordResetsModel")
         );
       },
       'authController' => function() {
@@ -54,13 +49,13 @@ class Container {
       'settingsController' => function() {
         return new settingsController();
       },
-      'usersRepository' => function() {
-        return new UsersRepository(
+      'usersModel' => function() {
+        return new UsersModel(
           $this->make("pdo")
         );
       },
-      'passwordResetsRepository' => function() {
-        return new PasswordResetsRepository(
+      'passwordResetsModel' => function() {
+        return new PasswordResetsModel(
           $this->make("pdo")
         );
       },

@@ -2,29 +2,25 @@
 
 namespace App\Core;
 
-use ArrayAccess;
 
-abstract class AbstractModel implements ArrayAccess
-{
+abstract class AbstractModel {
 
-  public function offsetExists($offset)
-  {
-    return isset($this->$offset);
+  public function all() {   
+     $table = $this->tableName;
+     $asset = $this->assetName;
+     $stmt = $this->pdo->query("SELECT * FROM `$table`");
+     $posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
+     return $posts;
   }
 
-  public function offsetGet($offset)
-  {
-    return $this->$offset;
-  }
+  public function find($id) {
+    $table = $this->tableName;
+    $asset = $this->assetName;
+    $stmt = $this->pdo->prepare("SELECT * FROM `$table` WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $stmt->setFetchMode(PDO::FETCH_CLASS, $asset);
+    $post = $stmt->fetch(PDO::FETCH_CLASS);
 
-  public function offsetSet($offset, $value)
-  {
-    $this->$offset = $value;
-  }
-
-  public function offsetUnset($offset)
-  {
-    unset($this->$offset);
+    return $post;
   }
 }
- ?>
