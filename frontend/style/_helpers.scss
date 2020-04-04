@@ -259,8 +259,14 @@ small {
 }
 
 
+main {
+  display:block;
+}
+
+
 section {
-  margin:4*$base 3*$base;
+  width:90%;
+  margin:4*$base auto;
   max-width:960px;
 }
 

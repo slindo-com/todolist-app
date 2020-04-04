@@ -43,6 +43,15 @@ $routes = [
     'method' => 'index'
   ],
 
+  '/settings/lists/' => [
+    'controller' => 'settingsController',
+    'method' => 'lists'
+  ],
+  '/settings/lists/new/' => [
+    'controller' => 'settingsController',
+    'method' => 'newList'
+  ],
+
   '/settings/teams/' => [
     'controller' => 'settingsController',
     'method' => 'teams'

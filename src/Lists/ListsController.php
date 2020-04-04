@@ -31,7 +31,7 @@ class ListsController extends AbstractController {
   }
 
   public function all() {
-    echo 'TODO: LISTS: ALL';
+    $this->render("lists/list", []);
   }
 }
 

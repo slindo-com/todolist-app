@@ -11,11 +11,11 @@ class SettingsController extends AbstractController {
   }
 
   public function index() {
-    echo 'TODO: SETTINGS: INDEX';
+    $this->render("settings/index", []);
   }
 
   public function teams() {
-    echo 'TODO: SETTINGS: TEAMS';
+    $this->render("settings/teams", []);
   }
 
   public function newTeam() {
@@ -31,7 +31,7 @@ class SettingsController extends AbstractController {
   }
 
   public function account() {
-    echo 'TODO: SETTINGS: ACCOUNT';
+    $this->render("settings/account", []);
   }
 
   public function changeEmail() {
