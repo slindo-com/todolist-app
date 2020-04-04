@@ -8,7 +8,6 @@ use App\Core\AbstractModel;
 use PDO;
 
 class TeamMembersAsset extends AbstractAsset {
-	public $id;
 	public $user;
 	public $team;
 	public $role;

@@ -9,11 +9,11 @@ use PDO;
 
 class ListsAsset extends AbstractAsset {
 	public $id;
+	public $team;
+	public $user;
 	public $title;
 	public $created_by;
 	public $created_at;
-	public $team;
-	public $user;
 }
 
 

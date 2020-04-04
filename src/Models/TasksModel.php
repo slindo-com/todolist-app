@@ -9,13 +9,13 @@ use PDO;
 
 class TasksAsset extends AbstractAsset {
 	public $id;
+	public $list;
 	public $title;
 	public $done;
-	public $created_by;
-	public $created_at;
 	public $due;
 	public $note;
-	public $list;
+	public $created_by;
+	public $created_at;
 }
 
 
