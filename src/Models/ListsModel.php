@@ -18,7 +18,7 @@ class ListsAsset extends AbstractAsset {
 
 
 
-class ListsModel extends ListsAsset {
+class ListsModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\ListsAsset';

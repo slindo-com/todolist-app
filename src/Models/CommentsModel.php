@@ -17,7 +17,7 @@ class CommentsAsset extends AbstractAsset {
 
 
 
-class CommentsModel extends CommentsAsset {
+class CommentsModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\CommentsAsset';

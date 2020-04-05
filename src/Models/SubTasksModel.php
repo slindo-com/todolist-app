@@ -18,7 +18,7 @@ class SubTasksAsset extends AbstractAsset {
 
 
 
-class SubTasksModel extends SubTasksAsset {
+class SubTasksModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\SubTasksAsset';

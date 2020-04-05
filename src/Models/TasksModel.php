@@ -20,7 +20,7 @@ class TasksAsset extends AbstractAsset {
 
 
 
-class TasksModel extends TasksAsset {
+class TasksModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\TasksAsset';

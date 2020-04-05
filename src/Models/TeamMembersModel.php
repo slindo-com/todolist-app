@@ -15,7 +15,7 @@ class TeamMembersAsset extends AbstractAsset {
 
 
 
-class TeamMembersModel extends TeamMembersAsset {
+class TeamMembersModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\TeamMembersAsset';

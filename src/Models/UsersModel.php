@@ -24,6 +24,7 @@ class UsersModel extends AbstractModel {
 	protected $pdo;
 	protected $assetName = 'App\\Models\\UsersAsset';
 	protected $tableName = 'users';
+	protected $joinTableName = 'team_members';
 
 
 	public function new($email, $password) {
@@ -52,5 +53,18 @@ class UsersModel extends AbstractModel {
 			'password' => password_hash($password, PASSWORD_BCRYPT),
 			'id' => $_SESSION['auth']
 		]);
+	}
+
+
+	public function getTeamMembers($teamId) {
+		$table = $this->tableName;
+		$joinTable = $this->joinTableName;
+		$asset = $this->assetName;
+		$stmt = $this->pdo->prepare(
+			"SELECT * FROM $table LEFT JOIN $joinTable ON $table.id = $joinTable.user WHERE $joinTable.team = :teamId"
+		);
+		$stmt->execute(['teamId' => $teamId]);
+		$posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
+		return $posts;
 	}
 }

@@ -12,22 +12,23 @@
 		<section class="container">
 			<header class="header">
 				<h2>
-					Teams
+					<?php echo $team->title; ?>
 				</h2>
-				<form method="POST" class="button-wrapper">
-					<button type="submit" name="a" value="new-team" class="btn">
-						New Team
-					</button>
-				</form>
+				<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
+					Edit Title
+				</a>
+				<a href="/settings/teams/<?php echo $team->slug; ?>/invite/" class="btn">
+					Invite Member
+				</a>
 			</header>
 		</section>
 
 
-		<?php if (sizeof($teams) == 0): ?>
+		<?php if (sizeof($members) == 1): ?>
 
 			<section class="container">
 				<p>
-					You work on your own right now. If you want to create a team, please press the button above.
+					You are the only member of this team right now. Invite some mates to work together.
 				</p>
 			</section>
 
@@ -35,20 +36,17 @@
 			<section class="container">
 
 				<ul class="entries">
-					<?php foreach ($teams AS $team): ?>
+					<?php foreach ($members AS $member): ?>
 						
 						<li>
-							<a href="/settings/teams/<?php echo e($team->slug); ?>/">
 								<h4>
-									<?php echo e($team->title); ?>
+									<?php echo e($member->name); ?>
 								</h4>
 								<small class="published-small">
-									<?php echo $team->role == 1 ? 'Admin' : 'Member'; ?>
+									<?php echo $member->role == 1 ? 'Admin' : 'Member'; ?>
 								</small>
 								<small>
-									<?php 
-										echo $memberCounts[$team->id] . ($memberCounts[$team->id] == 1 ? ' Member' : ' Members');
-									?>
+									<?php echo e($member->email); ?>
 								</small>
 							</a>	
 						</li>
@@ -57,7 +55,7 @@
 				</ul>
 			</section>
 		<?php endif; ?>
-
+		
 		
 	</main>
 

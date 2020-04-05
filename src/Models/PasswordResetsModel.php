@@ -16,7 +16,7 @@ class PasswordResetsAsset extends AbstractAsset {
 
 
 
-class PasswordResetsModel extends PasswordResetsAsset {
+class PasswordResetsModel extends AbstractModel {
 	
 	protected $pdo;
 	protected $assetName = 'App\\Models\\PasswordResetsAsset';

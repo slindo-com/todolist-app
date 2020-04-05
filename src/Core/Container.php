@@ -84,7 +84,9 @@ class Container {
       },
       'settingsController' => function() {
         return new settingsController(
-          $this->make("authService")
+          $this->make('teamsModel'),
+          $this->make('usersModel'),
+          $this->make('authService')
         );
       },
       'pdo' => function() {
