@@ -20,7 +20,7 @@
 						<?php echo $team->title; ?>
 					</a>
 					→
-					Edit Title
+					Invite Member
 				</h2>
 			</header>
 		</section>
@@ -30,25 +30,31 @@
 			<div class="flex">
 				<div class="left">
 					<h3>
-						Team Title
+						Grow Team
 					</h3>
 					<small>
-						Lorem Ipsum dolor sit amet set consetetur…
+						Please provide the data for your new team member. She'll get a invitation to her e-mail address.
 					</small>
 				</div>
 				<div class="right">
 					<form method="POST" class="shadow">
 
 
-						<label for="ti">
-							New Title:
+						<label for="em">
+							E-Mail Address:
 						</label>
-						<input placeholder="Type here…" type="text" name="title" id="ti" value="<?php echo e($team->title); ?>" autofocus required>
+						<input placeholder="Type here…" type="email" name="email" id="em" autofocus required>
+
+
+						<label for="na">
+							E-Mail Address:
+						</label>
+						<input placeholder="e.g. 'John'" type="text" name="name" id="na" minlength="2" required>
 
 
 						<footer>
-							<button type="submit" class="btn" name="a" value="edit-title">
-								Save New Title
+							<button type="submit" class="btn" name="a" value="send-invitation">
+								Invite New Member
 							</button>
 						</footer>
 					</form>

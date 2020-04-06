@@ -4,16 +4,26 @@ namespace App\Settings;
 
 use App\Core\AbstractController;
 use App\Auth\AuthService;
+use App\Common\MailService;
 
 use App\Models\TeamsModel;
 use App\Models\UsersModel;
+use App\Models\InvitesModel;
 
 class SettingsController extends AbstractController {
 
-	public function __construct(TeamsModel $teamsModel, UsersModel $usersModel, AuthService $authService) {
+	public function __construct(
+		TeamsModel $teamsModel,
+		UsersModel $usersModel,
+		InvitesModel $invitesModel,
+		AuthService $authService,
+		MailService $mailService
+	) {
 		$this->teamsModel = $teamsModel;
 		$this->usersModel = $usersModel;
+		$this->invitesModel = $invitesModel;
 		$this->authService = $authService;
+		$this->mailService = $mailService;
 	}
 
 	public function index() {
@@ -77,8 +87,31 @@ class SettingsController extends AbstractController {
 	}
 
 
-	public function inviteTeamMember() {
-		echo 'TODO: SETTINGS: NEW MEMBER';
+	public function inviteTeamMember($attributes) {
+		$this->authService->verifyAuth();
+
+		$teamSlug = $attributes[0];
+		$team = $this->teamsModel->findByAttribute('slug', $teamSlug);
+
+		if(!empty($_POST['a']) && $_POST['a'] == 'send-invitation') {
+			$token = bin2hex(random_bytes(50));
+			$success = $this->invitesModel->new($team->id, $_POST['email'], $_POST['name'], $token);
+
+			if($success) {
+
+				$this->mailService->send([
+					'to' => $_POST['email'],
+					'subject' => 'Invite to Team on Todolist One',
+					'message' => 'Invite to Team on Todolist One: '. $token
+				]);
+
+				header("Location: /settings/teams/". $team->slug ."/");
+			}
+		}
+
+		$this->render("settings/invite-team-member", [
+			'team' => $team
+		]);
 	}
 
 

@@ -12,6 +12,10 @@
 		<section class="container">
 			<header class="header">
 				<h2>
+					<a href="/settings/teams/">
+						Teams
+					</a>
+					→
 					<?php echo $team->title; ?>
 				</h2>
 				<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
