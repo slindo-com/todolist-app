@@ -28,7 +28,7 @@
 		</section>
 
 
-		<?php if (sizeof($members) == 1): ?>
+		<?php if (sizeof($members) == 1 && sizeof($invites) == 0): ?>
 
 			<section class="container">
 				<p>
@@ -43,8 +43,9 @@
 					<?php foreach ($members AS $member): ?>
 						
 						<li>
+							<div>
 								<h4>
-									<?php echo e($member->name); ?>
+									<?php echo (sizeof($member->name) > 1 ? e($member->name) : 'No Name'); ?>
 								</h4>
 								<small class="published-small">
 									<?php echo $member->role == 1 ? 'Admin' : 'Member'; ?>
@@ -52,14 +53,42 @@
 								<small>
 									<?php echo e($member->email); ?>
 								</small>
-							</a>	
+							</div>
 						</li>
 
 					<?php endforeach; ?>
 				</ul>
 			</section>
 		<?php endif; ?>
-		
+
+
+
+		<?php if (sizeof($invites) >= 1): ?>
+			<section class="container">
+
+				<ul class="entries">
+					<?php foreach ($invites AS $invite): ?>
+						
+						<li>
+							<div>
+								<h4>
+									<?php echo e($invite->name); ?>
+								</h4>
+								<small class="published-small">
+									Invited
+								</small>
+								<small>
+									<?php echo e($invite->email); ?>
+								</small>
+							<div>	
+						</li>
+
+					<?php endforeach; ?>
+				</ul>
+			</section>
+		<?php endif; ?>
+
+
 		
 	</main>
 

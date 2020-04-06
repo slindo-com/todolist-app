@@ -1,15 +1,18 @@
 .frame {
-	display:flex;
-	flex-direction:row;
+	
 }
 
 main {
-	flex-grow:1;
+	margin-left:40*$base;
 }
 
 .main-nav {
-	position: relative;
-	flex-basis:40*$base;
+  opacity: .25;
+	position: fixed;
+  top:0;
+  left:0;
+	width:40*$base;
+  height:100%;
 	background:#FFF;
 	height:100vh;
 	border-right:$color-border 1px solid;

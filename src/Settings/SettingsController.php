@@ -7,6 +7,7 @@ use App\Auth\AuthService;
 use App\Common\MailService;
 
 use App\Models\TeamsModel;
+use App\Models\TeamMembersModel;
 use App\Models\UsersModel;
 use App\Models\InvitesModel;
 
@@ -14,12 +15,14 @@ class SettingsController extends AbstractController {
 
 	public function __construct(
 		TeamsModel $teamsModel,
+		TeamMembersModel $teamMembersModel,
 		UsersModel $usersModel,
 		InvitesModel $invitesModel,
 		AuthService $authService,
 		MailService $mailService
 	) {
 		$this->teamsModel = $teamsModel;
+		$this->teamMembersModel = $teamMembersModel;
 		$this->usersModel = $usersModel;
 		$this->invitesModel = $invitesModel;
 		$this->authService = $authService;
@@ -36,9 +39,30 @@ class SettingsController extends AbstractController {
 
 		if(!empty($_POST['a']) && $_POST['a'] == 'new-team') {
 			$this->teamsModel->new($_SESSION['auth']);
+		} else if(!empty($_POST['a']) && $_POST['a'] == 'join-team') {
+			$invite = $this->invitesModel->find($_POST['inviteId']);
+			$user = $this->usersModel->find($_SESSION['auth']);
+
+			if($invite->email == $user->email) {
+				$this->teamMembersModel->new($user->id, $invite->team);
+				$this->invitesModel->delete($invite->id);
+			}		
+		} else if(!empty($_POST['a']) && $_POST['a'] == 'decline-invitation') {
+			$invite = $this->invitesModel->find($_POST['inviteId']);
+			$user = $this->usersModel->find($_SESSION['auth']);
+
+			if($invite->email == $user->email) {
+				$this->invitesModel->delete($invite->id);
+			}
 		}
 
 		$teams = $this->teamsModel->getTeams($_SESSION['auth']);
+		$user = $this->usersModel->find($_SESSION['auth']);
+		$invite = $this->invitesModel->findByAttribute('email', $user->email);
+
+		if($invite) {
+			$invitingTeam = $this->teamsModel->find($invite->team);
+		}
 
 		$memberCounts = [];
 		foreach ($teams as $team) {
@@ -47,7 +71,9 @@ class SettingsController extends AbstractController {
 
 		$this->render("settings/teams", [
 			'teams' => $teams,
-			'memberCounts' => $memberCounts
+			'memberCounts' => $memberCounts,
+			'invite' => $invite,
+			'invitingTeam' => $invitingTeam
 		]);
 	}
 
@@ -58,10 +84,12 @@ class SettingsController extends AbstractController {
 
 		$team = $this->teamsModel->findByAttribute('slug', $teamSlug);
 		$members = $this->usersModel->getTeamMembers($team->id);
+		$invites = $this->invitesModel->getTeamInvites($team->id);
 
 		$this->render("settings/team", [
 			'team' => $team,
-			'members' => $members
+			'members' => $members,
+			'invites' => $invites
 		]);
 	}
 
@@ -99,11 +127,15 @@ class SettingsController extends AbstractController {
 
 			if($success) {
 
-				$this->mailService->send([
-					'to' => $_POST['email'],
-					'subject' => 'Invite to Team on Todolist One',
-					'message' => 'Invite to Team on Todolist One: '. $token
-				]);
+				$user = $this->usersModel->findByAttribute('email', strtolower($_POST['email']));
+
+				if(!$user) {
+					$this->mailService->send([
+						'to' => $_POST['email'],
+						'subject' => 'Invite to Team on Todolist One',
+						'message' => 'Invite to Team on Todolist One: '. $token
+					]);
+				}
 
 				header("Location: /settings/teams/". $team->slug ."/");
 			}

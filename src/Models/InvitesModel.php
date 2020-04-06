@@ -40,4 +40,17 @@ class InvitesModel extends AbstractModel {
 
 		return empty($stmt->errorInfo()[1]);
 	}
+
+
+	public function getTeamInvites($teamId) {
+
+		$table = $this->tableName;
+		$asset = $this->assetName;
+		$stmt = $this->pdo->prepare(
+			"SELECT * FROM $table WHERE team = :teamId"
+		);
+		$stmt->execute(['teamId' => $teamId]);
+		$posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
+		return $posts;
+	}
 }

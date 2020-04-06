@@ -85,6 +85,7 @@ class Container {
       'settingsController' => function() {
         return new settingsController(
           $this->make('teamsModel'),
+          $this->make('teamMembersModel'),
           $this->make('usersModel'),
           $this->make('invitesModel'),
           $this->make('authService'),

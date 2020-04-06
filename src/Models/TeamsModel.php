@@ -110,7 +110,7 @@ class TeamsModel extends AbstractModel {
 		$joinTable = $this->joinTableName;
 		$asset = $this->assetName;
 		$stmt = $this->pdo->prepare(
-			"SELECT * FROM $table LEFT JOIN $joinTable ON $table.id = $joinTable.team WHERE $joinTable.user = :userId"
+			"SELECT * FROM $joinTable LEFT JOIN $table ON $table.id = $joinTable.team WHERE $joinTable.user = :userId"
 		);
 		$stmt->execute(['userId' => $userId]);
 		$posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);

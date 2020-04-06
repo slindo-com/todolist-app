@@ -47,7 +47,7 @@
 
 
 						<label for="na">
-							E-Mail Address:
+							Name:
 						</label>
 						<input placeholder="e.g. 'John'" type="text" name="name" id="na" minlength="2" required>
 

@@ -22,8 +22,28 @@
 			</header>
 		</section>
 
+		<?php if (!empty($invitingTeam)): ?>
+			<section class="container">
+				<div class="box">
+					<p>
+						You are invited to a team called "<strong><?php echo e($invitingTeam->title); ?></strong>". Do you want to join this team?
+					</p>
+					<form method="POST">
+						<input type="hidden" name="inviteId" value="<?php echo $invite->id; ?>">
+						<button type="submit" name="a" value="join-team" class="btn">
+							Join Team
+						</button>
+						<button type="submit" name="a" value="decline-invitation" class="btn">
+							Decline Invitation
+						</button>
+					</form>
+				</div>
+		
+			</section>
+		<?php endif; ?>
 
-		<?php if (sizeof($teams) == 0): ?>
+
+		<?php if (sizeof($teams) == 0 && empty($invitingTeam)): ?>
 
 			<section class="container">
 				<p>
@@ -33,7 +53,6 @@
 
 		<?php else: ?>
 			<section class="container">
-
 				<ul class="entries">
 					<?php foreach ($teams AS $team): ?>
 						
