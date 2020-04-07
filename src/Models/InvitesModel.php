@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
-
-use App\Core\AbstractAsset;
-use App\Core\AbstractModel;
-
-use PDO;
+function M_INVITES() {
+	return [ 
+		'table' => 'invites', 
+		'asset' => 'InvitesAsset'
+	];
+}
 
 class InvitesAsset extends AbstractAsset {
 	public $token;
@@ -18,39 +18,26 @@ class InvitesAsset extends AbstractAsset {
 
 
 
-class InvitesModel extends AbstractModel {
-	
-	protected $pdo;
-	protected $assetName = 'App\\Models\\InvitesAsset';
-	protected $tableName = 'invites';
+function invitesModelNew($teamId, $email, $name, $token) {
 
-	public function new($teamId, $email, $name, $token) {
+	$stmt = pdo()->prepare('INSERT INTO invites (token, team, email, name, created_by) VALUES (:token, :team, :email, :name, :created_by)');
+	$stmt->execute([
+		'token' => $token,
+		'team' => $teamId,
+		'email' => $email,
+		'name' => $name,
+		'created_by' => $_SESSION['auth']
+	]);
 
-		$table = $this->tableName;
-		$stmt = $this->pdo->prepare(
-			"INSERT INTO $table (token, team, email, name, created_by) VALUES (:token, :team, :email, :name, :created_by)"
-		);
-		$stmt->execute([
-			'token' => $token,
-			'team' => $teamId,
-			'email' => $email,
-			'name' => $name,
-			'created_by' => $_SESSION['auth']
-		]);
-
-		return empty($stmt->errorInfo()[1]);
-	}
-
-
-	public function getTeamInvites($teamId) {
-
-		$table = $this->tableName;
-		$asset = $this->assetName;
-		$stmt = $this->pdo->prepare(
-			"SELECT * FROM $table WHERE team = :teamId"
-		);
-		$stmt->execute(['teamId' => $teamId]);
-		$posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
-		return $posts;
-	}
+	return empty($stmt->errorInfo()[1]);
 }
+
+
+
+function invitesModelGetTeamInvites($teamId) {
+	$stmt = pdo()->prepare('SELECT * FROM invites WHERE team = :teamId');
+	$stmt->execute(['teamId' => $teamId]);
+	return $stmt->fetchAll(PDO::FETCH_CLASS, M_INVITES()['asset']);
+}
+
+

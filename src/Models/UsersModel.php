@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
-
-use App\Core\AbstractAsset;
-use App\Core\AbstractModel;
-
-use PDO;
+function M_USERS() {
+	return [ 
+		'table' => 'users', 
+		'asset' => 'UsersAsset'
+	];
+}
 
 class UsersAsset extends AbstractAsset {
 	public $id;
@@ -19,52 +19,33 @@ class UsersAsset extends AbstractAsset {
 
 
 
-class UsersModel extends AbstractModel {
-	
-	protected $pdo;
-	protected $assetName = 'App\\Models\\UsersAsset';
-	protected $tableName = 'users';
-	protected $joinTableName = 'team_members';
+function usersModelNew($email, $password) {
+	$stmt = pdo()->prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
+	$success = $stmt->execute([
+		'email' => $email,
+		'password' => $password
+	]);
 
-
-	public function new($email, $password) {
-		$table = $this->tableName;
-		$stmt = $this->pdo->prepare(
-			"INSERT INTO `$table` (`email`, `password`) VALUES (:email,:password)"
-		);
-		$success = $stmt->execute([
-			'email' => $email,
-			'password' => $password
-		]);
-
-		if(empty($stmt->errorInfo()[1])) {
-			return $this->pdo->lastInsertId();
-		} else {
-			return false;
-		}
-	}
-	
-
-	public function setPassword($password) {
-		$table = $this->tableName;
-
-		$stmt = $this->pdo->prepare("UPDATE `{$table}` SET `password` = :password WHERE `id` = :id");
-		$stmt->execute([
-			'password' => password_hash($password, PASSWORD_BCRYPT),
-			'id' => $_SESSION['auth']
-		]);
-	}
-
-
-	public function getTeamMembers($teamId) {
-		$table = $this->tableName;
-		$joinTable = $this->joinTableName;
-		$asset = $this->assetName;
-		$stmt = $this->pdo->prepare(
-			"SELECT * FROM $table LEFT JOIN $joinTable ON $table.id = $joinTable.user WHERE $joinTable.team = :teamId"
-		);
-		$stmt->execute(['teamId' => $teamId]);
-		$posts = $stmt->fetchAll(PDO::FETCH_CLASS, $asset);
-		return $posts;
-	}
+	return empty($stmt->errorInfo()[1]) ? pdo()->lastInsertId() : false;
 }
+
+
+
+function usersModelSetPassword($password) {
+
+	$stmt = pdo()->prepare('UPDATE users SET password = :password WHERE id = :id');
+	$stmt->execute([
+		'id' => $_SESSION['auth'],
+		'password' => password_hash($password, PASSWORD_BCRYPT)
+	]);
+}
+
+
+
+function usersModelGetTeamMembers($teamId) {
+	$stmt = pdo()->prepare("SELECT * FROM users LEFT JOIN team_members ON users.id = team_members.user WHERE team_members.team = :teamId");
+	$stmt->execute(['teamId' => $teamId]);
+	return $stmt->fetchAll(PDO::FETCH_CLASS, 'UsersAsset');
+}
+
+

@@ -4,104 +4,97 @@ session_start();
 
 require __DIR__ . "/../init.php";
 
-$requestUri = $_SERVER['REQUEST_URI'];
-
 $routes = [
-	'/' => [
-		'controller' => 'commonController',
-		'method' => 'index'
-	],
-	
 	'/sign-in/' => [
-		'controller' => 'authController',
-		'method' => 'signIn'
+		'controler' => 'AuthController',
+		'function' => 'authControllerSignIn'
 	],
 	'/new-account/' => [
-		'controller' => 'authController',
-		'method' => 'newAccount'
+		'controler' => 'AuthController',
+		'function' => 'authControllerNewAccount'
 	],
 	'/new-account/:token/' => [
-		'controller' => 'authController',
-		'method' => 'newAccount'
+		'controler' => 'AuthController',
+		'function' => 'authControllerNewAccount'
 	],
 	'/new-password/' => [
-		'controller' => 'authController',
-		'method' => 'newPassword'
+		'controler' => 'AuthController',
+		'function' => 'authControllerNewPassword'
 	],
 	'/new-password/:token/' => [
-		'controller' => 'authController',
-		'method' => 'newPassword'
+		'controler' => 'AuthController',
+		'function' => 'authControllerNewPassword'
 	],
 
 
 	'/settings/' => [
-		'controller' => 'settingsController',
-		'method' => 'index'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerIndex'
 	],
 
 	'/settings/lists/' => [
-		'controller' => 'settingsController',
-		'method' => 'lists'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerLists'
 	],
 	'/settings/lists/new/' => [
-		'controller' => 'settingsController',
-		'method' => 'newList'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerNewList'
 	],
 
 	'/settings/teams/' => [
-		'controller' => 'settingsController',
-		'method' => 'teams'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerTeams'
 	],
 	'/settings/teams/:team/' => [
-		'controller' => 'settingsController',
-		'method' => 'team'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerTeam'
 	],
 	'/settings/teams/:team/edit-title/' => [
-		'controller' => 'settingsController',
-		'method' => 'editTeamTitle'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerEditTeamTitle'
 	],
 	'/settings/teams/:team/invite/' => [
-		'controller' => 'settingsController',
-		'method' => 'inviteTeamMember'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerInviteTeamMember'
 	],
 
 	'/settings/account/' => [
-		'controller' => 'settingsController',
-		'method' => 'account'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerAccount'
 	],
 	'/settings/account/change-email/' => [
-		'controller' => 'settingsController',
-		'method' => 'changeEmail'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerChangeEmail'
 	],
 	'/settings/account/change-password/' => [
-		'controller' => 'settingsController',
-		'method' => 'changePassword'
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerChangePassword'
 	],
 
 
 	'/:team/:list/:todo/' => [
-		'controller' => 'listsController',
-		'method' => 'todo'
+		'controler' => 'listsController',
+		'function' => 'listsControllerTodo'
 	],
 	'/:team/important/' => [
-		'controller' => 'listsController',
-		'method' => 'important'
+		'controler' => 'listsController',
+		'function' => 'listsControllerImportant'
 	],
 	'/:team/today/' => [
-		'controller' => 'listsController',
-		'method' => 'today'
+		'controler' => 'listsController',
+		'function' => 'listsControllerToday'
 	],
 	'/:team/week/' => [
-		'controller' => 'listsController',
-		'method' => 'week'
+		'controler' => 'listsController',
+		'function' => 'listsControllerWeek'
 	],
 	'/:team/:list/' => [
-		'controller' => 'listsController',
-		'method' => 'list'
+		'controler' => 'listsController',
+		'function' => 'listsControllerList'
 	],
 	'/:team/' => [
-		'controller' => 'listsController',
-		'method' => 'all'
+		'controler' => 'listsController',
+		'function' => 'listsControllerAll'
 	]
 
 ];
@@ -120,14 +113,21 @@ function routing($requestUri, $routes){
 	}
 }
 
-$route = routing($requestUri, $routes);
+$route = routing($_SERVER['REQUEST_URI'], $routes);
 
 if(!empty($route)) {
-	$controller = $container->make($route['controller']);
-	$method = $route['method'];
-	$controller->$method($route['attributes']);
+
+	if(!empty($route['function'])) {
+		include_once __DIR__ .'/../src/Controllers/'. $route['controler'] .'.php'; 
+		$route['function']($route['attributes']);
+	} else {
+		$controller = $container->make($route['controller']);
+		$method = $route['method'];
+		$controller->$method($route['attributes']);	
+	}
+
 } else {
-	if($requestUri == '/s.css') {
+	if($_SERVER['REQUEST_URI'] == '/s.css') {
 
 		$min = 1440;
 		$expires = date("M d Y H:i:s", mktime(0, 0, 0, 1, 1, 2040));
@@ -142,5 +142,3 @@ if(!empty($route)) {
 		include __DIR__ . '/s.css';
 	}  
 }
-
-?>
