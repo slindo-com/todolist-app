@@ -3,9 +3,13 @@
 require __DIR__ . "/config.php";
 require __DIR__ . "/autoload.php";
 
+
+
 function e($str) {
 	return htmlentities($str, ENT_QUOTES, 'UTF-8');
 }
+
+
 
 try {
 	$GLOBALS['pdo'] = new PDO(
@@ -18,6 +22,7 @@ try {
 	die();
 }
 $GLOBALS['pdo']->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
 
 
 function pdo() {
@@ -40,9 +45,10 @@ function pdoGet($config, $id) {
 }
 
 
+
 function render($view, $params) {
 	extract($params);
-	include __DIR__ . "/views/{$view}.php";
+	include __DIR__ . "/src/Views/{$view}.php";
 }
 
 
@@ -85,4 +91,3 @@ abstract class AbstractAsset implements ArrayAccess {
 }
 
 
- ?>
