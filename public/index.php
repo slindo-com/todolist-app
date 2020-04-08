@@ -66,6 +66,10 @@ $routes = [
 		'controler' => 'settingsController',
 		'function' => 'settingsControllerChangeEmail'
 	],
+	'/settings/account/change-email/:token/' => [
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerChangeEmailToken'
+	],
 	'/settings/account/change-password/' => [
 		'controler' => 'settingsController',
 		'function' => 'settingsControllerChangePassword'
@@ -101,13 +105,28 @@ $routes = [
 
 
 function routing($requestUri, $routes){
+	$requestUriParts = explode('?', $requestUri);
+	$uri = $requestUriParts[0];
+	if(!empty($requestUriParts[1])) {
+		$queryParts = explode('&', $requestUriParts[1]);
+
+		$query = [];
+		foreach($queryParts as $queryPart) {
+			$queryAttrAndVal = explode('=', $queryPart);
+			$query[$queryAttrAndVal[0]] = $queryAttrAndVal[1];
+		}
+	}
+	
+
+
 	foreach($routes as $route => $routeSettings) {
 		$pattern = "@^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$@D";
 		$matches = Array();
 
-		if(preg_match($pattern, $requestUri, $matches)) {
+		if(preg_match($pattern, $uri, $matches)) {
 			array_shift($matches);
 			$routeSettings['attributes'] = $matches;
+			$routeSettings['query'] = !empty($query) ? $query : [];
 			return $routeSettings;
 		}
 	}
@@ -119,7 +138,7 @@ if(!empty($route)) {
 
 	if(!empty($route['function'])) {
 		include_once __DIR__ .'/../src/Controllers/'. $route['controler'] .'.php'; 
-		$route['function']($route['attributes']);
+		$route['function']($route['attributes'], $route['query']);
 	} else {
 		$controller = $container->make($route['controller']);
 		$method = $route['method'];

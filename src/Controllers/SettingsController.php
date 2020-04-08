@@ -1,6 +1,6 @@
 <?php
 
-includeModels(['Invites', 'Teams', 'TeamMembers', 'Users']);
+includeModels(['EmailTokens', 'Invites', 'Teams', 'TeamMembers', 'Users']);
 includeServices(['Auth', 'Mail']);
 
 
@@ -15,9 +15,9 @@ function settingsControllerIndex() {
 function settingsControllerTeams() {
 	authServiceVerifyAuth();
 
-	if(!empty($_POST['a']) && $_POST['a'] == 'new-team') {
+	if(actionEquals('new-team')) {
 		teamsModelNew($_SESSION['auth']);
-	} else if(!empty($_POST['a']) && $_POST['a'] == 'join-team') {
+	} else if(actionEquals('join-team')) {
 		$invite = invitesModelFind($_POST['inviteId']);
 		$user = pdoGet(M_USERS(), $_SESSION['auth']);
 
@@ -25,7 +25,7 @@ function settingsControllerTeams() {
 			teamMembersModelNew($user->id, $invite->team);
 			invitesModelDelete($invite->id);
 		}		
-	} else if(!empty($_POST['a']) && $_POST['a'] == 'decline-invitation') {
+	} else if(actionEquals('decline-invitation')) {
 		$invite = invitesModelFind($_POST['inviteId']);
 		$user = pdoGet(M_USERS(), $_SESSION['auth']);
 
@@ -99,7 +99,7 @@ function settingsControllerInviteTeamMember($attributes) {
 	$teamSlug = $attributes[0];
 	$team = pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug);
 
-	if(!empty($_POST['a']) && $_POST['a'] == 'send-invitation') {
+	if(actionEquals('send-invitation')) {
 		$token = bin2hex(random_bytes(50));
 		$success = invitesModelNew($team->id, $_POST['email'], $_POST['name'], $token);
 
@@ -119,25 +119,74 @@ function settingsControllerInviteTeamMember($attributes) {
 		}
 	}
 
-		render("settings/invite-team-member", [
-			'team' => $team
-		]);
-	}
+	render("settings/invite-team-member", [
+		'team' => $team
+	]);
+}
 
 
-function settingsControllerAccount() {
+function settingsControllerAccount($attributes, $query) {
 	authServiceVerifyAuth();
+
+	$user = pdoGet(M_USERS(), $_SESSION['auth']);
 		
-	if(!empty($_POST['a']) && $_POST['a'] == 'sign-out') {
+	if(actionEquals('sign-out')) {
 		authServiceSignOut();
+	} else if(actionEquals('save-name')) {
+		$updateNameSuccess = pdoSetAttribute(M_USERS(), $user->id, 'name', $_POST['name']);
+		$user->name = $_POST['name'];
 	}
-	render("settings/account", []);
+
+	render("settings/account", [
+		'user' => $user,
+		'updateNameSuccess' => !empty($updateNameSuccess),
+		'success' => !empty($query['success']) ? $query['success'] : false
+	]);
 }
 
 
 
 function settingsControllerChangeEmail() {
-	echo 'TODO: SETTINGS: CHANGE EMAIL';
+	authServiceVerifyAuth();
+
+	$user = pdoGet(M_USERS(), $_SESSION['auth']);
+		
+	if(actionEquals('change-email')) {
+		$token = bin2hex(random_bytes(50));
+
+		$success = emailTokensModelNew($token, $_POST['email'], $_SESSION['auth']);
+
+		if($success) {
+			mailServiceSend([
+				'to' => $_POST['email'],
+				'subject' => 'Please confirm new email address',
+				'message' => 'Go here: https://app.todolist.one/settings/change-email/' . $token . '/'
+			]);
+			header("Location: /settings/account/?success=change-email");
+		} else {
+			$error = 'Please try another email address!';
+		}
+	}
+
+	render("settings/account-change-email", [
+		'user' => $user,
+		'error' => !empty($error) ? $error : false
+	]); 
+}
+
+
+
+function settingsControllerChangeEmailToken($attributes) {
+	$token = $attributes[0];
+	$tokenAsset = pdoFindByAttribute(M_EMAIL_TOKENS(), 'token', $token);
+
+	if($tokenAsset) {
+		pdoSetAttribute(M_USERS(), $tokenAsset->created_by, 'email', strtolower($tokenAsset->email));
+		pdoDelete(M_EMAIL_TOKENS(), $tokenAsset->id);
+		header("Location: /settings/account/?success=change-email-success");
+	} else {
+		header("Location: /sign-in/");
+	}
 }
 
 

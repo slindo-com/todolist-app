@@ -46,6 +46,31 @@ function pdoGet($config, $id) {
 
 
 
+function pdoSetAttribute($config, $id, $attr, $val) {
+	$stmt = pdo()->prepare('UPDATE '.$config['table'].' SET '.$attr.' = :val WHERE id = :id');
+	$stmt->execute([
+		'id' => $id,
+		'val' => $val
+	]);
+	return empty($stmt->errorInfo()[1]);
+}
+
+
+
+function pdoDelete($config, $id) {
+	$stmt = pdo()->prepare('DELETE FROM '.$config['table'].' WHERE id = :id');
+	$stmt->execute(['id' => $id]);
+	return empty($stmt->errorInfo()[1]);
+}
+
+
+
+function actionEquals($a) {
+	return !empty($_POST['a']) && $_POST['a'] == $a;
+}
+
+
+
 function render($view, $params) {
 	extract($params);
 	include __DIR__ . "/src/Views/{$view}.php";
