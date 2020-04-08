@@ -192,7 +192,24 @@ function settingsControllerChangeEmailToken($attributes) {
 
 
 function settingsControllerChangePassword() {
-	echo 'TODO: SETTINGS: CHANGE PASSWORD';
+	authServiceVerifyAuth();
+
+	$user = pdoGet(M_USERS(), $_SESSION['auth']);
+		
+	if(actionEquals('change-password')) {
+		if(password_verify($_POST['old-password'], $user->password)) {
+			$encryptedPassword = password_hash($_POST['new-password'], PASSWORD_BCRYPT);
+			pdoSetAttribute(M_USERS(), $user->id, 'password', $encryptedPassword);
+			header("Location: /settings/account/?success=change-password");
+		} else {
+			$error = 'Your old password was wrong. Please try again.';
+		}
+	}
+
+	render("settings/account-change-password", [
+		'user' => $user,
+		'error' => !empty($error) ? $error : false
+	]); 
 }
 
 

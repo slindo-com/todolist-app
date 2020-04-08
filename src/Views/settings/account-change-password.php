@@ -17,7 +17,7 @@
 						Account
 					</a>
 					→
-					Change E-Mail Address
+					Change Password
 				</h2>
 				<form method="POST" action="/account/" class="button-wrapper">
 					<button type="submit" name="a" value="sign-out" class="btn">
@@ -28,24 +28,37 @@
 		</section>
 
 
+		<?php if($error) : ?>
+			<section class="container">
+				<div class="message error">
+					<?php echo e($error); ?>
+				</div>				
+			</section>
+		<?php endif ?>
+
+
 		<section class="container flex">
 			<div class="left">
 				<small>
-					Please provide your new email address. You'll get a email with a confirmation link to this address.
+					Please provide your old and new password.
 				</small>
 			</div>
 			<div class="right">
 
-
 				<form method="POST" class="shadow">
-					<label for="em">
-						New E-Mail:
+					<label for="op">
+						Old Password:
 					</label>
-					<input placeholder="Type here…" type="email" name="email" id="em" autofocus required>
+					<input placeholder="Type here…" type="password" name="old-password" id="op" minlength="6" autofocus required>
+
+					<label for="np">
+						New Password:
+					</label>
+					<input placeholder="Type here…" type="password" name="new-password" id="np" minlength="6" required>
 
 					<footer>
-						<button type="submit" class="btn" name="a" value="change-email">
-							Change E-mail Address
+						<button type="submit" class="btn" name="a" value="change-password">
+							Change Password
 						</button>
 					</footer>
 				</form>

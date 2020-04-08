@@ -43,7 +43,15 @@
 		<?php if($success && $success == 'change-email-success') : ?>
 			<section class="container">
 				<div class="message">
-					You email address was updated successfully!
+					Your email address was updated successfully!
+				</div>				
+			</section>
+		<?php endif ?>
+
+		<?php if($success && $success == 'change-password') : ?>
+			<section class="container">
+				<div class="message">
+					Your password was changed successfully!
 				</div>				
 			</section>
 		<?php endif ?>
