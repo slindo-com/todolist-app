@@ -17,7 +17,7 @@
 						Account
 					</a>
 					→
-					Change E-Mail
+					Change Picture
 				</h2>
 				<form method="POST" action="/account/" class="button-wrapper">
 					<button type="submit" name="a" value="sign-out" class="btn">
@@ -28,24 +28,32 @@
 		</section>
 
 
+		<?php if($error) : ?>
+			<section class="container">
+				<div class="message error">
+					<?php echo e($error); ?>
+				</div>				
+			</section>
+		<?php endif ?>
+
+
 		<section class="container flex">
 			<div class="left">
 				<small>
-					Please provide your new email address. You'll get a email with a confirmation link to this address.
+					Please choose an PNG or JPG for your new picture. Drag it on the input or click the input to choose one.
 				</small>
 			</div>
 			<div class="right">
 
-
-				<form method="POST" class="shadow">
-					<label for="em">
-						New E-Mail:
+				<form method="POST" enctype="multipart/form-data" class="shadow">
+					<label for="pi">
+						New Picture:
 					</label>
-					<input placeholder="Type here…" type="email" name="email" id="em" autofocus required>
+					<input placeholder="Type here…" type="file" name="pic" id="pi" required>
 
 					<footer>
-						<button type="submit" class="btn" name="a" value="change-email">
-							Change E-mail Address
+						<button type="submit" class="btn" name="a" value="change-picture">
+							Change Picture
 						</button>
 					</footer>
 				</form>

@@ -24,16 +24,6 @@
 
 
 
-		<?php if($updateNameSuccess) : ?>
-			<section class="container">
-				<div class="message">
-					Your name was updated successfully!
-				</div>				
-			</section>
-		<?php endif ?>
-
-
-
 		<?php if($success) : ?>
 			<section class="container">
 				<div class="message">
@@ -43,6 +33,7 @@
 							case 'change-email': echo 'Please confirm your new email address!'; break;
 							case 'change-email-success': echo 'Your email address was updated successfully!'; break;
 							case 'change-name': echo 'Your password was changed successfully!'; break;
+							case 'change-pic': echo 'Your picture was changed successfully!'; break;
 						}
 					?>
 				</div>				
@@ -62,6 +53,12 @@
 
 
 				<div class="box">
+					<?php if(!empty($user->pic)): ?>
+						<figure class="pic">
+							<img src="/pics/<?php echo $user->pic; ?>" alt="Profile Picture" />
+						</figure>
+					<?php endif; ?>
+
 					<p>
 						<strong>
 							E-Mail:
@@ -69,10 +66,13 @@
 						<?php echo e($user->email); ?>
 					</p>
 					<a href="/settings/account/change-email/" class="btn">
-						Change E-Mail Address
+						Change E-Mail
 					</a>
 					<a href="/settings/account/change-password/" class="btn">
 						Change Password
+					</a>
+					<a href="/settings/account/change-pic/" class="btn">
+						Change Picture
 					</a>
 				</div>
 

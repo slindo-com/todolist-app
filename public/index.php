@@ -74,6 +74,10 @@ $routes = [
 		'controler' => 'settingsController',
 		'function' => 'settingsControllerChangePassword'
 	],
+	'/settings/account/change-pic/' => [
+		'controler' => 'settingsController',
+		'function' => 'settingsControllerChangePic'
+	],
 
 
 	'/:team/:list/:todo/' => [
@@ -116,8 +120,6 @@ function routing($requestUri, $routes){
 			$query[$queryAttrAndVal[0]] = $queryAttrAndVal[1];
 		}
 	}
-	
-
 
 	foreach($routes as $route => $routeSettings) {
 		$pattern = "@^" . preg_replace('/\\\:[a-zA-Z0-9\_\-]+/', '([a-zA-Z0-9\-\_]+)', preg_quote($route)) . "$@D";
@@ -147,17 +149,29 @@ if(!empty($route)) {
 
 } else {
 	if($_SERVER['REQUEST_URI'] == '/s.css') {
-
-		$min = 1440;
-		$expires = date("M d Y H:i:s", mktime(0, 0, 0, 1, 1, 2040));
-		$modified = date("M d Y H:i:s", mktime(0, 0, 0, 1, 1, 2010));
-
-		header("Expires: " . $expires);
-		header("Last-Modified: " . $modified);
-		header("Cache-Control: public, max-age=" . $min * 60);
-		header("Pragma: max-age=" . $min * 60);
-
+		sendCacheHeaders();
 		header('Content-Type: text/css');
 		include __DIR__ . '/s.css';
-	}  
+	}  else {
+
+		$fileType = substr($_SERVER['REQUEST_URI'], -3);
+
+		if($fileType == 'png') {
+			sendCacheHeaders();
+			substr($_SERVER['REQUEST_URI'], 5, 20);
+			header('Content-Type: image/png');
+			include __DIR__ . '/pics/'. substr($_SERVER['REQUEST_URI'], 6, 20) .'.png';
+		}
+	}
+}
+
+function sendCacheHeaders() {
+	$min = 1440;
+	$expires = date("M d Y H:i:s", mktime(0, 0, 0, 1, 1, 2040));
+	$modified = date("M d Y H:i:s", mktime(0, 0, 0, 1, 1, 2010));
+
+	header("Expires: " . $expires);
+	header("Last-Modified: " . $modified);
+	header("Cache-Control: public, max-age=" . $min * 60);
+	header("Pragma: max-age=" . $min * 60);
 }

@@ -216,3 +216,30 @@ function settingsControllerChangePassword() {
 }
 
 
+
+function settingsControllerChangePic() {
+	authServiceVerifyAuth();
+
+	$user = pdoGet(M_USERS(), $_SESSION['auth']);
+		
+	if(actionEquals('change-picture')) {
+
+		$picName = bin2hex(random_bytes(10));
+		$picNameParts = explode('.', $_FILES['pic']['name']);
+		$picType = end($picNameParts);
+		$uploadfile = __DIR__ .'/../../public/pics/'. $picName .'.'. $picType;
+
+		move_uploaded_file($_FILES['pic']['tmp_name'], $uploadfile);
+
+		pdoSetAttribute(M_USERS(), $user->id, 'pic', $picName .'.'. $picType);
+
+		header("Location: /settings/account/?success=change-pic");
+	}
+
+	render("settings/account-change-pic", [
+		'user' => $user,
+		'error' => !empty($error) ? $error : false
+	]); 
+}
+
+

@@ -144,7 +144,7 @@ small {
   }
 
   +.btn {
-    margin-left:2*$base;
+    margin-left:1*$base;
   }
 }
 
@@ -184,6 +184,23 @@ small {
     >p {
       margin-bottom:4*$base;
     }
+}
+
+.pic {
+  width:10*$base;
+  height:10*$base;
+  float:right;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  border-radius: 50%;
+  background:#EEE;
+
+  img {
+    object-fit:cover;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .message {
