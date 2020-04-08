@@ -135,11 +135,14 @@ function settingsControllerAccount($attributes, $query) {
 	} else if(actionEquals('save-name')) {
 		$updateNameSuccess = pdoSetAttribute(M_USERS(), $user->id, 'name', $_POST['name']);
 		$user->name = $_POST['name'];
+
+		if($updateNameSuccess) {
+			$query['success'] = 'change-name';
+		}
 	}
 
 	render("settings/account", [
 		'user' => $user,
-		'updateNameSuccess' => !empty($updateNameSuccess),
 		'success' => !empty($query['success']) ? $query['success'] : false
 	]);
 }

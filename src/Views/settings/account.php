@@ -32,26 +32,19 @@
 			</section>
 		<?php endif ?>
 
-		<?php if($success && $success == 'change-email') : ?>
-			<section class="container">
-				<div class="message">
-					Please confirm your new email address!
-				</div>				
-			</section>
-		<?php endif ?>
 
-		<?php if($success && $success == 'change-email-success') : ?>
-			<section class="container">
-				<div class="message">
-					Your email address was updated successfully!
-				</div>				
-			</section>
-		<?php endif ?>
 
-		<?php if($success && $success == 'change-password') : ?>
+		<?php if($success) : ?>
 			<section class="container">
 				<div class="message">
-					Your password was changed successfully!
+					<?php
+						switch ($success) {
+							case 'change-name': echo 'Your name was updated successfully!'; break;
+							case 'change-email': echo 'Please confirm your new email address!'; break;
+							case 'change-email-success': echo 'Your email address was updated successfully!'; break;
+							case 'change-name': echo 'Your password was changed successfully!'; break;
+						}
+					?>
 				</div>				
 			</section>
 		<?php endif ?>
