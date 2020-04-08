@@ -61,17 +61,19 @@
 
 					<p>
 						<strong>
-							E-Mail:
+							E-Mail: &nbsp;
 						</strong>
 						<?php echo e($user->email); ?>
 					</p>
-					<a href="/settings/account/change-email/" class="btn">
+					<a href="/settings/account/change-email/">
 						Change E-Mail
 					</a>
-					<a href="/settings/account/change-password/" class="btn">
+					&nbsp;
+					<a href="/settings/account/change-password/">
 						Change Password
 					</a>
-					<a href="/settings/account/change-pic/" class="btn">
+					&nbsp;
+					<a href="/settings/account/change-pic/">
 						Change Picture
 					</a>
 				</div>
