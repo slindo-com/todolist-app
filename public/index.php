@@ -6,103 +6,103 @@ require __DIR__ . "/../init.php";
 
 $routes = [
 	'/sign-in/' => [
-		'controler' => 'AuthController',
-		'function' => 'authControllerSignIn'
+		'controller' => 'AuthController',
+		'method' => 'authControllerSignIn'
 	],
 	'/new-account/' => [
-		'controler' => 'AuthController',
-		'function' => 'authControllerNewAccount'
+		'controller' => 'AuthController',
+		'method' => 'authControllerNewAccount'
 	],
 	'/new-account/:token/' => [
-		'controler' => 'AuthController',
-		'function' => 'authControllerNewAccount'
+		'controller' => 'AuthController',
+		'method' => 'authControllerNewAccount'
 	],
 	'/new-password/' => [
-		'controler' => 'AuthController',
-		'function' => 'authControllerNewPassword'
+		'controller' => 'AuthController',
+		'method' => 'authControllerNewPassword'
 	],
 	'/new-password/:token/' => [
-		'controler' => 'AuthController',
-		'function' => 'authControllerNewPassword'
+		'controller' => 'AuthController',
+		'method' => 'authControllerNewPassword'
 	],
 
 
 	'/settings/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerIndex'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerIndex'
 	],
 
 	'/settings/lists/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerLists'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerLists'
 	],
 	'/settings/lists/new/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerNewList'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerNewList'
 	],
 
 	'/settings/teams/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerTeams'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerTeams'
 	],
 	'/settings/teams/:team/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerTeam'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerTeam'
 	],
 	'/settings/teams/:team/edit-title/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerEditTeamTitle'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerEditTeamTitle'
 	],
 	'/settings/teams/:team/invite/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerInviteTeamMember'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerInviteTeamMember'
 	],
 
 	'/settings/account/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerAccount'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerAccount'
 	],
 	'/settings/account/change-email/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerChangeEmail'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerChangeEmail'
 	],
 	'/settings/account/change-email/:token/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerChangeEmailToken'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerChangeEmailToken'
 	],
 	'/settings/account/change-password/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerChangePassword'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerChangePassword'
 	],
 	'/settings/account/change-pic/' => [
-		'controler' => 'settingsController',
-		'function' => 'settingsControllerChangePic'
+		'controller' => 'settingsController',
+		'method' => 'settingsControllerChangePic'
 	],
 
 
 	'/:team/:list/:todo/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerTodo'
+		'controller' => 'listsController',
+		'method' => 'listsControllerTodo'
 	],
 	'/:team/important/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerImportant'
+		'controller' => 'listsController',
+		'method' => 'listsControllerImportant'
 	],
 	'/:team/today/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerToday'
+		'controller' => 'listsController',
+		'method' => 'listsControllerToday'
 	],
 	'/:team/week/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerWeek'
+		'controller' => 'listsController',
+		'method' => 'listsControllerWeek'
 	],
 	'/:team/:list/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerList'
+		'controller' => 'listsController',
+		'method' => 'listsControllerList'
 	],
 	'/:team/' => [
-		'controler' => 'listsController',
-		'function' => 'listsControllerAll'
+		'controller' => 'listsController',
+		'method' => 'listsControllerAll'
 	]
 
 ];
@@ -138,14 +138,9 @@ $route = routing($_SERVER['REQUEST_URI'], $routes);
 
 if(!empty($route)) {
 
-	if(!empty($route['function'])) {
-		include_once __DIR__ .'/../src/Controllers/'. $route['controler'] .'.php'; 
-		$route['function']($route['attributes'], $route['query']);
-	} else {
-		$controller = $container->make($route['controller']);
-		$method = $route['method'];
-		$controller->$method($route['attributes']);	
-	}
+	include_once __DIR__ .'/../src/Controllers/'. $route['controller'] .'.php'; 
+	$route['method']($route['attributes'], $route['query']);
+
 
 } else {
 	if($_SERVER['REQUEST_URI'] == '/s.css') {

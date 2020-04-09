@@ -2,6 +2,7 @@
 
 includeModels(['EmailTokens', 'Invites', 'Teams', 'TeamMembers', 'Users']);
 includeServices(['Auth', 'Mail']);
+includeMails(['invite', 'change-email']);
 
 
 
@@ -108,10 +109,13 @@ function settingsControllerInviteTeamMember($attributes) {
 			$user = pdoFindByAttribute(M_USERS(), 'email', strtolower($_POST['email']));
 
 			if(!$user) {
+
+				$emailTemplate = EMAIL_INVITE(CONFIG()['title'], CONFIG()['url'], $token);
+
 				mailServiceSend([
 					'to' => $_POST['email'],
-					'subject' => 'Invite to Team on Todolist One',
-					'message' => 'Invite to Team on Todolist One: '. $token
+					'subject' => $emailTemplate['subject'],
+					'message' => $emailTemplate['message']
 				]);
 			}
 
@@ -160,10 +164,13 @@ function settingsControllerChangeEmail() {
 		$success = emailTokensModelNew($token, $_POST['email'], $_SESSION['auth']);
 
 		if($success) {
+
+			$emailTemplate = EMAIL_CHANGE_EMAIL(CONFIG()['title'], CONFIG()['url'], $token);
+
 			mailServiceSend([
 				'to' => $_POST['email'],
-				'subject' => 'Please confirm new email address',
-				'message' => 'Go here: https://app.todolist.one/settings/change-email/' . $token . '/'
+				'subject' => $emailTemplate['subject'],
+				'message' => $emailTemplate['message']
 			]);
 			header("Location: /settings/account/?success=change-email");
 		} else {

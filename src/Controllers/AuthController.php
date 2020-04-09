@@ -2,6 +2,7 @@
 
 includeModels('Users');
 includeServices(['Mail', 'Auth']);
+includeMails(['new-account', 'new-password']);
 
 
 function authControllerSignIn() {
@@ -36,10 +37,12 @@ function authControllerNewAccount($attributes) {
 
 		if (authServiceNewAccount($email, $password)) {
 
+			$emailTemplate = EMAIL_NEW_ACCOUNT(CONFIG()['title']);
+
 			mailServiceSend([
 				'to' => $email,
-				'subject' => 'Welcome to Todolist One',
-				'message' => 'Welcome to Todolist One'
+				'subject' => $emailTemplate['subject'],
+				'message' => $emailTemplate['message']
 			]);
 
 			header("Location: /own/");
@@ -66,10 +69,13 @@ function authControllerNewPassword($attributes) {
 		$token = authServiceNewResetToken($email);
 
 		if(!empty($token)) {
+
+			$emailTemplate = EMAIL_NEW_PASSWORD(CONFIG()['url'], $token);
+
 			mailServiceSend([
 				'to' => $email,
-				'subject' => 'Reset Instructions',
-				'message' => 'Go here: https://app.todolist.one/new-password/' . $token . '/'
+				'subject' => $emailTemplate['subject'],
+				'message' => $emailTemplate['message']
 			]);
 			$action = 'TOKEN_SENT';
 		} else {

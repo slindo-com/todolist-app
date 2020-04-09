@@ -1,7 +1,6 @@
 <?php
 
-require __DIR__ . "/config.php";
-require __DIR__ . "/autoload.php";
+include_once __DIR__ . "/config.php";
 
 
 
@@ -13,12 +12,12 @@ function e($str) {
 
 try {
 	$GLOBALS['pdo'] = new PDO(
-		config()['databaseConnection'],
-		config()['databaseUser'],
-		config()['databasePassword']
+		CONFIG()['databaseConnection'],
+		CONFIG()['databaseUser'],
+		CONFIG()['databasePassword']
 	);
 } catch (PDOException $e) {
-	echo "Verbindung zur Datenbank fehlgeschlagen";
+	echo 'Verbindung zur Datenbank fehlgeschlagen';
 	die();
 }
 $GLOBALS['pdo']->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -73,7 +72,7 @@ function actionEquals($a) {
 
 function render($view, $params) {
 	extract($params);
-	include __DIR__ . "/src/Views/{$view}.php";
+	include __DIR__ . '/src/Views/'. $view .'.php';
 }
 
 
@@ -91,6 +90,15 @@ function includeModels($arr) {
 	$arrForEach = gettype($arr) == 'string' ? [$arr] : $arr;
 	foreach ($arrForEach as $val) {
 		include_once __DIR__ .'/src/Models/'. $val .'Model.php'; 
+	}
+}
+
+
+
+function includeMails($arr) {
+	$arrForEach = gettype($arr) == 'string' ? [$arr] : $arr;
+	foreach ($arrForEach as $val) {
+		include_once __DIR__ .'/src/Templates/emails/'. $val .'.php'; 
 	}
 }
 
