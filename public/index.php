@@ -33,80 +33,80 @@ $routes = [
 
 
 	'/settings/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerIndex'
 	],
 
 	'/settings/lists/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerLists'
 	],
 	'/settings/lists/new/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerNewList'
 	],
 
 	'/settings/teams/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerTeams'
 	],
 	'/settings/teams/:team/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerTeam'
 	],
 	'/settings/teams/:team/edit-title/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerEditTeamTitle'
 	],
 	'/settings/teams/:team/invite/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerInviteTeamMember'
 	],
 
 	'/settings/account/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerAccount'
 	],
 	'/settings/account/change-email/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerChangeEmail'
 	],
 	'/settings/account/change-email/:token/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerChangeEmailToken'
 	],
 	'/settings/account/change-password/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerChangePassword'
 	],
 	'/settings/account/change-pic/' => [
-		'controller' => 'settingsController',
+		'controller' => 'SettingsController',
 		'method' => 'settingsControllerChangePic'
 	],
 
 
 	'/:team/:list/:todo/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerTodo'
 	],
 	'/:team/important/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerImportant'
 	],
 	'/:team/today/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerToday'
 	],
 	'/:team/week/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerWeek'
 	],
 	'/:team/:list/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerList'
 	],
 	'/:team/' => [
-		'controller' => 'listsController',
+		'controller' => 'ListsController',
 		'method' => 'listsControllerAll'
 	]
 

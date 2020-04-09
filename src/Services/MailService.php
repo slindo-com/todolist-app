@@ -3,9 +3,9 @@
 includeModels('UnsubscribedEmails');
 
 
-function mailServiceGetUnsubscribeLink($email) {
+function mailServiceGetUnsubscribeLink($encryptedEmail) {
 
-	$link = 'If you do not want to receice emails from this address, please unsubscribe here: '. CONFIG()['url'] .'/unsubscribe/'. $encryptedEmail;
+	$link = 'If you do not want to receice emails from this address, please unsubscribe here: '. CONFIG()['url'] .'/unsubscribe/'. $encryptedEmail .'/';
 
 	return $link;
 }
@@ -29,24 +29,25 @@ function mailServiceSend($attributes) {
 
 	$encryptedEmail = mailServiceEncrypt($attributes['to']);
 
-	$isBlocked = pdoFindByAttribute(M_UNSUBSCRIBED_EMAILS, 'encrypted_email', $encryptedEmail);
+	$isBlocked = pdoFindByAttribute(M_UNSUBSCRIBED_EMAILS(), 'encrypted_email', $encryptedEmail);
 
 	if(!empty($isBlocked)) {
 		return false;
+	} else {
+
+		$headers = 'From: '. CONFIG()['emailSender'] . "\r\n" .
+			'Reply-To:'. CONFIG()['emailSender'] . "\r\n" .
+			'X-Mailer: PHP/' . phpversion();
+
+		$attributes['message'] = $attributes['message'] . "\r\n" . mailServiceGetUnsubscribeLink($encryptedEmail);
+
+		mail(
+			$attributes['to'],
+			$attributes['subject'],
+			$attributes['message'],
+			$headers
+		);
+
+		return true;
 	}
-
-	$headers = 'From: '. CONFIG()['emailSender'] . "\r\n" .
-		'Reply-To:'. CONFIG()['emailSender'] . "\r\n" .
-		'X-Mailer: PHP/' . phpversion();
-
-	$attributes['message'] = $attributes['message'] . "\r\n" . mailServiceGetUnsubscribeLink($encryptedEmail);
-
-	mail(
-		$attributes['to'],
-		$attributes['subject'],
-		$attributes['message'],
-		$headers
-	);
-
-	return true;
 }
