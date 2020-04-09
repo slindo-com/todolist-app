@@ -45,7 +45,7 @@
 			</div>
 			<div class="right">
 
-				<form method="POST" enctype="multipart/form-data" class="shadow">
+				<form method="POST" enctype="multipart/form-data" class="form shadow">
 					<label for="pi">
 						New Picture:
 					</label>

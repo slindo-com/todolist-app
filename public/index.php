@@ -5,6 +5,11 @@ session_start();
 require __DIR__ . "/../init.php";
 
 $routes = [
+	'/unsubscribe/:token/' => [
+		'controller' => 'SystemController',
+		'method' => 'systemControllerUnsubscribe'
+	],
+
 	'/sign-in/' => [
 		'controller' => 'AuthController',
 		'method' => 'authControllerSignIn'

@@ -80,7 +80,7 @@
 
 
 
-				<form method="POST" class="shadow">
+				<form method="POST" class="form shadow">
 					<label for="na">
 						Your Name:
 					</label>

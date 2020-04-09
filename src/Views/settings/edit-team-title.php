@@ -37,7 +37,7 @@
 					</small>
 				</div>
 				<div class="right">
-					<form method="POST" class="shadow">
+					<form method="POST" class="form shadow">
 
 
 						<label for="ti">

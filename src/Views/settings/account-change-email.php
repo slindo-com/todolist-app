@@ -37,7 +37,7 @@
 			<div class="right">
 
 
-				<form method="POST" class="shadow">
+				<form method="POST" class="form shadow">
 					<label for="em">
 						New E-Mail:
 					</label>

@@ -18,7 +18,7 @@
 			</p>
 		<?php endif; ?>
 
-		<form method="POST" class="shadow">
+		<form method="POST" class="form shadow">
 
 			<label for="e">
 				E-Mail:
@@ -87,7 +87,7 @@
 			Set New Password
 		</h2>
 
-		<form method="POST" class="shadow">
+		<form method="POST" class="form shadow">
 
 		    <label for="p">
 		      New Password:

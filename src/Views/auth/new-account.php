@@ -12,7 +12,7 @@
     </p>
   <?php endif; ?>
 
-  <form method="POST" class="shadow">
+  <form method="POST" class="form shadow">
 
     <label for="e">
       E-Mail:

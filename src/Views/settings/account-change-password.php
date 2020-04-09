@@ -45,7 +45,7 @@
 			</div>
 			<div class="right">
 
-				<form method="POST" class="shadow">
+				<form method="POST" class="form shadow">
 					<label for="op">
 						Old Password:
 					</label>
