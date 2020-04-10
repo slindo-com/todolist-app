@@ -84,7 +84,10 @@ $routes = [
 		'method' => 'settingsControllerChangePic'
 	],
 
-
+	'/checkmark/:task/' => [
+		'controller' => 'ListsController',
+		'method' => 'listsControllerCheckmark'
+	],
 	'/:team/:list/:todo/' => [
 		'controller' => 'ListsController',
 		'method' => 'listsControllerTodo'

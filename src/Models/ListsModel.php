@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Models;
-
-use App\Core\AbstractAsset;
-use App\Core\AbstractModel;
-
-use PDO;
+function M_LISTS() {
+	return [ 
+		'table' => 'lists', 
+		'asset' => 'ListsAsset'
+	];
+}
 
 class ListsAsset extends AbstractAsset {
 	public $id;
 	public $team;
-	public $user;
 	public $title;
 	public $created_by;
 	public $created_at;
@@ -18,9 +17,8 @@ class ListsAsset extends AbstractAsset {
 
 
 
-class ListsModel extends AbstractModel {
-	
-	protected $pdo;
-	protected $assetName = 'App\\Models\\ListsAsset';
-	protected $tableName = 'invites';
+function listsModelGetUserLists($userId) {
+	$stmt = pdo()->prepare('SELECT * FROM lists WHERE created_by = :created_by AND team = 0');
+	$stmt->execute(['created_by' => $userId]);
+	return $stmt->fetchAll(PDO::FETCH_CLASS, M_LISTS()['asset']);
 }

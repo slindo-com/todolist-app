@@ -1,5 +1,7 @@
 <?php
 
+includeModels(['Tasks']);
+includeServices('List');
 
 
 function listsControllerTodo() {
@@ -26,14 +28,55 @@ function listsControllerWeek() {
 
 
 
-function listsControllerList() {
-  echo 'TODO: LISTS: LIST';
+function listsControllerList($attributes) {
+	$teamSlug = $attributes[0];
+	$listSlug = $attributes[1];
+
+	$navData = listsServiceGetNav($teamSlug, $listSlug);
+
+	if($navData['list']) {
+
+		if(!empty($_POST['todo'])) {
+			$newTaskCreated = true;
+			tasksModelNew($navData['list']->id, $_POST['todo']);
+		}
+
+		$tasks = tasksModelGetListTasks($navData['list']->id);
+	}
+
+	render("lists/list", [
+		'navData' => $navData,
+		'newTaskCreated' => !empty($newTaskCreated),
+		'tasks' => !empty($tasks) ? $tasks : []
+	]);
 }
 
 
 
-function listsControllerAll() {
-  render("lists/list", []);
+function listsControllerAll($attributes) {
+	$teamSlug = $attributes[0];
+
+	render("lists/list", [
+		'navData' => listsServiceGetNav($teamSlug, false),
+		'tasks' => []
+	]);
+}
+
+
+
+function listsControllerCheckmark($attributes) {
+	$taskId = $attributes[0];
+	$task = pdoGet(M_TASKS(), $taskId);
+
+	if(actionEquals('toggle')) {
+		pdoSetAttribute(M_TASKS(), $taskId, 'done', ($task->done == 1 ? '0' : '1'));
+		$task->done = ($task->done == 1 ? '0' : '1');
+	}
+
+
+	render("lists/checkmark", [
+		'checked' => $task->done
+	]);
 }
 
 
