@@ -145,6 +145,19 @@ small {
     padding:0;
   }
 
+  &.red {
+    color:$color-red;
+
+    &:hover {
+      border-color:$color-red;
+    }
+  }
+
+  &.end {
+    width:auto;
+    float:right;
+  }
+
   +.btn {
     margin-left:1*$base;
   }

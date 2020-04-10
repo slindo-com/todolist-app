@@ -4,26 +4,48 @@ includeModels(['Tasks']);
 includeServices('List');
 
 
-function listsControllerTodo() {
-  echo 'TODO: LISTS: TODO';
+function listsControllerTodo($attributes) {
+	$teamSlug = $attributes[0];
+	$listSlug = $attributes[1];
+	$todoId = $attributes[2];
+
+	$navData = listsServiceGetNav($teamSlug, $listSlug);
+
+	$todo = pdoGet(M_TASKS(), $todoId);
+
+	if(actionEquals('update')) {
+
+		pdoSetAttribute(M_TASKS(), $todo->id, 'title', $_POST['title']);
+		header('Location: /'. $teamSlug .'/'. $listSlug .'/');
+
+	} else if(actionEquals('delete')) {
+		pdoDelete(M_TASKS(), $todo->id);
+		header('Location: /'. $teamSlug .'/'. $listSlug .'/');
+	}
+
+
+	render("lists/todo", [
+		'navData' => $navData,
+		'todo' => $todo
+	]);
 }
 
 
 
 function listsControllerImportant() {
-  echo 'TODO: LISTS: IMPORTANT';
+	echo 'TODO: LISTS: IMPORTANT';
 }
 
 
 
 function listsControllerToday() {
-  echo 'TODO: LISTS: TODAY';
+	echo 'TODO: LISTS: TODAY';
 }
 
 
 
 function listsControllerWeek() {
-  echo 'TODO: LISTS: WEEK';
+	echo 'TODO: LISTS: WEEK';
 }
 
 
