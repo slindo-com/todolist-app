@@ -6,7 +6,7 @@
 		<a href="/<?php echo e($navData['teamSlug']); ?>/<?php echo e($list->slug); ?>/">
 			<?php echo e($list->title); ?>
 		</a>
-	<?php endforeach; ?>
+	<?php endforeach;?>
 
 	<a href="/settings/" class="settings">
 		Settings

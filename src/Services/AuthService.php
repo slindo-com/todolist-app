@@ -1,10 +1,9 @@
 <?php
 
-include_once __DIR__ .'/../Models/UsersModel.php'; 
-include_once __DIR__ .'/../Models/PasswordResetsModel.php'; 
+include_once __DIR__ . '/../Models/UsersModel.php';
+include_once __DIR__ . '/../Models/PasswordResetsModel.php';
 
-
-
+//
 function authServiceVerifyAuth() {
 	if (isset($_SESSION['auth'])) {
 		return true;
@@ -14,8 +13,7 @@ function authServiceVerifyAuth() {
 	}
 }
 
-
-
+//
 function authServiceAuth($email, $password) {
 	$user = pdoFindByAttribute(M_USERS(), 'email', $email);
 	if (empty($user)) {
@@ -31,8 +29,7 @@ function authServiceAuth($email, $password) {
 	}
 }
 
-
-
+//
 function authServiceNewAccount($email, $password) {
 
 	$encryptedPassword = password_hash($password, PASSWORD_BCRYPT);
@@ -49,14 +46,12 @@ function authServiceNewAccount($email, $password) {
 	}
 }
 
-
-
+//
 function authServiceSetPassword($password) {
 	return usersModelSetPassword($password);
 }
 
-
-
+//
 function authServiceNewResetToken($email) {
 	$token = bin2hex(random_bytes(50));
 	$success = passwordResetsModelNew($token, $email, $_SESSION['auth']);
@@ -64,20 +59,15 @@ function authServiceNewResetToken($email) {
 	return $success ? $token : false;
 }
 
-
-
 // TODO: Refactor completely to model
 function authServiceGetResetToken($token) {
 	return $this->passwordResetsModel->findByAttribute('token', $token);
 }
 
-
-
+//
 function authServiceSignOut() {
 	unset($_SESSION['auth']);
 	session_regenerate_id(true);
 	header("Location: /sign-in/");
 	die();
 }
-
-

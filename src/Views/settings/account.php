@@ -1,12 +1,9 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
-		<?php 
-			$navItemActive = 'account';
-			require __DIR__ . "/../layout/secondary-nav.php";
-		?>
+		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
 		<section class="container">
@@ -24,21 +21,26 @@
 
 
 
-		<?php if($success) : ?>
+		<?php if ($success): ?>
 			<section class="container">
 				<div class="message">
 					<?php
-						switch ($success) {
-							case 'change-name': echo 'Your name was updated successfully!'; break;
-							case 'change-email': echo 'Please confirm your new email address!'; break;
-							case 'change-email-success': echo 'Your email address was updated successfully!'; break;
-							case 'change-name': echo 'Your password was changed successfully!'; break;
-							case 'change-pic': echo 'Your picture was changed successfully!'; break;
-						}
-					?>
-				</div>				
+switch ($success) {
+case 'change-name':echo 'Your name was updated successfully!';
+	break;
+case 'change-email':echo 'Please confirm your new email address!';
+	break;
+case 'change-email-success':echo 'Your email address was updated successfully!';
+	break;
+case 'change-name':echo 'Your password was changed successfully!';
+	break;
+case 'change-pic':echo 'Your picture was changed successfully!';
+	break;
+}
+?>
+				</div>
 			</section>
-		<?php endif ?>
+		<?php endif?>
 
 
 
@@ -53,11 +55,11 @@
 
 
 				<div class="box">
-					<?php if(!empty($user->pic)): ?>
+					<?php if (!empty($user->pic)): ?>
 						<figure class="pic">
 							<img src="/pics/<?php echo $user->pic; ?>" alt="Profile Picture" />
 						</figure>
-					<?php endif; ?>
+					<?php endif;?>
 
 					<p>
 						<strong>
@@ -102,4 +104,4 @@
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

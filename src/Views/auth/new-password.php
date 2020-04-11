@@ -1,4 +1,4 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <?php if ($action == 'DEFAULT'): ?>
 
@@ -16,7 +16,7 @@
 			<p class="err">
 				Something went wrong.
 			</p>
-		<?php endif; ?>
+		<?php endif;?>
 
 		<form method="POST" class="form shadow">
 
@@ -124,8 +124,8 @@
 
 
 
-<?php endif; ?>
+<?php endif;?>
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

@@ -2,10 +2,10 @@
 
 includeModels(['Teams', 'Lists']);
 
-
+//
 function listsServiceGetNav($teamSlug, $listSlug) {
 
-	if($teamSlug == 'private') {
+	if ($teamSlug == 'private') {
 		$lists = listsModelGetUserLists($_SESSION['auth']);
 	} else {
 		// pdoFindByAttribute(M_TEAMS(),)
@@ -13,10 +13,10 @@ function listsServiceGetNav($teamSlug, $listSlug) {
 
 	$navData = [
 		'teamSlug' => $teamSlug,
-		'lists' => $lists
+		'lists' => $lists,
 	];
 
-	if(!empty($listSlug)) {
+	if (!empty($listSlug)) {
 		$list = pdoFindByAttribute(M_LISTS(), 'slug', $listSlug);
 		$navData['listSlug'] = $listSlug;
 		$navData['list'] = $list;
@@ -24,5 +24,3 @@ function listsServiceGetNav($teamSlug, $listSlug) {
 
 	return $navData;
 }
-
-

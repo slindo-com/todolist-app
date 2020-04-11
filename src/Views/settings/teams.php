@@ -1,12 +1,9 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
-		<?php 
-			$navItemActive = 'teams';
-			require __DIR__ . "/../layout/secondary-nav.php";
-		?>
+		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
 		<section class="container">
@@ -38,9 +35,9 @@
 						</button>
 					</form>
 				</div>
-		
+
 			</section>
-		<?php endif; ?>
+		<?php endif;?>
 
 
 		<?php if (sizeof($teams) == 0 && empty($invitingTeam)): ?>
@@ -55,7 +52,7 @@
 			<section class="container">
 				<ul class="entries">
 					<?php foreach ($teams AS $team): ?>
-						
+
 						<li>
 							<a href="/settings/teams/<?php echo e($team->slug); ?>/">
 								<h4>
@@ -65,22 +62,20 @@
 									<?php echo $team->role == 1 ? 'Admin' : 'Member'; ?>
 								</small>
 								<small>
-									<?php 
-										echo $memberCounts[$team->id] . ($memberCounts[$team->id] == 1 ? ' Member' : ' Members');
-									?>
+									<?php echo $memberCounts[$team->id] . ($memberCounts[$team->id] == 1 ? ' Member' : ' Members'); ?>
 								</small>
-							</a>	
+							</a>
 						</li>
 
-					<?php endforeach; ?>
+					<?php endforeach;?>
 				</ul>
 			</section>
-		<?php endif; ?>
+		<?php endif;?>
 
-		
+
 	</main>
 
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

@@ -1,12 +1,9 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
-		<?php 
-			$navItemActive = 'teams';
-			require __DIR__ . "/../layout/secondary-nav.php";
-		?>
+		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
 		<section class="container">
@@ -61,11 +58,11 @@
 
 
 
-		
-		
+
+
 	</main>
 
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

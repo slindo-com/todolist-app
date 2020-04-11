@@ -1,4 +1,4 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 
 <section class="small-container">
@@ -10,7 +10,7 @@
     <p class="err">
       Die Kombination aus Benutzername und Passwort ist falsch.
     </p>
-  <?php endif; ?>
+  <?php endif;?>
 
   <form method="POST" class="form shadow">
 
@@ -46,4 +46,4 @@
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

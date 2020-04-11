@@ -1,7 +1,7 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
 
 		<section class="container">
@@ -15,7 +15,7 @@
 					<div>
 						Press Enter to create todo
 					</div>
-				</form>		
+				</form>
 			</header>
 		</section>
 
@@ -29,23 +29,23 @@
 								<button type="submit" name="a" value="toggle"></button>
 							</form>
 						</span>
-						<a href="/<?php echo $navData['teamSlug'] .'/'. $navData['listSlug'] .'/'. $task->id; ?>/">
+						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug'] . '/' . $task->id; ?>/">
 							<h4>
 								<?php echo e($task->title); ?>
 							</h4>
 						</a>
 					</li>
-				<?php endforeach; ?>
+				<?php endforeach;?>
 			</ul>
 
 		</section>
 
 
-		<!-- <?php var_dump($navData); ?> -->
-	
+		<!-- <?php var_dump($navData);?> -->
+
 	</main>
 
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

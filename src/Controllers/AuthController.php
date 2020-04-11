@@ -4,7 +4,7 @@ includeModels('Users');
 includeServices(['Mail', 'Auth']);
 includeMails(['new-account', 'new-password']);
 
-
+//
 function authControllerSignIn() {
 
 	$error = false;
@@ -22,11 +22,11 @@ function authControllerSignIn() {
 	}
 
 	render("auth/sign-in", [
-		'error' => $error
+		'error' => $error,
 	]);
 }
 
-
+//
 function authControllerNewAccount($attributes) {
 
 	$error = false;
@@ -42,7 +42,7 @@ function authControllerNewAccount($attributes) {
 			mailServiceSend([
 				'to' => $email,
 				'subject' => $emailTemplate['subject'],
-				'message' => $emailTemplate['message']
+				'message' => $emailTemplate['message'],
 			]);
 
 			header("Location: /own/");
@@ -53,11 +53,11 @@ function authControllerNewAccount($attributes) {
 	}
 
 	render("auth/new-account", [
-		'error' => $error
+		'error' => $error,
 	]);
 }
 
-
+//
 function authControllerNewPassword($attributes) {
 
 	$error = false;
@@ -68,14 +68,14 @@ function authControllerNewPassword($attributes) {
 
 		$token = authServiceNewResetToken($email);
 
-		if(!empty($token)) {
+		if (!empty($token)) {
 
 			$emailTemplate = EMAIL_NEW_PASSWORD(CONFIG()['url'], $token);
 
 			mailServiceSend([
 				'to' => $email,
 				'subject' => $emailTemplate['subject'],
-				'message' => $emailTemplate['message']
+				'message' => $emailTemplate['message'],
 			]);
 			$action = 'TOKEN_SENT';
 		} else {
@@ -83,12 +83,12 @@ function authControllerNewPassword($attributes) {
 		}
 	}
 
-	if( !empty($attributes[0])) {
+	if (!empty($attributes[0])) {
 		$token = $attributes[0];
 		$databaseToken = authServiceGetResetToken($token);
 
 		if (!empty($_POST['a']) && $_POST['a'] == 'set-password') {
-			if(!empty($databaseToken)) {
+			if (!empty($databaseToken)) {
 				$usersModelSetPassword($_POST['password']);
 				$action = 'PASSWORD_SET';
 			} else {
@@ -96,7 +96,7 @@ function authControllerNewPassword($attributes) {
 			}
 		} else {
 
-			if(!empty($databaseToken)) {
+			if (!empty($databaseToken)) {
 				$action = 'PASSWORD_FORM';
 			} else {
 				$action = 'TOKEN_NOT_VALID';
@@ -106,8 +106,6 @@ function authControllerNewPassword($attributes) {
 
 	render("auth/new-password", [
 		'action' => $action,
-		'error' => $error
+		'error' => $error,
 	]);
 }
-
-

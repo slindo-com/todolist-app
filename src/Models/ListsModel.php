@@ -1,12 +1,14 @@
 <?php
 
+//
 function M_LISTS() {
-	return [ 
-		'table' => 'lists', 
-		'asset' => 'ListsAsset'
+	return [
+		'table' => 'lists',
+		'asset' => 'ListsAsset',
 	];
 }
 
+//
 class ListsAsset extends AbstractAsset {
 	public $id;
 	public $team;
@@ -15,8 +17,7 @@ class ListsAsset extends AbstractAsset {
 	public $created_at;
 }
 
-
-
+//
 function listsModelGetUserLists($userId) {
 	$stmt = pdo()->prepare('SELECT * FROM lists WHERE created_by = :created_by AND team = 0');
 	$stmt->execute(['created_by' => $userId]);

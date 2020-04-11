@@ -1,12 +1,9 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
-		<?php 
-			$navItemActive = 'teams';
-			require __DIR__ . "/../layout/secondary-nav.php";
-		?>
+		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
 		<section class="container">
@@ -41,7 +38,7 @@
 
 				<ul class="entries">
 					<?php foreach ($members AS $member): ?>
-						
+
 						<li>
 							<div>
 								<h4>
@@ -56,10 +53,10 @@
 							</div>
 						</li>
 
-					<?php endforeach; ?>
+					<?php endforeach;?>
 				</ul>
 			</section>
-		<?php endif; ?>
+		<?php endif;?>
 
 
 
@@ -68,7 +65,7 @@
 
 				<ul class="entries">
 					<?php foreach ($invites AS $invite): ?>
-						
+
 						<li>
 							<div>
 								<h4>
@@ -80,19 +77,19 @@
 								<small>
 									<?php echo e($invite->email); ?>
 								</small>
-							<div>	
+							<div>
 						</li>
 
-					<?php endforeach; ?>
+					<?php endforeach;?>
 				</ul>
 			</section>
-		<?php endif; ?>
+		<?php endif;?>
 
 
-		
+
 	</main>
 
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

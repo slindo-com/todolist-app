@@ -1,12 +1,14 @@
 <?php
 
+//
 function M_TEAMS() {
-	return [ 
-	'table' => 'teams', 
-	'asset' => 'TeamsAsset'
+	return [
+		'table' => 'teams',
+		'asset' => 'TeamsAsset',
 	];
 }
 
+//
 class TeamsAsset extends AbstractAsset {
 	public $id;
 	public $title;
@@ -15,8 +17,7 @@ class TeamsAsset extends AbstractAsset {
 	public $created_at;
 }
 
-
-
+//
 function teamsModelNew($userId) {
 
 	$baseSlug = 'new-team';
@@ -24,7 +25,7 @@ function teamsModelNew($userId) {
 	$count = 1;
 
 	while (!teamsModelIsSlugValid($slug)) {
-		$slug = $baseSlug .'-'. $count;
+		$slug = $baseSlug . '-' . $count;
 		$count++;
 	}
 
@@ -36,7 +37,7 @@ function teamsModelNew($userId) {
 
 	$stmt->execute([
 		'slug' => $slug,
-		'created_by' => $userId
+		'created_by' => $userId,
 	]);
 
 	$teamId = pdo()->lastInsertId();
@@ -44,10 +45,10 @@ function teamsModelNew($userId) {
 	$stmt2->execute([
 		'user' => $userId,
 		'team' => $teamId,
-		'role' => 1
+		'role' => 1,
 	]);
 
-	if(empty($stmt->errorInfo()[1]) && empty($stmt2->errorInfo()[1])) {
+	if (empty($stmt->errorInfo()[1]) && empty($stmt2->errorInfo()[1])) {
 		pdo()->commit();
 		return true;
 	} else {
@@ -56,15 +57,14 @@ function teamsModelNew($userId) {
 	}
 }
 
-
-
+//
 function teamsModelUpdateTitle($teamId, $title) {
 	$baseSlug = teamsModelCreateSlug($title);
 	$slug = $baseSlug;
 	$count = 1;
 
 	while (!teamsModelIsSlugValid($slug)) {
-		$slug = $baseSlug .'-'. $count;
+		$slug = $baseSlug . '-' . $count;
 		$count++;
 	}
 
@@ -72,26 +72,24 @@ function teamsModelUpdateTitle($teamId, $title) {
 	$stmt->execute([
 		'title' => $title,
 		'slug' => $slug,
-		'id' => $teamId
+		'id' => $teamId,
 	]);
 
 	return true;
 }
 
-
-
+//
 function teamsModelIsSlugValid($slug) {
 	$hasSlug = pdoFindByAttribute(M_TEAMS(), 'slug', $slug);
 	return $hasSlug ? false : true;
 }
 
-
-
+//
 function teamsModelCreateSlug($str) {
 	return strtolower(trim(preg_replace('/[\s-]+/', '-', preg_replace('/[^A-Za-z0-9-]+/', '-', preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), '-'));
-} 
-	
+}
 
+//
 function teamsModelGetTeams($userId) {
 
 	$stmt = pdo()->prepare(
@@ -101,7 +99,7 @@ function teamsModelGetTeams($userId) {
 	return $stmt->fetchAll(PDO::FETCH_CLASS, M_TEAMS()['asset']);
 }
 
-
+//
 function teamsModelGetMemberCount($teamId) {
 	$stmt = pdo()->prepare('SELECT COUNT(*) as count FROM team_members WHERE team = :team');
 	$stmt->execute(['team' => $teamId]);

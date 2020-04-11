@@ -1,13 +1,10 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php"; ?>
+	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
-		<?php 
-			$navItemActive = 'account';
-			require __DIR__ . "/../layout/secondary-nav.php";
-		?>
+		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
 		<section class="container">
@@ -28,13 +25,13 @@
 		</section>
 
 
-		<?php if($error) : ?>
+		<?php if ($error): ?>
 			<section class="container">
 				<div class="message error">
 					<?php echo e($error); ?>
-				</div>				
+				</div>
 			</section>
-		<?php endif ?>
+		<?php endif?>
 
 
 		<section class="container flex">
@@ -69,4 +66,4 @@
 	</main>
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>
