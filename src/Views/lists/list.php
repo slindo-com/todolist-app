@@ -11,7 +11,7 @@
 				</h2>
 
 				<form method="POST" class="todo-form" autocomplete="off">
-					<input type="text" name="todo" placeholder="Type a new Todo here" minlength="1" required<?php echo $newTaskCreated ? ' autofocus' : ''; ?>>
+					<input type="text" name="todo" placeholder="Type a new Todo here" minlength="1" required<?php echo !empty($newTaskCreated) ? ' autofocus' : ''; ?>>
 					<div>
 						Press Enter to create todo
 					</div>
@@ -19,30 +19,32 @@
 			</header>
 		</section>
 
-		<section class="container">
-			<ul class="entries tasks">
-				<?php foreach ($tasksUndone AS $task): ?>
+		<?php if (!empty($tasksUndone) && sizeof($tasksUndone) >= 1): ?>
+			<section class="container">
+				<ul class="entries tasks">
+					<?php foreach ($tasksUndone AS $task): ?>
 
-					<li>
-						<span class="checkmark">
-							<iframe name="checkmark-<?php echo $task->id; ?>" src="/checkmark/<?php echo $task->id; ?>/" frameborder="0"></iframe>
-							<form method="POST" action="/checkmark/<?php echo $task->id; ?>/" target="checkmark-<?php echo $task->id; ?>">
-								<button type="submit" name="a" value="toggle"></button>
-							</form>
-						</span>
-						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug'] . '/' . $task->id; ?>/">
-							<h4>
-								<?php echo e($task->title); ?>
-							</h4>
-						</a>
-					</li>
+						<li>
+							<span class="checkmark">
+								<iframe name="checkmark-<?php echo $task->id; ?>" src="/checkmark/<?php echo $task->id; ?>/" frameborder="0"></iframe>
+								<form method="POST" action="/checkmark/<?php echo $task->id; ?>/" target="checkmark-<?php echo $task->id; ?>">
+									<button type="submit" name="a" value="toggle"></button>
+								</form>
+							</span>
+							<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug'] . '/' . $task->id; ?>/">
+								<h4>
+									<?php echo e($task->title); ?>
+								</h4>
+							</a>
+						</li>
 
-				<?php endforeach;?>
-			</ul>
-		</section>
+					<?php endforeach;?>
+				</ul>
+			</section>
+		<?php endif;?>
 
 
-		<?php if ($showDone): ?>
+		<?php if (!empty($showDone) && !empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
 			<section class="container">
 				<ul class="entries tasks">
 					<?php foreach ($tasksDone AS $task): ?>
@@ -65,7 +67,7 @@
 				</ul>
 			</section>
 		<?php else: ?>
-			<?php if (sizeof($tasksDone) >= 1): ?>
+			<?php if (!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
 				<section class="container center">
 					<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/show-done/">
 						Show <?php echo e(sizeof($tasksDone)); ?> done todos
