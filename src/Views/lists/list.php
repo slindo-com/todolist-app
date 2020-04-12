@@ -36,6 +36,12 @@
 									<?php echo e($task->title); ?>
 								</h4>
 							</a>
+							<form method="POST" class="important-toggle <?php echo $task->important ? 'important' : ''; ?>">
+								<input type="hidden" name="taskId" value="<?php echo $task->id; ?>">
+								<button type="submit" name="a" value="<?php echo $task->important ? 'make-unimportant' : 'make-important'; ?>">
+									☆
+								</button>
+							</form>
 						</li>
 
 					<?php endforeach;?>

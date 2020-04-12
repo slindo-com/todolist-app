@@ -90,3 +90,63 @@
     }
   }
 }
+
+.important-toggle {
+  position: absolute;
+  top:0;
+  right:2*$base;
+  background:transparent;
+  width:4*$base;
+  height:6*$base;
+
+  &:before, &:after {
+    content:'';
+    display:block;
+    position: absolute;
+    top:100%;
+    left:0;
+    width:0;
+    height:0;
+    margin:-1*$base 0 0 0;
+    border-top: 1*$base solid transparent;
+    border-bottom: 1*$base solid transparent;
+    border-left: 2*$base solid transparent;
+  }
+
+  &:after {
+    left:auto;
+    right:0;
+    transform: rotateZ(180deg);
+  }
+
+  &.important {
+    background:$color-red;
+    box-shadow:0 2px 6px rgba(0, 0, 0, .25);
+
+    &:before, &:after {
+      border-left: 2*$base solid $color-red;
+    }    
+
+    button {
+      color:#FFF;
+    }
+  }
+
+  button {
+    position: relative;
+    -webkit-appearance:none;
+    border:0;
+    border-radius: 0;
+    padding:0;
+    margin:0 0 0 -1*$base;
+    background:rgba(#000, 0);
+    width:6*$base;
+    height:9*$base;
+    z-index:100;
+    font-size:14px;
+    line-height: 9*$base;
+    color:#333;
+    cursor: pointer;
+    outline:none;
+  }
+}

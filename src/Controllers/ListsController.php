@@ -62,6 +62,10 @@ function listsControllerList($attributes) {
 			$newTaskCreated = true;
 			tasksModelNew($navData['list']->id, $_POST['todo']);
 			listsModelChangeTaskCount($navData['list']->id, true);
+		} else if (actionEquals('make-important')) {
+			pdoSetAttribute(M_TASKS(), $_POST['taskId'], 'important', '1');
+		} else if (actionEquals('make-unimportant')) {
+			pdoSetAttribute(M_TASKS(), $_POST['taskId'], 'important', '0');
 		}
 
 		$navData = listsServiceGetNav($teamSlug, $listSlug);
@@ -71,6 +75,10 @@ function listsControllerList($attributes) {
 	$tasksUndone = array_filter($tasks, function ($asset) {
 		return empty($asset->done);
 	}, ARRAY_FILTER_USE_BOTH);
+
+	usort($tasksUndone, function ($a, $b) {
+		return $b->important - $a->important;
+	});
 
 	$tasksDone = array_filter($tasks, function ($asset) {
 		return !empty($asset->done);
