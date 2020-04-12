@@ -22,7 +22,7 @@ class TasksAsset extends AbstractAsset {
 
 //
 function tasksModelGetListTasks($listId) {
-	$stmt = pdo()->prepare('SELECT * FROM tasks WHERE list = :list');
+	$stmt = pdo()->prepare('SELECT * FROM tasks WHERE list = :list ORDER BY title');
 	$stmt->execute(['list' => $listId]);
 	return $stmt->fetchAll(PDO::FETCH_CLASS, M_TASKS()['asset']);
 }

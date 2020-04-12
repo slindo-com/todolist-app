@@ -158,6 +158,12 @@ small {
     float:right;
   }
 
+  &.back {
+    position: absolute;
+    margin:-1*$base 0 0 0;
+    z-index:100;
+  }
+
   +.btn {
     margin-left:1*$base;
   }
@@ -176,6 +182,10 @@ small {
 
 .mb-4 {
   margin-bottom:4*$base;
+}
+
+.center {
+  text-align: center;
 }
 
 

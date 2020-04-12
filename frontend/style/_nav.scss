@@ -4,6 +4,10 @@
 
 main {
 	margin-left:40*$base;
+
+  &.full {
+    margin-left:0;
+  }
 }
 
 .main-nav {
@@ -25,6 +29,7 @@ main {
 	}
 
 	a {
+    position: relative;
 		display:block;
 		font-size:14px;
 		line-height: 5*$base;
@@ -37,6 +42,12 @@ main {
 			background:#F5F5F5;
 		}
 
+    &.active {
+      border-left:1*$base $color-blue solid;
+      padding-left:3*$base;
+      color:#000;
+    }
+
 		&.settings {
 			position: absolute;
 			bottom:0;
@@ -44,6 +55,19 @@ main {
 			width:100%;
 			text-align: center;
 		}
+
+    span {
+      position: absolute;
+      top:50%;
+      right:2*$base;
+      display: block;
+      background:#EEE;
+      font-size:12px;
+      line-height: 3*$base;
+      transform:translateY(-50%);
+      padding:0 1*$base;
+      border-radius: 1.5*$base;
+    }
 	}
 }
 

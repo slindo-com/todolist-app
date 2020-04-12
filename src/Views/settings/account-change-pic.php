@@ -2,8 +2,7 @@
 
 
 <div class="frame">
-	<?php require __DIR__ . "/../layout/main-nav.php";?>
-	<main>
+	<main class="full">
 		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 

@@ -88,6 +88,10 @@ $routes = [
 		'controller' => 'ListsController',
 		'method' => 'listsControllerCheckmark',
 	],
+	'/:team/:list/show-done/' => [
+		'controller' => 'ListsController',
+		'method' => 'listsControllerListShowDone',
+	],
 	'/:team/:list/:todo/' => [
 		'controller' => 'ListsController',
 		'method' => 'listsControllerTodo',
