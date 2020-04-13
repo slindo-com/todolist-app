@@ -14,7 +14,7 @@ function authControllerSignIn() {
 		$password = $_POST['password'];
 
 		if (authServiceAuth($email, $password)) {
-			header("Location: /own/");
+			header("Location: /private/");
 			return;
 		} else {
 			$error = true;
@@ -45,7 +45,7 @@ function authControllerNewAccount($attributes) {
 				'message' => $emailTemplate['message'],
 			]);
 
-			header("Location: /own/");
+			header("Location: /private/");
 			return;
 		} else {
 			$error = true;
