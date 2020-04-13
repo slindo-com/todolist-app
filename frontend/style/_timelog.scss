@@ -6,6 +6,19 @@
 
   h2 {
     flex:1;
+
+    .link {
+      display: inline-block;
+      margin-left:1*$base;
+      font-size:12px;
+      font-weight: 400;
+      text-decoration: underline;
+      color:$color-grey-50;
+
+      &:hover {
+        color:$color-blue;
+      }
+    }
   }
 }
 

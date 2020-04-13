@@ -1,6 +1,6 @@
 <?php
 
-includeModels(['Tasks', 'Lists']);
+includeModels(['Teams', 'Tasks', 'Lists']);
 includeServices('List');
 
 //
@@ -46,6 +46,23 @@ function listsControllerToday() {
 //
 function listsControllerWeek() {
 	echo 'TODO: LISTS: WEEK';
+}
+
+//
+function listsControllerEdit($attributes) {
+	$teamSlug = $attributes[0];
+	$listSlug = $attributes[1];
+	$navData = listsServiceGetNav($teamSlug, $listSlug);
+
+	if (actionEquals('edit-title')) {
+		$teamId = $teamSlug == 'private' ? false : (pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug))->id;
+		$slug = listsModelUpdateTitle($teamId, $_POST['listId'], $_POST['title']);
+		header('Location: /' . $teamSlug . '/' . $slug . '/');
+	}
+
+	render('lists/edit-list', [
+		'navData' => $navData,
+	]);
 }
 
 //
@@ -102,6 +119,11 @@ function listsControllerListShowDone($attributes) {
 //
 function listsControllerAll($attributes) {
 	$teamSlug = $attributes[0];
+
+	if (actionEquals('new-list')) {
+		$slug = listsModelNew($teamSlug == 'private' ? false : pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug));
+		header('Location: /' . $teamSlug . '/' . $slug . '/');
+	}
 
 	render("lists/list", [
 		'navData' => listsServiceGetNav($teamSlug, false),

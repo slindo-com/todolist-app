@@ -20,6 +20,11 @@
 			</a>
 		<?php endforeach;?>
 	</div>
+	<form method="POST" action="/<?php echo e($navData['teamSlug']); ?>/" class="new-list-wrapper">
+		<button type="submit" name="a" value="new-list">
+			+ Add New List
+		</button>
+	</form>
 </nav>
 
 

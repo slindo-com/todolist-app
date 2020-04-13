@@ -123,7 +123,7 @@ small {
   padding:0 3*$base;
   display:inline-block;
   line-height:-2+6*$base;
-  box-shadow:0 2px 4px rgba(0, 0, 0, .075);
+  box-shadow:$shadow;
   cursor:pointer;
   text-align: center;
   color:$color-blue;

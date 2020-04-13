@@ -8,6 +8,9 @@
 			<header class="header">
 				<h2>
 					<?php echo !empty($navData['list']) ? $navData['list']->title : 'All lists' ?>
+					<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/" class="link">
+						Edit
+					</a>
 				</h2>
 
 				<form method="POST" class="todo-form" autocomplete="off">

@@ -78,6 +78,11 @@ main {
 				border-left:1*$base $color-blue solid;
 				padding-left:3*$base;
 				color:#000;
+
+				span {
+					background:$color-blue;
+					color:#FFF;
+				}
 			}
 
 			&.settings {
@@ -101,6 +106,30 @@ main {
 				border-radius: 1.5*$base;
 			}
 		}
+	}
+}
+
+.new-list-wrapper {
+	display:block;
+	position: absolute;
+	left:4*$base;
+	bottom:0;
+	width:calc(100% - 48px);
+	text-align: center;
+	border-top:$color-border 1px solid;
+
+	button {
+		-webkit-appearance:none;
+		border-radius: 0;
+		border:0;
+		display:block;
+		width:100%;
+		background:#FFF;
+		color:$color-blue;
+		font-size:14px;
+		line-height: 6*$base;
+		padding:0;
+		cursor:pointer;
 	}
 }
 

@@ -92,6 +92,10 @@ $routes = [
 		'controller' => 'ListsController',
 		'method' => 'listsControllerListShowDone',
 	],
+	'/:team/:list/edit/' => [
+		'controller' => 'ListsController',
+		'method' => 'listsControllerEdit',
+	],
 	'/:team/:list/:todo/' => [
 		'controller' => 'ListsController',
 		'method' => 'listsControllerTodo',
