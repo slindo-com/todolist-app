@@ -1,27 +1,29 @@
 <?php
 
 includeModels('Users');
-includeServices(['Mail', 'Auth']);
+includeServices(['Auth', 'Mail', 'Translations']);
 includeMails(['new-account', 'new-password']);
+
+translationsGet('en');
 
 //
 function authControllerSignIn() {
 
 	$error = false;
 
-	if (!empty($_POST['email']) AND !empty($_POST['password'])) {
+	if (actionEquals('sign-in')) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
 		if (authServiceAuth($email, $password)) {
-			header("Location: /private/");
+			header('Location: /private/');
 			return;
 		} else {
-			$error = true;
+			$error = getTranslation('error_combination');
 		}
 	}
 
-	render("auth/sign-in", [
+	render('auth/sign-in', [
 		'error' => $error,
 	]);
 }

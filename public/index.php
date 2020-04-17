@@ -157,7 +157,11 @@ if (!empty($route)) {
 	include_once __DIR__ . '/../src/Controllers/' . $route['controller'] . '.php';
 	$route['method']($route['attributes'], $route['query']);
 
-} else {
+} else if ($_SERVER['REQUEST_URI'] == '/favicon.ico') {
+		sendCacheHeaders();
+		header('Content-Type: image/x-icon');
+		include __DIR__ . '/favicon.ico';
+}  else {
 	if ($_SERVER['REQUEST_URI'] == '/s.css') {
 		sendCacheHeaders();
 		header('Content-Type: text/css');

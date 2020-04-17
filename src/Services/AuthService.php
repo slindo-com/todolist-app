@@ -1,14 +1,13 @@
 <?php
 
-include_once __DIR__ . '/../Models/UsersModel.php';
-include_once __DIR__ . '/../Models/PasswordResetsModel.php';
+includeModels(['PasswordResets', 'Users']);
 
 //
 function authServiceVerifyAuth() {
 	if (isset($_SESSION['auth'])) {
 		return true;
 	} else {
-		header("Location: /sign-in/");
+		header('Location: /sign-in/');
 		die();
 	}
 }

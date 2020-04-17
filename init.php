@@ -8,6 +8,11 @@ function e($str) {
 }
 
 //
+function e2($str) {
+	echo htmlentities($str, ENT_QUOTES, 'UTF-8');
+}
+
+//
 try {
 	$GLOBALS['pdo'] = new PDO(
 		CONFIG()['databaseConnection'],
