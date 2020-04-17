@@ -1,10 +1,12 @@
 <?php
 
 includeModels(['Teams', 'Tasks', 'Lists']);
-includeServices('List');
+includeServices(['Auth', 'List']);
 
 //
 function listsControllerTodo($attributes) {
+	authServiceVerifyAuth();
+
 	$teamSlug = $attributes[0];
 	$listSlug = $attributes[1];
 	$todoId = $attributes[2];
@@ -50,6 +52,8 @@ function listsControllerWeek() {
 
 //
 function listsControllerEdit($attributes) {
+	authServiceVerifyAuth();
+
 	$teamSlug = $attributes[0];
 	$listSlug = $attributes[1];
 	$navData = listsServiceGetNav($teamSlug, $listSlug);
@@ -67,6 +71,8 @@ function listsControllerEdit($attributes) {
 
 //
 function listsControllerList($attributes) {
+	authServiceVerifyAuth();
+
 	$teamSlug = $attributes[0];
 	$listSlug = $attributes[1];
 	$showDone = !empty($attributes[2]);
@@ -112,12 +118,16 @@ function listsControllerList($attributes) {
 
 //
 function listsControllerListShowDone($attributes) {
+	authServiceVerifyAuth();
+
 	$attributes[2] = 'done';
 	listsControllerList($attributes);
 }
 
 //
 function listsControllerAll($attributes) {
+	authServiceVerifyAuth();
+
 	$teamSlug = $attributes[0];
 
 	if (actionEquals('new-list')) {
@@ -133,6 +143,8 @@ function listsControllerAll($attributes) {
 
 //
 function listsControllerCheckmark($attributes) {
+	authServiceVerifyAuth();
+
 	$taskId = $attributes[0];
 	$task = pdoGet(M_TASKS(), $taskId);
 

@@ -50,6 +50,24 @@
 					<?php endforeach;?>
 				</ul>
 			</section>
+		<?php else: ?>
+			<section class="container">
+				<div class="empty-box">
+					<span>
+						<h3>
+							Your list is thirsty for new tasks!
+						</h3>
+						<p>
+							Let's create a new task by clicking the input on the top right.
+						</p>	
+						<p>
+							<a href="https://todolist.one/help/" taget="_blank">
+								Go to our help section
+							</a> if the app is unclear about anything.
+						</p>
+					</span>
+				</div>
+			</section>
 		<?php endif;?>
 
 
