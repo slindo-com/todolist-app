@@ -23,14 +23,14 @@ function settingsControllerTeams() {
 
 		if ($invite->email == $user->email) {
 			teamMembersModelNew($user->id, $invite->team);
-			invitesModelDelete($invite->id);
+			pdoDelete(M_INVITES(), $invite->id);
 		}
 	} else if (actionEquals('decline-invitation')) {
 		$invite = invitesModelFind($_POST['inviteId']);
 		$user = pdoGet(M_USERS(), $_SESSION['auth']);
 
 		if ($invite->email == $user->email) {
-			invitesModelDelete($invite->id);
+			pdoDelete(M_INVITES(), $invite->id);
 		}
 	}
 

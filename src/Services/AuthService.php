@@ -39,7 +39,7 @@ function authServiceNewAccount($email, $password) {
 	if ($lastId != 0) {
 		$_SESSION['auth'] = $lastId;
 		session_regenerate_id(true);
-		return true;
+		return false;
 	} else {
 		return false;
 	}
@@ -53,14 +53,9 @@ function authServiceSetPassword($password) {
 //
 function authServiceNewResetToken($email) {
 	$token = bin2hex(random_bytes(50));
-	$success = passwordResetsModelNew($token, $email, $_SESSION['auth']);
+	$success = passwordResetsModelNew($token, $email);
 
 	return $success ? $token : false;
-}
-
-// TODO: Refactor completely to model
-function authServiceGetResetToken($token) {
-	return $this->passwordResetsModel->findByAttribute('token', $token);
 }
 
 //

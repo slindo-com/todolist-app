@@ -5,39 +5,39 @@
 
 
 	<section class="small-container">
-		<h2>
-			Reset Password
+		<h2 class="one-line mb-2">
+			<?php i18n('reset_password'); ?>
 		</h2>
-		<small class="mb-4">
-			Provide your email address below and we will send you instructions on how to reset your password.
+		<small class="mb-2">
+			<?php i18n('reset_password_description'); ?>
 		</small>
 
 		<?php if (!empty($error)): ?>
 			<p class="err">
-				Something went wrong.
+				<?php e2($error); ?>
 			</p>
 		<?php endif;?>
 
 		<form method="POST" class="form shadow">
 
 			<label for="e">
-				E-Mail:
+				<?php i18n('email'); ?>
 			</label>
-			<input placeholder="Type here…" type="email" name="email" id="e" required autofocus>
+			<input placeholder="<?php i18n('type_here'); ?>" type="email" name="email" id="e" required autofocus>
 
 			<footer>
-				<button type="submit" name="a" value="send-instructions" class="btn">
-					Send Reset Instructions
-				</button>
 				<span>
-					or
-					<a href="/sign-in/">
-						sign in to account
-					</a>
+					<button type="submit" name="a" value="send-instructions" class="btn">
+						<?php i18n('send_reset_instructions'); ?>
+					</button>
 				</span>
 			</footer>
 
 		</form>
+
+		<a href="/sign-in/" class="mt-2 one-line">
+			<?php i18n('back_to_sign_in'); ?>
+		</a>
 	</section>
 
 
@@ -47,14 +47,14 @@
 
 
 	<section class="small-container">
-		<h2>
-			Instructions sent!
+		<h2 class="one-line mb-2">
+			<?php i18n('instructions_sent'); ?>
 		</h2>
 		<p class="mt-2">
-			We have emailed you a link to reset your password. Don't forget to check your spam folder.
+			<?php i18n('instructions_sent_description'); ?>
 		</p>
-		<a href="/sign-in/" class="mt-2">
-			Back to sign in
+		<a href="/sign-in/" class="mt-2 one-line">
+			<?php i18n('back_to_sign_in'); ?>
 		</a>
 	</section>
 
@@ -65,14 +65,14 @@
 
 
 	<section class="small-container">
-		<h2>
-			Your link is not valid
+		<h2 class="one-line mb-2">
+			<?php i18n('link_not_valid'); ?>
 		</h2>
 		<p class="mt-2">
-			Your link seems to be expired or unvalid. Please request a new link:
+			<?php i18n('link_not_valid_description'); ?>
 		</p>
-		<a href="/new-password/" class="mt-2">
-			Request new link
+		<a href="/new-password/" class="mt-2 one-line">
+			<?php i18n('request_new_link'); ?>
 		</a>
 	</section>
 
@@ -83,21 +83,21 @@
 
 
 	<section class="small-container">
-		<h2 class="mb-2">
-			Set New Password
+		<h2 class="one-line mb-2">
+			<?php i18n('set_new_password'); ?>
 		</h2>
 
 		<form method="POST" class="form shadow">
 
 		    <label for="p">
-		      New Password:
+		      <?php i18n('new_password'); ?>
 		    </label>
 
-		    <input placeholder="Type here…" type="password" name="password" id="p" minlength="6" autofocus required>
+		    <input placeholder="<?php i18n('type_here'); ?>" type="password" name="password" id="p" minlength="6" autofocus required>
 
 			<footer>
 				<button type="submit" name="a" value="set-password" class="btn">
-					Set New Password
+					<?php i18n('set_new_password'); ?>
 				</button>
 			</footer>
 
@@ -111,14 +111,14 @@
 
 
 	<section class="small-container">
-		<h2>
-			Password Updated
+		<h2 class="one-line mb-2">
+			<?php i18n('password_updated'); ?>
 		</h2>
 		<p class="mt-2">
-			Your password is updated now. Please go to the Sign In and try again.
+			<?php i18n('password_updated_description'); ?>
 		</p>
-		<a href="/sign-in/" class="mt-2">
-			Back to sign in
+		<a href="/sign-in/" class="mt-2 one-line">
+			<?php i18n('back_to_sign_in'); ?>
 		</a>
 	</section>
 

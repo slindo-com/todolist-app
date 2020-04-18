@@ -17,12 +17,11 @@ class PasswordResetsAsset extends AbstractAsset {
 }
 
 //
-function passwordResetsModelNew($token, $email, $created_by) {
-	$stmt = pdo()->prepare("INSERT INTO password_resets (token, email, created_by) VALUES (:token, :email, :created_by)");
+function passwordResetsModelNew($token, $email) {
+	$stmt = pdo()->prepare("INSERT INTO password_resets (token, email) VALUES (:token, :email)");
 	$stmt->execute([
 		'token' => $token,
 		'email' => $email,
-		'created_by' => $created_by,
 	]);
 
 	return empty($stmt->errorInfo()[1]);

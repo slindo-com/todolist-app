@@ -27,15 +27,25 @@ function usersModelNew($email, $password) {
 		'password' => $password,
 	]);
 
-	return empty($stmt->errorInfo()[1]) ? pdo()->lastInsertId() : false;
+	$error = $stmt->errorInfo();
+
+	if($error[1] == 1062) {
+		throw new Exception('DUPLICATE_EMAILS');
+		return false;
+	} else if(!empty($error[1])) {
+		throw new Exception($error[1]);
+		return false;
+	}
+
+	return pdo()->lastInsertId();
 }
 
 //
-function usersModelSetPassword($password) {
+function usersModelSetPassword($userId, $password) {
 
 	$stmt = pdo()->prepare('UPDATE users SET password = :password WHERE id = :id');
 	$stmt->execute([
-		'id' => $_SESSION['auth'],
+		'id' => $userId,
 		'password' => password_hash($password, PASSWORD_BCRYPT),
 	]);
 }

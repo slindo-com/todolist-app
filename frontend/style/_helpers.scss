@@ -109,7 +109,9 @@ a {
 }
 
 p {
+	font-size:14px;
 	line-height: 4*$base;
+	transform: translateY(1px);
 }
 
 small {
@@ -207,7 +209,6 @@ small {
 	margin:2*$base 0;
 	font-size:14px;
 	line-height: 4*$base;
-	transform: translateY(1px);
 }
 
 .box {
