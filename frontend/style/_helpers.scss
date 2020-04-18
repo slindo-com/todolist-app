@@ -84,9 +84,14 @@ html, body {
 */
 
 h2, h3 {
-	font-size:20px;
-	line-height:6*$base;
-	font-weight:600;
+	font-size:17px;
+	line-height:4*$base;
+	font-weight:500;
+
+	@include breakpoint($tablet) {
+		font-size:20px;
+		font-weight:600;
+	}
 
 	&.one-line {
 		line-height: 3*$base;
@@ -415,16 +420,22 @@ li {
 	}
 }
 
-
-
 .todo-form {
-	flex-basis: 33.33333%;
 	position: relative;
+	display:block;
+	height:10*$base;
+	width:100%;
+	padding:2*$base 4*$base 2*$base 4*$base;
+
+	@include breakpoint($desktop) {
+		flex-basis: 33.33333%;
+		height:6*$base;
+		width:auto;
+		padding:0;
+		z-index:1500;
+	}
 
 	input {
-		position: absolute;
-		top:0;
-		right:0;
 		width:100%;
 		border-radius: 12px;
 		background:$color-inputbg;
@@ -433,11 +444,14 @@ li {
 		line-height: 3*$base;
 		padding:1.5*$base 4*$base;
 		outline:none;
-		transition: width 150ms ease;
 
 		&:focus {
-			width:300%;
+			// width:300%;
 			box-shadow: 0 0 0 1px $color-blue inset;
+
+			@include breakpoint($desktop) {
+				width:300%;
+			}
 		}
 
 		&:valid {
@@ -446,9 +460,17 @@ li {
 				transform:translateX(0);
 			}
 		}
+
+		@include breakpoint($desktop) {
+			position: absolute;
+			top:0;
+			right:0;
+			transition: width 150ms ease;
+		}
 	}
 
 	div {
+		display:none;
 		position: absolute;
 		top:100%;
 		right:0*$base;

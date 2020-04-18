@@ -1,4 +1,4 @@
-<nav class="main-nav">
+<nav class="main-nav" id="main-navigation">
 	<header>
 		<a href="#team-select" class="team-select">
 			<small>
@@ -25,6 +25,8 @@
 			+ Add New List
 		</button>
 	</form>
+	<a href="#" class="shadow">
+	</a>
 </nav>
 
 

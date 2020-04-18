@@ -1,165 +1,225 @@
 .header {
-  max-width:960px;
-  margin: 3*$base auto;
-  display:flex;
-  flex:row;
+	max-width:1008px;
+	width:100%;
 
-  h2 {
-    flex:1;
+	@include breakpoint($desktop) {
+		margin: 3*$base auto;
+		padding:0 4*$base;
+		display:flex;
+	}
 
-    .link {
-      display: inline-block;
-      margin-left:1*$base;
-      font-size:12px;
-      font-weight: 400;
-      text-decoration: underline;
-      color:$color-grey-50;
+	&:before {
+		content:'';
+		display:block;
+		height:8*$base;
 
-      &:hover {
-        color:$color-blue;
-      }
-    }
-  }
+		@include breakpoint($desktop) {
+			display:none;
+		}
+	}
+
+	.inner {
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:8*$base;
+		background:#FFF;
+		border-bottom:$color-border 1px solid;
+		z-index:1000;
+		display: flex;
+
+		@include breakpoint($tablet) {
+			left:40*$base;
+		}
+
+		@include breakpoint($desktop) {
+			position:static;
+			height:6*$base;
+			border:0;
+			display:block;
+			flex-basis: (100% / 3 * 2);
+		}
+	}
+
+	.toggle-nav {
+		line-height: 8*$base;
+		padding:0 0 0 4*$base;
+		width:9*$base;
+		font-size:17px;
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		@include breakpoint($tablet) {
+			display:none;
+		}
+	}
+
+	h2 {
+		line-height: 8*$base;
+		display:block;
+
+		@include breakpoint($tablet) {
+			padding-left:4*$base;
+		}
+
+		@include breakpoint($desktop) {
+			padding-left:0;
+			line-height:6*$base;	
+		}
+
+		.link {
+			display: inline-block;
+			margin-left:1*$base;
+			font-size:12px;
+			font-weight: 400;
+			text-decoration: underline;
+			color:$color-grey-50;
+
+			&:hover {
+				color:$color-blue;
+			}
+		}
+	}
 }
 
-@media (min-width:112*$base) {
- 
-}
 
 
 .entries {
-  list-style: none;
-  margin-bottom:8*$base;
-  box-shadow:0 2px 4px rgba(0, 0, 0, .075);
-  border-radius: 12px;
+	list-style: none;
+	margin-bottom:8*$base;
+	box-shadow:0 2px 4px rgba(0, 0, 0, .075);
+	border-radius: 12px;
 
-  &.tasks {
-    li {
-      position: relative;
+	&.tasks {
+		li {
+			position: relative;
 
-      >div, >a {
-        padding-left:9*$base;
-        color:#333;
+			>div, >a {
+				padding-left:9*$base;
+				color:#333;
 
-        &:hover {
-          color:$color-blue;
-        }
-      }
-    }
-  }
+				&:hover {
+					color:$color-blue;
+				}
+			}
+		}
+	}
 
-  li {
-    &:first-child {
-      >div, >a {
-        border-top:$color-border 1px solid;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+	li {
+		&:first-child {
+			>div, >a {
+				border-top:$color-border 1px solid;
+				border-top-left-radius: 12px;
+				border-top-right-radius: 12px;
 
-        &:hover, &:focus {
-          box-shadow:none;
-        }
-      }
-    }
+				&:hover, &:focus {
+					box-shadow:none;
+				}
+			}
+		}
 
-    &:last-child {
-      >div, >a {
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-      }
-    }
+		&:last-child {
+			>div, >a {
+				border-bottom-left-radius: 12px;
+				border-bottom-right-radius: 12px;
+			}
+		}
 
-    >div, >a {
-      display:block;
-      padding:3*$base 4*$base;
-      border:$color-border 1px solid;
-      border-top:0;
-      font-weight:500;
-      outline:none;
+		>div, >a {
+			display:block;
+			padding:3*$base 4*$base;
+			border:$color-border 1px solid;
+			border-top:0;
+			font-weight:500;
+			outline:none;
 
-      &:hover, &:focus {
-        text-decoration:none;
-        border-color: $color-blue;
-        box-shadow: 0 -1px 0 $color-blue;
-        background:$color-background;
-      }
-    }
+			&:hover, &:focus {
+				text-decoration:none;
+				border-color: $color-blue;
+				box-shadow: 0 -1px 0 $color-blue;
+				background:$color-background;
+			}
+		}
 
-    >div {
-      &:hover, &:focus {
-        border-color: #333;
-        box-shadow: 0 -1px 0 #333;
-      }
-    }
+		>div {
+			&:hover, &:focus {
+				border-color: #333;
+				box-shadow: 0 -1px 0 #333;
+			}
+		}
 
-    h4 {
-      font-weight:500;
-    }
+		h4 {
+			font-weight:500;
+		}
 
-    small {
-      margin:1*$base 0 0 0;
-      display:inline-block;
-      line-height: 3*$base;
-      color:#333;
-    }
-  }
+		small {
+			margin:1*$base 0 0 0;
+			display:inline-block;
+			line-height: 3*$base;
+			color:#333;
+		}
+	}
 }
 
 .important-toggle {
-  position: absolute;
-  top:0;
-  right:2*$base;
-  background:transparent;
-  width:4*$base;
-  height:6*$base;
+	position: absolute;
+	top:0;
+	right:2*$base;
+	background:transparent;
+	width:4*$base;
+	height:6*$base;
 
-  &:before, &:after {
-    content:'';
-    display:block;
-    position: absolute;
-    top:100%;
-    left:0;
-    width:0;
-    height:0;
-    margin:-1*$base 0 0 0;
-    border-top: 1*$base solid transparent;
-    border-bottom: 1*$base solid transparent;
-    border-left: 2*$base solid transparent;
-  }
+	&:before, &:after {
+		content:'';
+		display:block;
+		position: absolute;
+		top:100%;
+		left:0;
+		width:0;
+		height:0;
+		margin:-1*$base 0 0 0;
+		border-top: 1*$base solid transparent;
+		border-bottom: 1*$base solid transparent;
+		border-left: 2*$base solid transparent;
+	}
 
-  &:after {
-    left:auto;
-    right:0;
-    transform: rotateZ(180deg);
-  }
+	&:after {
+		left:auto;
+		right:0;
+		transform: rotateZ(180deg);
+	}
 
-  &.important {
-    background:$color-red;
-    box-shadow:0 2px 6px rgba(0, 0, 0, .25);
+	&.important {
+		background:$color-red;
+		box-shadow:0 2px 6px rgba(0, 0, 0, .25);
 
-    &:before, &:after {
-      border-left: 2*$base solid $color-red;
-    }    
+		&:before, &:after {
+			border-left: 2*$base solid $color-red;
+		}    
 
-    button {
-      color:#FFF;
-    }
-  }
+		button {
+			color:#FFF;
+		}
+	}
 
-  button {
-    position: relative;
-    -webkit-appearance:none;
-    border:0;
-    border-radius: 0;
-    padding:0;
-    margin:0 0 0 -1*$base;
-    background:rgba(#000, 0);
-    width:6*$base;
-    height:9*$base;
-    z-index:100;
-    font-size:14px;
-    line-height: 9*$base;
-    color:#333;
-    cursor: pointer;
-    outline:none;
-  }
+	button {
+		position: relative;
+		-webkit-appearance:none;
+		border:0;
+		border-radius: 0;
+		padding:0;
+		margin:0 0 0 -1*$base;
+		background:rgba(#000, 0);
+		width:6*$base;
+		height:9*$base;
+		z-index:100;
+		font-size:14px;
+		line-height: 9*$base;
+		color:#333;
+		cursor: pointer;
+		outline:none;
+	}
 }

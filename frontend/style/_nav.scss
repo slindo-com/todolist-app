@@ -3,7 +3,9 @@
 }
 
 main {
-	margin-left:40*$base;
+	@include breakpoint($tablet) {
+		margin-left:40*$base;
+	}
 
 	&.full {
 		margin-left:0;
@@ -20,6 +22,21 @@ main {
 	height:100vh;
 	border-right:$color-border 1px solid;
 	box-shadow:$shadow;
+	transform: translateX(-120%);
+	z-index:1500;
+
+	@include breakpoint($tablet) {
+		transform:translateX(0);
+	}
+
+	&:target {
+		transform:translateX(0);
+
+		.shadow {
+			opacity:1;
+			transform: translateX(0);
+		}
+	}
 
 	header {
 		display: flex;
@@ -107,6 +124,24 @@ main {
 			}
 		}
 	}
+
+	.shadow {
+		position: fixed;
+		top:0;
+		left:100%;
+		display:block;
+		width:300%;
+		height:100%;
+		background:rgba(#000, .25);
+		backdrop-filter: blur(2px);
+		z-index:1000;
+		opacity:0;
+		transform: translateX(-120%);
+
+		@include breakpoint($tablet) {
+			display:none;
+		}
+	}
 }
 
 .new-list-wrapper {
@@ -148,20 +183,21 @@ main {
 		width:100%;
 		height:100%;
 		background:rgba(#000, .25);
-		/* backdrop-filter: blur(1*$base); */
-		z-index:1000;
+		backdrop-filter: blur(2px);
+		z-index:1500;
 	}
 
 	nav {
 		position: absolute;
 		top:1*$base;
-		left:1*$base;
+		left:50%; // 1*$base
+		transform: translateX(-50%);
 		background:#FFF;
 		border-radius: 12px;
 		box-shadow: $shadow;
 		overflow: hidden;
-		z-index:1010;
-		width:38*$base;
+		z-index:2000;
+		width:calc(100% - 12px); // 38*$base
 		padding:1*$base;
 
 		a {

@@ -4,14 +4,19 @@
 	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<?php echo !empty($navData['list']) ? $navData['list']->title : 'All lists' ?>
-					<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/" class="link">
-						Edit
+				<div class="inner">
+					<a href="#main-navigation" class="toggle-nav">
+						☰
 					</a>
-				</h2>
+					<h2>
+						<?php echo !empty($navData['list']) ? $navData['list']->title : 'All lists' ?>
+						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/" class="link">
+							Edit
+						</a>
+					</h2>
+				</div>
 
 				<form method="POST" class="todo-form" autocomplete="off">
 					<input type="text" name="todo" placeholder="Type a new Todo here" minlength="1" required<?php echo !empty($newTaskCreated) ? ' autofocus' : ''; ?>>
@@ -20,7 +25,7 @@
 					</div>
 				</form>
 			</header>
-		</section>
+		</div>
 
 		<?php if (!empty($tasksUndone) && sizeof($tasksUndone) >= 1): ?>
 			<section class="container">

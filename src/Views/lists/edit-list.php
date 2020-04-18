@@ -4,17 +4,22 @@
 	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/">
-						<?php echo e($navData['list']->title); ?>
+				<div class="inner">
+					<a href="#main-navigation" class="toggle-nav">
+						☰
 					</a>
-					→
-					Edit
-				</h2>
+					<h2>
+						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/">
+							<?php echo e($navData['list']->title); ?>
+						</a>
+						→
+						Edit
+					</h2>
+				</div>
 			</header>
-		</section>
+		</div>
 
 
 		<section class="container">

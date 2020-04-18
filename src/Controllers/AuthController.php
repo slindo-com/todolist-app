@@ -149,7 +149,7 @@ function authControllerNewPassword($attributes) {
 		}
 	}
 
-	render("auth/new-password", [
+	render('auth/new-password', [
 		'action' => $action,
 		'error' => $error,
 	]);
