@@ -10,13 +10,14 @@ function listsServiceGetNav($teamSlug, $listSlug) {
 	if ($teamSlug == 'private') {
 		$lists = listsModelGetUserLists($_SESSION['auth']);
 	} else {
-		// pdoFindByAttribute(M_TEAMS(),)
 		foreach ($teams as $teamToControl) {
 			if ($teamToControl->slug == $teamSlug) {
 				$team = $teamToControl;
 				break;
 			}
 		}
+
+		$lists = listsModelGetTeamLists($team->id);
 	}
 
 	$navData = [

@@ -134,7 +134,7 @@ function listsControllerAll($attributes) {
 	$teamSlug = $attributes[0];
 
 	if (actionEquals('new-list')) {
-		$slug = listsModelNew($teamSlug == 'private' ? false : pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug));
+		$slug = listsModelNew($teamSlug == 'private' ? false : pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug)->id);
 		header('Location: /' . $teamSlug . '/' . $slug . '/');
 	}
 
