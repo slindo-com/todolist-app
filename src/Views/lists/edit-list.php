@@ -44,8 +44,13 @@
 						<input type="hidden" name="listId" value="<?php echo e($navData['list']->id); ?>">
 
 						<footer>
-							<button type="submit" class="btn" name="a" value="edit-title">
-								Save New Title
+							<span>
+								<button type="submit" class="btn" name="a" value="edit-title">
+									Save New Title
+								</button>
+							</span>
+							<button type="submit" class="btn red" name="a" value="trash-list">
+								Trash List
 							</button>
 						</footer>
 					</form>

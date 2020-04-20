@@ -59,12 +59,22 @@
 			<section class="container">
 				<div class="empty-box">
 					<span>
-						<h3>
-							Your list is thirsty for new tasks!
-						</h3>
-						<p>
-							Let's create a new task by clicking the input on the top right.
-						</p>	
+
+						<?php if(!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
+							<h3 class="mb-2">
+								Congratulations! Everything is done!
+							</h3>
+							<p>
+								You could either <a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/">go to the edit section</a> and trash this list or reuse it and create some new tasks to tackle!
+							</p>
+						<?php else: ?>
+							<h3 class="mb-2">
+								Your list is thirsty for new tasks!
+							</h3>
+							<p>
+								Let's create a new task by clicking the input on the top right.
+							</p>
+						<?php endif;?>
 						<p>
 							<a href="https://todolist.one/help/" taget="_blank">
 								Go to our help section
@@ -100,7 +110,7 @@
 			</section>
 		<?php else: ?>
 			<?php if (!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
-				<section class="container center">
+				<section class="container center mt-4">
 					<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/show-done/">
 						Show <?php echo e(sizeof($tasksDone)); ?> done todos
 					</a>

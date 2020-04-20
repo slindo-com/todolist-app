@@ -92,13 +92,17 @@ main {
 			}
 
 			&.active {
-				border-left:1*$base $color-blue solid;
-				padding-left:3*$base;
-				color:#000;
+				background:$color-blue;
+				color:#FFF;
+				margin:0 1*$base 0 0;
+				padding:0 3*$base 0 4*$base;
+				border-top-right-radius: .5*$base;
+				border-bottom-right-radius: .5*$base;
 
 				span {
-					background:$color-blue;
-					color:#FFF;
+					right:1*$base;
+					background:#FFF;
+					color:$color-blue;
 				}
 			}
 

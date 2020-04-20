@@ -62,6 +62,9 @@ function listsControllerEdit($attributes) {
 		$teamId = $teamSlug == 'private' ? false : (pdoFindByAttribute(M_TEAMS(), 'slug', $teamSlug))->id;
 		$slug = listsModelUpdateTitle($teamId, $_POST['listId'], $_POST['title']);
 		header('Location: /' . $teamSlug . '/' . $slug . '/');
+	} else if (actionEquals('trash-list')) {
+		pdoSetAttribute(M_LISTS(), $_POST['listId'], 'trashed', '1');
+		header('Location: /' . $teamSlug . '/');
 	}
 
 	render('lists/edit-list', [
