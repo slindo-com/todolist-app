@@ -4,12 +4,27 @@ includeModels(['EmailTokens', 'Invites', 'Teams', 'TeamMembers', 'Users']);
 includeServices(['Auth', 'Mail', 'Translations']);
 includeMails(['invite', 'change-email']);
 
-translationsGet('en');
+translationsGet(!empty($_SESSION['language']) ? $_SESSION['language'] : 'en');
 
 //
 function settingsControllerIndex() {
 	authServiceVerifyAuth();
-	render("settings/index", []);
+	$user = pdoGet(M_USERS(), $_SESSION['auth']);
+
+	if(actionEquals('edit-general')) {
+		pdoSetAttribute(M_USERS(), $user->id, 'language', $_POST['language']);
+		$user = pdoGet(M_USERS(), $_SESSION['auth']);
+
+		if($_SESSION['language'] != $user->language) {
+			$_SESSION['language'] = $user->language;
+			header('Location: /settings/');
+		}
+	}
+
+
+	render('settings/index', [
+		'user' => $user
+	]);
 }
 
 //

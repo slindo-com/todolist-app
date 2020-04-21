@@ -7,13 +7,13 @@ function TRANSLATIONS() { return [
 	'settings' => 'Settings',	
 	'add_new_list' => '+ Add New List',	
 	'private' => 'Private',
-	'back_to_todo_lists' => 'Back to todo lists',
+	'back_to_todo_lists' => 'Zurück zu den Todolisten',
 	'general' => 'General',
 	'teams' => 'Teams',
 	'account' => 'Account',
 	'edit' => 'Edit',
 	'delete' => 'Delete',
-	'sign_out' => 'Sign Out',
+	'sign_out' => 'Abmelden',
 
 	/* AUTH */
 	'sign_in' => 'Sign In',

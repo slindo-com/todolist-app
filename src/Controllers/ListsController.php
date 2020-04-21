@@ -3,7 +3,7 @@
 includeModels(['Teams', 'Tasks', 'Lists']);
 includeServices(['Auth', 'List', 'Translations']);
 
-translationsGet('en');
+translationsGet(!empty($_SESSION['language']) ? $_SESSION['language'] : 'en');
 
 //
 function listsControllerTodo($attributes) {

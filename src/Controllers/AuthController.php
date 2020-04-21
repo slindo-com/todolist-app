@@ -4,7 +4,7 @@ includeModels(['Users', 'Invites', 'TeamMembers', 'PasswordResets']);
 includeServices(['Auth', 'Mail', 'Translations']);
 includeMails(['new-account', 'new-password']);
 
-translationsGet('en');
+translationsGet(!empty($_SESSION['language']) ? $_SESSION['language'] : 'en');
 
 //
 function authControllerSignIn() {

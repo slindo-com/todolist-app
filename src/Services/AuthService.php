@@ -21,6 +21,7 @@ function authServiceAuth($email, $password) {
 
 	if (password_verify($password, $user->password)) {
 		$_SESSION['auth'] = $user->id;
+		$_SESSION['language'] = $user->language;
 		session_regenerate_id(true);
 		return true;
 	} else {
@@ -38,6 +39,7 @@ function authServiceNewAccount($email, $password) {
 
 	if ($lastId != 0) {
 		$_SESSION['auth'] = $lastId;
+		$_SESSION['language'] = 'en';
 		session_regenerate_id(true);
 		return false;
 	} else {
@@ -62,6 +64,6 @@ function authServiceNewResetToken($email) {
 function authServiceSignOut() {
 	unset($_SESSION['auth']);
 	session_regenerate_id(true);
-	header("Location: /sign-in/");
+	header('Location: /sign-in/');
 	die();
 }
