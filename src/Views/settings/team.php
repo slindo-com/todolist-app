@@ -10,16 +10,16 @@
 				<div class="inner">
 					<h2>
 						<a href="/settings/teams/">
-							<?php i18n('teams'); ?>
+							<?php i18n('teams');?>
 						</a>
 						→
 						<?php echo $team->title; ?>
 					</h2>
 					<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
-						<?php i18n('edit_title'); ?>
+						<?php i18n('edit_title');?>
 					</a>
 					<a href="/settings/teams/<?php echo $team->slug; ?>/invite/" class="btn">
-						<?php i18n('invite_member'); ?>
+						<?php i18n('invite_member');?>
 					</a>
 				</div>
 			</header>
@@ -30,7 +30,7 @@
 
 			<section class="container">
 				<p>
-					<?php i18n('teams_empty'); ?>
+					<?php i18n('teams_empty');?>
 				</p>
 			</section>
 
@@ -43,10 +43,10 @@
 						<li>
 							<div>
 								<h4>
-									<?php (sizeof($member->name) > 1 ? e2($member->name) : i18n('no_name')); ?>
+									<?php (sizeof($member->name) > 1 ? e2($member->name) : i18n('no_name'));?>
 								</h4>
 								<small class="published-small">
-									<?php $member->role == 1 ? i18n('admin') : i18n('member'); ?>
+									<?php $member->role == 1 ? i18n('admin') : i18n('member');?>
 								</small>
 								<small>
 									<?php echo e($member->email); ?>
@@ -73,7 +73,7 @@
 									<?php echo e($invite->name); ?>
 								</h4>
 								<small class="published-small">
-									<?php i18n('invited'); ?>
+									<?php i18n('invited');?>
 								</small>
 								<small>
 									<?php echo e($invite->email); ?>

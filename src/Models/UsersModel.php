@@ -29,10 +29,10 @@ function usersModelNew($email, $password) {
 
 	$error = $stmt->errorInfo();
 
-	if($error[1] == 1062) {
+	if ($error[1] == 1062) {
 		throw new Exception('DUPLICATE_EMAILS');
 		return false;
-	} else if(!empty($error[1])) {
+	} else if (!empty($error[1])) {
 		throw new Exception($error[1]);
 		return false;
 	}

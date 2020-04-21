@@ -12,7 +12,7 @@
 					</a>
 					<h2>
 						<a href="/<?php echo $navData['teamSlug']; ?>/<?php echo $navData['listSlug']; ?>/">
-							← <?php i18n('back_to'); ?> <?php e2($navData['list']->title); ?>
+							← <?php i18n('back_to');?> <?php e2($navData['list']->title);?>
 						</a>
 					</h2>
 				</div>
@@ -25,10 +25,10 @@
 			<div class="flex">
 				<div class="left">
 					<h3>
-						<?php i18n('update_todo'); ?>
+						<?php i18n('update_todo');?>
 					</h3>
 					<small>
-						<?php i18n('update_todo_description'); ?>
+						<?php i18n('update_todo_description');?>
 					</small>
 				</div>
 				<div class="right">
@@ -36,19 +36,19 @@
 
 
 						<label for="ti">
-							<?php i18n('task_title'); ?>
+							<?php i18n('task_title');?>
 						</label>
-						<input placeholder="<?php i18n('type_here'); ?>" type="text" name="title" id="ti" value="<?php echo e($todo->title); ?>" autofocus required>
+						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php echo e($todo->title); ?>" autofocus required>
 
 
 						<footer>
 							<span>
 								<button type="submit" class="btn" name="a" value="update">
-									<?php i18n('save_task'); ?>
+									<?php i18n('save_task');?>
 								</button>
 							</span>
 							<button type="submit" class="btn end red" name="a" value="delete">
-								<?php i18n('delete'); ?>
+								<?php i18n('delete');?>
 							</button>
 						</footer>
 					</form>

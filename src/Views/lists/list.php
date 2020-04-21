@@ -13,7 +13,7 @@
 					<h2>
 						<?php echo !empty($navData['list']) ? $navData['list']->title : 'All lists' ?>
 						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/" class="link">
-							<?php i18n('edit'); ?>
+							<?php i18n('edit');?>
 						</a>
 					</h2>
 				</div>
@@ -21,7 +21,7 @@
 				<form method="POST" class="todo-form" autocomplete="off">
 					<input type="text" name="todo" placeholder="Type a new Todo here" minlength="1" required<?php echo !empty($newTaskCreated) ? ' autofocus' : ''; ?>>
 					<div>
-						<?php i18n('press_enter_to_create_todo'); ?>
+						<?php i18n('press_enter_to_create_todo');?>
 					</div>
 				</form>
 			</header>
@@ -55,35 +55,35 @@
 					<?php endforeach;?>
 				</ul>
 			</section>
-		<?php elseif(empty($showDone)): ?>
+		<?php elseif (empty($showDone)): ?>
 			<section class="container">
 				<div class="empty-box">
 					<span>
 
-						<?php if(!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
+						<?php if (!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
 							<h3 class="mb-2">
-								<?php i18n('everything_is_done'); ?>
+								<?php i18n('everything_is_done');?>
 							</h3>
 							<p>
-								<?php i18n('you_could_either'); ?>
+								<?php i18n('you_could_either');?>
 								<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/edit/">
-									<?php i18n('go_to_the_edit_section'); ?>	
+									<?php i18n('go_to_the_edit_section');?>
 								</a>
-								<?php i18n('and_trash_this'); ?>
+								<?php i18n('and_trash_this');?>
 							</p>
 						<?php else: ?>
 							<h3 class="mb-2">
-								<?php i18n('your_list_is_empty'); ?>
+								<?php i18n('your_list_is_empty');?>
 							</h3>
 							<p>
-								<?php i18n('lets_create_a_new_task'); ?>
+								<?php i18n('lets_create_a_new_task');?>
 							</p>
 						<?php endif;?>
 						<p>
 							<a href="https://todolist.one/help/" taget="_blank">
-								<?php i18n('go_to_our_help_section'); ?>
+								<?php i18n('go_to_our_help_section');?>
 							</a>
-							<?php i18n('if_app_is_unclear'); ?>
+							<?php i18n('if_app_is_unclear');?>
 						</p>
 					</span>
 				</div>
@@ -98,12 +98,12 @@
 
 						<li>
 							<span class="checkmark">
-								<iframe name="checkmark-<?php echo $task->id; ?>" src="/checkmark/<?php e2($task->id); ?>/" frameborder="0"></iframe>
-								<form method="POST" action="/checkmark/<?php echo $task->id; ?>/" target="checkmark-<?php e2($task->id); ?>">
+								<iframe name="checkmark-<?php echo $task->id; ?>" src="/checkmark/<?php e2($task->id);?>/" frameborder="0"></iframe>
+								<form method="POST" action="/checkmark/<?php echo $task->id; ?>/" target="checkmark-<?php e2($task->id);?>">
 									<button type="submit" name="a" value="toggle"></button>
 								</form>
 							</span>
-							<a href="/<?php e2($navData['teamSlug'] . '/' . $navData['listSlug'] . '/' . $task->id); ?>/">
+							<a href="/<?php e2($navData['teamSlug'] . '/' . $navData['listSlug'] . '/' . $task->id);?>/">
 								<h4>
 									<?php echo e($task->title); ?>
 								</h4>
@@ -116,8 +116,8 @@
 		<?php else: ?>
 			<?php if (!empty($tasksDone) && sizeof($tasksDone) >= 1): ?>
 				<section class="container center mt-4">
-					<a href="/<?php e2($navData['teamSlug'] . '/' . $navData['listSlug']); ?>/show-done/">
-						<?php i18n('show'); ?> <?php e2(sizeof($tasksDone)); ?> <?php i18n('done_todos'); ?>
+					<a href="/<?php e2($navData['teamSlug'] . '/' . $navData['listSlug']);?>/show-done/">
+						<?php i18n('show');?> <?php e2(sizeof($tasksDone));?> <?php i18n('done_todos');?>
 					</a>
 				</section>
 			<?php endif;?>

@@ -15,7 +15,7 @@
 							<?php echo e($navData['list']->title); ?>
 						</a>
 						→
-						<?php i18n('edit'); ?>
+						<?php i18n('edit');?>
 					</h2>
 				</div>
 			</header>
@@ -26,10 +26,10 @@
 			<div class="flex">
 				<div class="left">
 					<h3>
-						<?php i18n('list_title'); ?>
+						<?php i18n('list_title');?>
 					</h3>
 					<small>
-						<?php i18n('list_title_description'); ?>
+						<?php i18n('list_title_description');?>
 					</small>
 				</div>
 				<div class="right">
@@ -37,20 +37,20 @@
 
 
 						<label for="ti">
-							<?php i18n('new_title'); ?>
+							<?php i18n('new_title');?>
 						</label>
-						<input placeholder="<?php i18n('type_here'); ?>" type="text" name="title" id="ti" value="<?php echo e($navData['list']->title); ?>" autofocus required maxlength="30">
+						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php echo e($navData['list']->title); ?>" autofocus required maxlength="30">
 
 						<input type="hidden" name="listId" value="<?php echo e($navData['list']->id); ?>">
 
 						<footer>
 							<span>
 								<button type="submit" class="btn" name="a" value="edit-title">
-									<?php i18n('save_new_title'); ?>
+									<?php i18n('save_new_title');?>
 								</button>
 							</span>
 							<button type="submit" class="btn red" name="a" value="trash-list">
-								<?php i18n('trash_list'); ?>
+								<?php i18n('trash_list');?>
 							</button>
 						</footer>
 					</form>

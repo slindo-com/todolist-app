@@ -11,19 +11,18 @@ function settingsControllerIndex() {
 	authServiceVerifyAuth();
 	$user = pdoGet(M_USERS(), $_SESSION['auth']);
 
-	if(actionEquals('edit-general')) {
+	if (actionEquals('edit-general')) {
 		pdoSetAttribute(M_USERS(), $user->id, 'language', $_POST['language']);
 		$user = pdoGet(M_USERS(), $_SESSION['auth']);
 
-		if($_SESSION['language'] != $user->language) {
+		if ($_SESSION['language'] != $user->language) {
 			$_SESSION['language'] = $user->language;
 			header('Location: /settings/');
 		}
 	}
 
-
 	render('settings/index', [
-		'user' => $user
+		'user' => $user,
 	]);
 }
 

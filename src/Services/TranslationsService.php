@@ -2,7 +2,7 @@
 
 //
 function translationsGet($lang) {
-	include_once __DIR__ .'/../Translations/' . $lang . '.php';
+	include_once __DIR__ . '/../Translations/' . $lang . '.php';
 	$GLOBALS['translations'] = TRANSLATIONS();
 }
 

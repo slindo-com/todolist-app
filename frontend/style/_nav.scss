@@ -61,15 +61,26 @@ main {
 		}
 
 		.settings {
+			position: relative;
 			padding:0 2*$base;
 			line-height: 8*$base;
 			font-size: 12px;
-			border-left:$color-border 1px solid;
 			color:#333;
 
 			&:hover {
 				text-decoration:none;
 				background:#EEE;
+			}
+
+			&:after {
+				content:'';
+				display: block;
+				width:1px;
+				height:6*$base;
+				position: absolute;
+				top:1*$base;
+				left:0;
+				background:$color-border;
 			}
 		}
 	}

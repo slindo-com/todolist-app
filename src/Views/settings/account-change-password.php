@@ -11,14 +11,14 @@
 				<div class="inner">
 					<h2>
 						<a href="/settings/account/">
-							<?php i18n('account'); ?>
+							<?php i18n('account');?>
 						</a>
 						→
-						<?php i18n('change_password'); ?>
+						<?php i18n('change_password');?>
 					</h2>
 					<form method="POST" action="/account/" class="button-wrapper">
 						<button type="submit" name="a" value="sign-out" class="btn">
-							<?php i18n('sign_out'); ?>
+							<?php i18n('sign_out');?>
 						</button>
 					</form>
 				</div>
@@ -38,25 +38,25 @@
 		<section class="container flex">
 			<div class="left">
 				<small>
-					<?php i18n('change_password_description'); ?>
+					<?php i18n('change_password_description');?>
 				</small>
 			</div>
 			<div class="right">
 
 				<form method="POST" class="form shadow">
 					<label for="op">
-						<?php i18n('old_password'); ?>
+						<?php i18n('old_password');?>
 					</label>
-					<input placeholder="<?php i18n('type_here'); ?>" type="password" name="old-password" id="op" minlength="6" autofocus required>
+					<input placeholder="<?php i18n('type_here');?>" type="password" name="old-password" id="op" minlength="6" autofocus required>
 
 					<label for="np">
-						<?php i18n('new_password'); ?>
+						<?php i18n('new_password');?>
 					</label>
-					<input placeholder="<?php i18n('type_here'); ?>" type="password" name="new-password" id="np" minlength="6" required>
+					<input placeholder="<?php i18n('type_here');?>" type="password" name="new-password" id="np" minlength="6" required>
 
 					<footer>
 						<button type="submit" class="btn" name="a" value="change-password">
-							<?php i18n('change_password'); ?>
+							<?php i18n('change_password');?>
 						</button>
 					</footer>
 				</form>

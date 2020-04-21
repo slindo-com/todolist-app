@@ -34,7 +34,7 @@ function authControllerNewAccount($attributes) {
 	$error = false;
 	$token = $attributes[0];
 
-	if($token) {
+	if ($token) {
 		$invite = pdoFindByAttribute(M_INVITES(), 'token', $token);
 	}
 
@@ -50,25 +50,25 @@ function authControllerNewAccount($attributes) {
 			$error = getTranslation('error_short_password');
 		}
 
-		if(empty($error)) {
+		if (empty($error)) {
 			try {
 				authServiceNewAccount($email, $password);
-			} catch(Exception $e) {
-				if($e->getMessage() == 'DUPLICATE_EMAILS') {
+			} catch (Exception $e) {
+				if ($e->getMessage() == 'DUPLICATE_EMAILS') {
 					$error = getTranslation('error_duplicate_emails');
 				} else {
-					$error = getTranslation('error_database_error'). ' ('. $e->getMessage() .')';
+					$error = getTranslation('error_database_error') . ' (' . $e->getMessage() . ')';
 				}
-				
+
 			}
 		}
 
-		if(empty($error) && !empty($invite)) {
+		if (empty($error) && !empty($invite)) {
 			teamMembersModelNew($_SESSION['auth'], $invite->team);
 			pdoDelete(M_INVITES(), $invite->id);
 		}
 
-		if(empty($error)) {
+		if (empty($error)) {
 			$emailTemplate = EMAIL_NEW_ACCOUNT(CONFIG()['title']);
 
 			mailServiceSend([
@@ -77,7 +77,7 @@ function authControllerNewAccount($attributes) {
 				'message' => $emailTemplate['message'],
 			]);
 
-			header('Location: '. (!empty($invite) ? '/settings/teams/' : '/private/'));
+			header('Location: ' . (!empty($invite) ? '/settings/teams/' : '/private/'));
 			return;
 		}
 	}
@@ -104,11 +104,11 @@ function authControllerNewPassword($attributes) {
 
 		$user = pdoFindByAttribute(M_USERS(), 'email', $email);
 
-		if(empty($user)) {
+		if (empty($user)) {
 			$error = getTranslation('error_user_email_not_found');
 		}
 
-		if(empty($error)) {
+		if (empty($error)) {
 			$token = authServiceNewResetToken($email);
 		}
 

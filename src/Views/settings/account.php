@@ -10,12 +10,12 @@
 				<div class="inner">
 					<h2>
 						<a href="/settings/account/">
-							<?php i18n('account'); ?>
+							<?php i18n('account');?>
 						</a>
 					</h2>
 					<form method="POST" class="button-wrapper">
 						<button type="submit" name="a" value="sign-out" class="btn">
-							<?php i18n('sign_out'); ?>
+							<?php i18n('sign_out');?>
 						</button>
 					</form>
 				</div>
@@ -50,7 +50,7 @@ case 'change-pic':i18n('picture_updated_successfully');
 		<section class="container flex">
 			<div class="left">
 				<small>
-					<?php i18n('basic_account_settings'); ?>
+					<?php i18n('basic_account_settings');?>
 				</small>
 			</div>
 			<div class="right">
@@ -66,20 +66,20 @@ case 'change-pic':i18n('picture_updated_successfully');
 
 					<p>
 						<strong>
-							<?php i18n('email'); ?> &nbsp;
+							<?php i18n('email');?> &nbsp;
 						</strong>
 						<?php echo e($user->email); ?>
 					</p>
 					<a href="/settings/account/change-email/">
-						<?php i18n('change_email'); ?>
+						<?php i18n('change_email');?>
 					</a>
 					&nbsp;
 					<a href="/settings/account/change-password/">
-						<?php i18n('change_password'); ?>
+						<?php i18n('change_password');?>
 					</a>
 					&nbsp;
 					<a href="/settings/account/change-pic/">
-						<?php i18n('change_picture'); ?>
+						<?php i18n('change_picture');?>
 					</a>
 				</div>
 
@@ -87,13 +87,13 @@ case 'change-pic':i18n('picture_updated_successfully');
 
 				<form method="POST" class="form shadow">
 					<label for="na">
-						<?php i18n('your_name'); ?>
+						<?php i18n('your_name');?>
 					</label>
-					<input placeholder="<?php i18n('type_here'); ?>" type="text" name="name" id="na" value="<?php echo e(!empty($user->name) ? $user->name : ''); ?>">
+					<input placeholder="<?php i18n('type_here');?>" type="text" name="name" id="na" value="<?php echo e(!empty($user->name) ? $user->name : ''); ?>">
 
 					<footer>
 						<button type="submit" class="btn" name="a" value="save-name">
-							<?php i18n('change_name'); ?>
+							<?php i18n('change_name');?>
 						</button>
 					</footer>
 				</form>

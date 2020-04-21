@@ -41,7 +41,7 @@ function listsModelNew($teamId) {
 
 //
 function listsModelSlugValid($slug, $teamId) {
-	echo $slug .' - '. $teamId;
+	echo $slug . ' - ' . $teamId;
 	$stmt = pdo()->prepare('SELECT id FROM lists WHERE slug = :slug AND team = :team');
 	$stmt->execute([
 		'slug' => $slug,

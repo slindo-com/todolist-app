@@ -1,11 +1,11 @@
-<?php require __DIR__ . "/../layout/header.php"; ?>
+<?php require __DIR__ . "/../layout/header.php";?>
 
 
 <section class="small-container">
   <h2 class="mb-2">
     Unsubscribe
   </h2>
-  <?php if($unsubscribed): ?>
+  <?php if ($unsubscribed): ?>
     <p>
       You are now unsubscribed from all our emails and should not receive any more of them!
     </p>
@@ -17,7 +17,7 @@
     <form method="POST">
       <footer>
         <header>
-          
+
         </header>
         <input type="hidden" name="token" value="<?php echo e($token); ?>">
         <button type="submit" name="a" value="unsubscribe" class="btn">
@@ -26,11 +26,11 @@
       </footer>
 
     </form>
-  <?php endif; ?>
+  <?php endif;?>
 
 
 </section>
 
 
 
-<?php require __DIR__ . "/../layout/footer.php"; ?>
+<?php require __DIR__ . "/../layout/footer.php";?>

@@ -158,10 +158,10 @@ if (!empty($route)) {
 	$route['method']($route['attributes'], $route['query']);
 
 } else if ($_SERVER['REQUEST_URI'] == '/favicon.ico') {
-		sendCacheHeaders();
-		header('Content-Type: image/x-icon');
-		include __DIR__ . '/favicon.ico';
-}  else {
+	sendCacheHeaders();
+	header('Content-Type: image/x-icon');
+	include __DIR__ . '/favicon.ico';
+} else {
 	if ($_SERVER['REQUEST_URI'] == '/s.css') {
 		sendCacheHeaders();
 		header('Content-Type: text/css');

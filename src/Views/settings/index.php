@@ -9,7 +9,7 @@
 			<header class="header">
 				<div class="inner">
 					<h2>
-						<?php i18n('general'); ?>
+						<?php i18n('general');?>
 					</h2>
 				</div>
 			</header>
@@ -20,7 +20,7 @@
 			<div class="flex">
 				<div class="left">
 					<small>
-						<?php i18n('general_description'); ?>
+						<?php i18n('general_description');?>
 					</small>
 				</div>
 				<div class="right">
@@ -28,7 +28,7 @@
 
 
 						<label for="la">
-							<?php i18n('language'); ?>
+							<?php i18n('language');?>
 						</label>
 						<select name="language" id="la" autofocus>
 							<option value="de" <?php echo ($user->language == 'de') ? 'selected' : ''; ?>>Deutsch</option>
@@ -39,7 +39,7 @@
 						<footer>
 							<span>
 								<button type="submit" class="btn" name="a" value="edit-general">
-									<?php i18n('save_general_settings'); ?>
+									<?php i18n('save_general_settings');?>
 								</button>
 							</span>
 						</footer>

@@ -9,11 +9,11 @@
 			<header class="header">
 				<div class="inner">
 					<h2>
-						<?php i18n('teams'); ?>
+						<?php i18n('teams');?>
 					</h2>
 					<form method="POST" class="button-wrapper">
 						<button type="submit" name="a" value="new-team" class="btn">
-							<?php i18n('new_team'); ?>
+							<?php i18n('new_team');?>
 						</button>
 					</form>
 				</div>
@@ -24,18 +24,18 @@
 			<section class="container">
 				<div class="box">
 					<p>
-						<?php i18n('you_are_invited'); ?>
+						<?php i18n('you_are_invited');?>
 						"<strong><?php echo e($invitingTeam->title); ?></strong>"
-						<?php i18n('do_you_want_to_join'); ?>
+						<?php i18n('do_you_want_to_join');?>
 					</p>
 					<form method="POST">
 						<input type="hidden" name="inviteId" value="<?php echo $invite->id; ?>">
 						<button type="submit" name="a" value="join-team" class="btn">
-							<?php i18n('join_team'); ?>
+							<?php i18n('join_team');?>
 						</button>
 						<button type="submit" name="a" value="decline-invitation" class="btn">
 							Decline Invitation
-							<?php i18n('decline_invitation'); ?>
+							<?php i18n('decline_invitation');?>
 						</button>
 					</form>
 				</div>
@@ -48,7 +48,7 @@
 
 			<section class="container">
 				<p>
-					<?php i18n('teams_empty'); ?>
+					<?php i18n('teams_empty');?>
 				</p>
 			</section>
 
@@ -63,10 +63,10 @@
 									<?php echo e($team->title); ?>
 								</h4>
 								<small>
-									<?php $team->role == 1 ? i18n('admin') : i18n('member'); ?>
+									<?php $team->role == 1 ? i18n('admin') : i18n('member');?>
 								</small>
 								<small>
-									<?php e2($memberCounts[$team->id] .' '); ($memberCounts[$team->id] == 1 ? i18n('member') : i18n('members')); ?>
+									<?php e2($memberCounts[$team->id] . ' '); ($memberCounts[$team->id] == 1 ? i18n('member') : i18n('members'));?>
 								</small>
 							</a>
 						</li>
