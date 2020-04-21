@@ -37,8 +37,16 @@
 			position:static;
 			height:6*$base;
 			border:0;
-			display:block;
+			display:flex;
+			flex-grow:1;
+		}
+
+		&.for-todo-form {
 			flex-basis: (100% / 3 * 2);
+		}
+
+		h2 {
+			flex-grow: 1;
 		}
 	}
 
@@ -79,7 +87,7 @@
 			color:$color-grey-50;
 
 			&:hover {
-				color:$color-blue;
+				color:$color-primary;
 			}
 		}
 	}
@@ -102,7 +110,7 @@
 				color:#333;
 
 				&:hover {
-					color:$color-blue;
+					color:$color-primary;
 				}
 			}
 		}
@@ -138,8 +146,8 @@
 
 			&:hover, &:focus {
 				text-decoration:none;
-				border-color: $color-blue;
-				box-shadow: 0 -1px 0 $color-blue;
+				border-color: $color-primary;
+				box-shadow: 0 -1px 0 $color-primary;
 				background:$color-background;
 			}
 		}

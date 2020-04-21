@@ -6,22 +6,24 @@
 		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/settings/account/">
-						Account
-					</a>
-					→
-					Change Picture
-				</h2>
-				<form method="POST" action="/account/" class="button-wrapper">
-					<button type="submit" name="a" value="sign-out" class="btn">
-						Sign Out
-					</button>
-				</form>
+				<div class="inner">
+					<h2>
+						<a href="/settings/account/">
+							<?php i18n('account'); ?>
+						</a>
+						→
+						<?php i18n('change_picture'); ?>
+					</h2>
+					<form method="POST" action="/account/" class="button-wrapper">
+						<button type="submit" name="a" value="sign-out" class="btn">
+							<?php i18n('sign_out'); ?>
+						</button>
+					</form>
+				</div>
 			</header>
-		</section>
+		</div>
 
 
 		<?php if ($error): ?>
@@ -36,20 +38,20 @@
 		<section class="container flex">
 			<div class="left">
 				<small>
-					Please choose an PNG or JPG for your new picture. Drag it on the input or click the input to choose one.
+					<?php i18n('change_picture_description'); ?>
 				</small>
 			</div>
 			<div class="right">
 
 				<form method="POST" enctype="multipart/form-data" class="form shadow">
 					<label for="pi">
-						New Picture:
+						<?php i18n('new_picture'); ?>
 					</label>
-					<input placeholder="Type here…" type="file" name="pic" id="pi" required>
+					<input placeholder="<?php i18n('type_here'); ?>" type="file" name="pic" id="pi" required>
 
 					<footer>
 						<button type="submit" class="btn" name="a" value="change-picture">
-							Change Picture
+							<?php i18n('change_picture'); ?>
 						</button>
 					</footer>
 				</form>

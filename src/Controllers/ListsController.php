@@ -1,7 +1,9 @@
 <?php
 
 includeModels(['Teams', 'Tasks', 'Lists']);
-includeServices(['Auth', 'List']);
+includeServices(['Auth', 'List', 'Translations']);
+
+translationsGet('en');
 
 //
 function listsControllerTodo($attributes) {

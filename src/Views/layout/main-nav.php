@@ -2,12 +2,12 @@
 	<header>
 		<a href="#team-select" class="team-select">
 			<small>
-				Team
+				<?php i18n('team'); ?>
 			</small>
 			<?php echo !empty($navData['team']) ? e($navData['team']->title) : 'Private' ?>
 		</a>
 		<a href="/settings/" class="settings">
-			Settings
+			<?php i18n('settings'); ?>
 		</a>
 	</header>
 	<div>
@@ -22,7 +22,7 @@
 	</div>
 	<form method="POST" action="/<?php echo e($navData['teamSlug']); ?>/" class="new-list-wrapper">
 		<button type="submit" name="a" value="new-list">
-			+ Add New List
+			<?php i18n('add_new_list'); ?>
 		</button>
 	</form>
 	<a href="#" class="shadow">
@@ -35,7 +35,7 @@
 	</a>
 	<nav>
 		<a href="/private/">
-			Private
+			<?php i18n('private'); ?>
 		</a>
 		<?php foreach ($navData['teams'] AS $team): ?>
 			<a href="/<?php echo e($team->slug) ?>/">

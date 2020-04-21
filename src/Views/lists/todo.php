@@ -4,15 +4,20 @@
 	<?php require __DIR__ . "/../layout/main-nav.php";?>
 	<main>
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/<?php echo $navData['teamSlug']; ?>/<?php echo $navData['listSlug']; ?>/">
-						← Back to <?php echo e($navData['list']->title); ?>
+				<div class="inner">
+					<a href="#main-navigation" class="toggle-nav">
+						☰
 					</a>
-				</h2>
+					<h2>
+						<a href="/<?php echo $navData['teamSlug']; ?>/<?php echo $navData['listSlug']; ?>/">
+							← <?php i18n('back_to'); ?> <?php e2($navData['list']->title); ?>
+						</a>
+					</h2>
+				</div>
 			</header>
-		</section>
+		</div>
 
 
 
@@ -20,10 +25,10 @@
 			<div class="flex">
 				<div class="left">
 					<h3>
-						Update Todo
+						<?php i18n('update_todo'); ?>
 					</h3>
 					<small>
-						Lorem Ipsum dolor sit amet set consetetur…
+						<?php i18n('update_todo_description'); ?>
 					</small>
 				</div>
 				<div class="right">
@@ -31,17 +36,19 @@
 
 
 						<label for="ti">
-							Task Title:
+							<?php i18n('task_title'); ?>
 						</label>
-						<input placeholder="Type here…" type="text" name="title" id="ti" value="<?php echo e($todo->title); ?>" autofocus required>
+						<input placeholder="<?php i18n('type_here'); ?>" type="text" name="title" id="ti" value="<?php echo e($todo->title); ?>" autofocus required>
 
 
 						<footer>
-							<button type="submit" class="btn" name="a" value="update">
-								Save Todo Item
-							</button>
+							<span>
+								<button type="submit" class="btn" name="a" value="update">
+									<?php i18n('save_task'); ?>
+								</button>
+							</span>
 							<button type="submit" class="btn end red" name="a" value="delete">
-								Delete
+								<?php i18n('delete'); ?>
 							</button>
 						</footer>
 					</form>

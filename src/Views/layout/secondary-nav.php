@@ -1,17 +1,18 @@
 <section class="container">
 	<a href="/private/" class="btn back">
-		← Back to todo lists
+		←
+		<?php i18n('back_to_todo_lists'); ?>
 	</a>
 
 	<nav class="secondary-nav">
 		<a href="/settings/"<?php echo ($navItemActive == 'general') ? 'class="active"' : ''; ?>>
-			General
+			<?php i18n('general'); ?>
 		</a>
 		<a href="/settings/teams/"<?php echo ($navItemActive == 'teams') ? 'class="active"' : ''; ?>>
-			Teams
+			<?php i18n('teams'); ?>
 		</a>
 		<a href="/settings/account/"<?php echo ($navItemActive == 'account') ? 'class="active"' : ''; ?>>
-			Account
+			<?php i18n('account'); ?>
 		</a>
 	</nav>
 </section>

@@ -92,17 +92,18 @@ main {
 			}
 
 			&.active {
-				background:$color-blue;
+				background:$color-primary;
 				color:#FFF;
 				margin:0 1*$base 0 0;
 				padding:0 3*$base 0 4*$base;
 				border-top-right-radius: .5*$base;
 				border-bottom-right-radius: .5*$base;
+				box-shadow: $shadow;
 
 				span {
 					right:1*$base;
 					background:#FFF;
-					color:$color-blue;
+					color:$color-primary;
 				}
 			}
 
@@ -164,7 +165,7 @@ main {
 		display:block;
 		width:100%;
 		background:#FFF;
-		color:$color-blue;
+		color:$color-primary;
 		font-size:14px;
 		line-height: 6*$base;
 		padding:0;

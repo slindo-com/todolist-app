@@ -5,19 +5,21 @@
 		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/settings/teams/">
-						Teams
-					</a>
-					→
-					<a href="/settings/teams/<?php echo $team->slug; ?>/">
-						<?php echo $team->title; ?>
-					</a>
-					→
-					Invite Member
-				</h2>
+				<div class="inner">
+					<h2>
+						<a href="/settings/teams/">
+							<?php i18n('teams'); ?>
+						</a>
+						→
+						<a href="/settings/teams/<?php echo $team->slug; ?>/">
+							<?php echo $team->title; ?>
+						</a>
+						→
+						<?php i18n('invite_member'); ?>
+					</h2>
+				</div>
 			</header>
 		</section>
 
@@ -26,10 +28,10 @@
 			<div class="flex">
 				<div class="left">
 					<h3>
-						Grow Team
+						<?php i18n('invite_member'); ?>
 					</h3>
 					<small>
-						Please provide the data for your new team member. She'll get a invitation to her e-mail address.
+						<?php i18n('invite_member_description'); ?>
 					</small>
 				</div>
 				<div class="right">
@@ -37,20 +39,20 @@
 
 
 						<label for="em">
-							E-Mail Address:
+							<?php i18n('email'); ?>
 						</label>
-						<input placeholder="Type here…" type="email" name="email" id="em" autofocus required>
+						<input placeholder="<?php i18n('type_here'); ?>" type="email" name="email" id="em" autofocus required>
 
 
 						<label for="na">
-							Name:
+							<?php i18n('name'); ?>
 						</label>
-						<input placeholder="e.g. 'John'" type="text" name="name" id="na" minlength="2" required>
+						<input placeholder="<?php i18n('name_example'); ?>" type="text" name="name" id="na" minlength="2" required>
 
 
 						<footer>
 							<button type="submit" class="btn" name="a" value="send-invitation">
-								Invite New Member
+								<?php i18n('invite_new_member'); ?>
 							</button>
 						</footer>
 					</form>

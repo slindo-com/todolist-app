@@ -5,18 +5,22 @@
 		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					Account
-				</h2>
-				<form method="POST" class="button-wrapper">
-					<button type="submit" name="a" value="sign-out" class="btn">
-						Sign Out
-					</button>
-				</form>
+				<div class="inner">
+					<h2>
+						<a href="/settings/account/">
+							<?php i18n('account'); ?>
+						</a>
+					</h2>
+					<form method="POST" class="button-wrapper">
+						<button type="submit" name="a" value="sign-out" class="btn">
+							<?php i18n('sign_out'); ?>
+						</button>
+					</form>
+				</div>
 			</header>
-		</section>
+		</div>
 
 
 
@@ -25,15 +29,15 @@
 				<div class="message">
 					<?php
 switch ($success) {
-case 'change-name':echo 'Your name was updated successfully!';
+case 'change-name':i18n('name_updated_successfully');
 	break;
-case 'change-email':echo 'Please confirm your new email address!';
+case 'change-email':i18n('please_confirm_email');
 	break;
-case 'change-email-success':echo 'Your email address was updated successfully!';
+case 'change-email-success':i18n('email_updated_successfully');
 	break;
-case 'change-name':echo 'Your password was changed successfully!';
+case 'change-name':i18n('password_updated_successfully');
 	break;
-case 'change-pic':echo 'Your picture was changed successfully!';
+case 'change-pic':i18n('picture_updated_successfully');
 	break;
 }
 ?>
@@ -46,7 +50,7 @@ case 'change-pic':echo 'Your picture was changed successfully!';
 		<section class="container flex">
 			<div class="left">
 				<small>
-					Basic account settings
+					<?php i18n('basic_account_settings'); ?>
 				</small>
 			</div>
 			<div class="right">
@@ -62,20 +66,20 @@ case 'change-pic':echo 'Your picture was changed successfully!';
 
 					<p>
 						<strong>
-							E-Mail: &nbsp;
+							<?php i18n('email'); ?> &nbsp;
 						</strong>
 						<?php echo e($user->email); ?>
 					</p>
 					<a href="/settings/account/change-email/">
-						Change E-Mail
+						<?php i18n('change_email'); ?>
 					</a>
 					&nbsp;
 					<a href="/settings/account/change-password/">
-						Change Password
+						<?php i18n('change_password'); ?>
 					</a>
 					&nbsp;
 					<a href="/settings/account/change-pic/">
-						Change Picture
+						<?php i18n('change_picture'); ?>
 					</a>
 				</div>
 
@@ -83,13 +87,13 @@ case 'change-pic':echo 'Your picture was changed successfully!';
 
 				<form method="POST" class="form shadow">
 					<label for="na">
-						Your Name:
+						<?php i18n('your_name'); ?>
 					</label>
-					<input placeholder="Type here…" type="text" name="name" id="na" value="<?php echo e(!empty($user->name) ? $user->name : ''); ?>">
+					<input placeholder="<?php i18n('type_here'); ?>" type="text" name="name" id="na" value="<?php echo e(!empty($user->name) ? $user->name : ''); ?>">
 
 					<footer>
 						<button type="submit" class="btn" name="a" value="save-name">
-							Save Name
+							<?php i18n('change_name'); ?>
 						</button>
 					</footer>
 				</form>

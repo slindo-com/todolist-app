@@ -1,8 +1,10 @@
 <?php
 
 includeModels(['EmailTokens', 'Invites', 'Teams', 'TeamMembers', 'Users']);
-includeServices(['Auth', 'Mail']);
+includeServices(['Auth', 'Mail', 'Translations']);
 includeMails(['invite', 'change-email']);
+
+translationsGet('en');
 
 //
 function settingsControllerIndex() {

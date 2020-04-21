@@ -101,7 +101,7 @@ h2, h3 {
 
 a {
 	display:inline-block;
-	color:$color-blue;
+	color:$color-primary;
 	text-decoration: none;
 
 	&:hover {
@@ -141,12 +141,13 @@ small {
 	box-shadow:$shadow;
 	cursor:pointer;
 	text-align: center;
-	color:$color-blue;
+	color:$color-primary;
 	outline:none;
 	background: linear-gradient(180deg, #FFF 0%, $color-background 100%);
+	white-space: nowrap;
 
 	&:hover {
-		border-color:$color-blue;
+		border-color:$color-primary;
 		text-decoration: none;
 	}
 
@@ -338,7 +339,7 @@ li {
 		.checkmark {
 			&:hover {
 				+a {
-					border-top:$color-blue 1px solid;
+					border-top:$color-primary 1px solid;
 					border-top-left-radius: 12px;
 					border-top-right-radius: 12px;
 					box-shadow:none;
@@ -351,8 +352,8 @@ li {
 		&:hover {
 			+a {
 				text-decoration:none;
-				border-color: $color-blue;
-				box-shadow: 0 -1px 0 $color-blue;
+				border-color: $color-primary;
+				box-shadow: 0 -1px 0 $color-primary;
 				background:$color-background;
 			}
 		}
@@ -397,7 +398,7 @@ li {
 		outline:none;
 
 		&:hover, &:focus {
-			border-color:$color-blue;
+			border-color:$color-primary;
 			box-shadow: $shadow;
 		}
 	}
@@ -408,7 +409,7 @@ li {
 	line-height: 5*$base;
 	text-align: center;
 	font-size:14px;
-	background:$color-blue;
+	background:$color-primary;
 	border-radius: 12px;
 
 	div {
@@ -451,7 +452,7 @@ li {
 
 		&:focus {
 			// width:300%;
-			box-shadow: 0 0 0 1px $color-blue inset;
+			box-shadow: 0 0 0 1px $color-primary inset;
 
 			@include breakpoint($desktop) {
 				width:300%;

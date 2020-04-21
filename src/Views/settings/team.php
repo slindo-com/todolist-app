@@ -5,30 +5,32 @@
 		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/settings/teams/">
-						Teams
+				<div class="inner">
+					<h2>
+						<a href="/settings/teams/">
+							<?php i18n('teams'); ?>
+						</a>
+						→
+						<?php echo $team->title; ?>
+					</h2>
+					<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
+						<?php i18n('edit_title'); ?>
 					</a>
-					→
-					<?php echo $team->title; ?>
-				</h2>
-				<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
-					Edit Title
-				</a>
-				<a href="/settings/teams/<?php echo $team->slug; ?>/invite/" class="btn">
-					Invite Member
-				</a>
+					<a href="/settings/teams/<?php echo $team->slug; ?>/invite/" class="btn">
+						<?php i18n('invite_member'); ?>
+					</a>
+				</div>
 			</header>
-		</section>
+		</div>
 
 
 		<?php if (sizeof($members) == 1 && sizeof($invites) == 0): ?>
 
 			<section class="container">
 				<p>
-					You are the only member of this team right now. Invite some mates to work together.
+					<?php i18n('teams_empty'); ?>
 				</p>
 			</section>
 
@@ -41,10 +43,10 @@
 						<li>
 							<div>
 								<h4>
-									<?php echo (sizeof($member->name) > 1 ? e($member->name) : 'No Name'); ?>
+									<?php (sizeof($member->name) > 1 ? e2($member->name) : i18n('no_name')); ?>
 								</h4>
 								<small class="published-small">
-									<?php echo $member->role == 1 ? 'Admin' : 'Member'; ?>
+									<?php $member->role == 1 ? i18n('admin') : i18n('member'); ?>
 								</small>
 								<small>
 									<?php echo e($member->email); ?>
@@ -71,7 +73,7 @@
 									<?php echo e($invite->name); ?>
 								</h4>
 								<small class="published-small">
-									Invited
+									<?php i18n('invited'); ?>
 								</small>
 								<small>
 									<?php echo e($invite->email); ?>

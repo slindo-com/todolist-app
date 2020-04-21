@@ -5,32 +5,37 @@
 		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					Teams
-				</h2>
-				<form method="POST" class="button-wrapper">
-					<button type="submit" name="a" value="new-team" class="btn">
-						New Team
-					</button>
-				</form>
+				<div class="inner">
+					<h2>
+						<?php i18n('teams'); ?>
+					</h2>
+					<form method="POST" class="button-wrapper">
+						<button type="submit" name="a" value="new-team" class="btn">
+							<?php i18n('new_team'); ?>
+						</button>
+					</form>
+				</div>
 			</header>
-		</section>
+		</div>
 
 		<?php if (!empty($invitingTeam)): ?>
 			<section class="container">
 				<div class="box">
 					<p>
-						You are invited to a team called "<strong><?php echo e($invitingTeam->title); ?></strong>". Do you want to join this team?
+						<?php i18n('you_are_invited'); ?>
+						"<strong><?php echo e($invitingTeam->title); ?></strong>"
+						<?php i18n('do_you_want_to_join'); ?>
 					</p>
 					<form method="POST">
 						<input type="hidden" name="inviteId" value="<?php echo $invite->id; ?>">
 						<button type="submit" name="a" value="join-team" class="btn">
-							Join Team
+							<?php i18n('join_team'); ?>
 						</button>
 						<button type="submit" name="a" value="decline-invitation" class="btn">
 							Decline Invitation
+							<?php i18n('decline_invitation'); ?>
 						</button>
 					</form>
 				</div>
@@ -43,7 +48,7 @@
 
 			<section class="container">
 				<p>
-					You work on your own right now. If you want to create a team, please press the button above.
+					<?php i18n('teams_empty'); ?>
 				</p>
 			</section>
 
@@ -57,11 +62,11 @@
 								<h4>
 									<?php echo e($team->title); ?>
 								</h4>
-								<small class="published-small">
-									<?php echo $team->role == 1 ? 'Admin' : 'Member'; ?>
+								<small>
+									<?php $team->role == 1 ? i18n('admin') : i18n('member'); ?>
 								</small>
 								<small>
-									<?php echo $memberCounts[$team->id] . ($memberCounts[$team->id] == 1 ? ' Member' : ' Members'); ?>
+									<?php e2($memberCounts[$team->id] .' '); ($memberCounts[$team->id] == 1 ? i18n('member') : i18n('members')); ?>
 								</small>
 							</a>
 						</li>

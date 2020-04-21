@@ -5,31 +5,33 @@
 		<?php $navItemActive = 'teams';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<section class="container">
+		<div class="header-wrapper">
 			<header class="header">
-				<h2>
-					<a href="/settings/teams/">
-						Teams
-					</a>
-					→
-					<a href="/settings/teams/<?php echo $team->slug; ?>/">
-						<?php echo $team->title; ?>
-					</a>
-					→
-					Edit Title
-				</h2>
+				<div class="inner">
+					<h2>
+						<a href="/settings/teams/">
+							<?php i18n('teams'); ?>
+						</a>
+						→
+						<a href="/settings/teams/<?php echo $team->slug; ?>/">
+							<?php echo $team->title; ?>
+						</a>
+						→
+						<?php i18n('edit_title'); ?>
+					</h2>
+				</a>
 			</header>
-		</section>
+		</div>
 
 
 		<section class="container">
 			<div class="flex">
 				<div class="left">
 					<h3>
-						Team Title
+						<?php i18n('team_title'); ?>
 					</h3>
 					<small>
-						Lorem Ipsum dolor sit amet set consetetur…
+						<?php i18n('team_title_description'); ?>
 					</small>
 				</div>
 				<div class="right">
@@ -37,14 +39,14 @@
 
 
 						<label for="ti">
-							New Title:
+							<?php i18n('new_title'); ?>
 						</label>
-						<input placeholder="Type here…" type="text" name="title" id="ti" value="<?php echo e($team->title); ?>" autofocus required>
+						<input placeholder="<?php i18n('type_here'); ?>" type="text" name="title" id="ti" value="<?php echo e($team->title); ?>" autofocus required>
 
 
 						<footer>
 							<button type="submit" class="btn" name="a" value="edit-title">
-								Save New Title
+								<?php i18n('save_new_title'); ?>
 							</button>
 						</footer>
 					</form>
