@@ -1,0 +1,58 @@
+.btn {
+	border:$color-border 1px solid;
+	border-top:rgba($color-border, .75) 1px solid;
+	border-left:rgba($color-border, .75) 1px solid;
+	background:#FFF;
+	font-size:14px;
+	font-weight:600;
+	text-decoration: none;
+	border-radius: 3*$base;
+	padding:0 2.5*$base;
+	display:inline-block;
+	line-height:-2+6*$base;
+	box-shadow:$shadow;
+	cursor:pointer;
+	text-align: center;
+	color:$color-primary;
+	outline:none;
+	background: linear-gradient(180deg, #FFF 0%, $color-background 100%);
+	white-space: nowrap;
+
+	&:hover {
+		border-color:$color-primary;
+		text-decoration: none;
+	}
+
+	&:focus {
+		border-color: blue;
+		box-shadow: 0 0 0 1px inset;
+	}
+
+	&.square {
+		width:7*$base;
+		padding:0;
+	}
+
+	&.red {
+		color:$color-red;
+
+		&:hover {
+			border-color:$color-red;
+		}
+	}
+
+	&.end {
+		width:auto;
+		float:right;
+	}
+
+	&.back {
+		position: absolute;
+		margin:-1*$base 0 0 0;
+		z-index:100;
+	}
+
+	+.btn {
+		margin-left:1*$base;
+	}
+}

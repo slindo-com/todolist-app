@@ -1,18 +1,19 @@
+$color-grey-10: #13151A;
 $color-grey-50: #70747F;
 $color-grey-85: #CCCFD9;
+$color-grey-92: #E4E5EB;
 $color-grey-98: #FAFAFA;
 $color-blue: #0080FF;
 $color-red: #FF3300;
-$color-yellow: #FFFFCC;
-$color-lightblue: #EEE;
-$color-warm:#F7F5F2;
 
 $color-primary: $color-red;
 $color-border: $color-grey-85;
 $color-background: $color-grey-98;
-$color-inputbg: $color-lightblue;
+$color-inputbg: $color-grey-92;
+$color-text: $color-grey-10;
 
 $base: 6px;
+$border-radius: 12px;
 
 $shadow: 0 2px 4px rgba(0, 0, 0, .075);
 
@@ -20,34 +21,29 @@ $tablet: 100*$base;
 $desktop: 170*$base;
 
 
-
-@mixin breakpoint($breakpoint) {
-    @media screen and (min-width: $breakpoint) {
-        @content;
-    }
+@font-face {
+    font-family:'ubuntu';
+    src: url('/fonts/ubuntu-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-2074;
 }
 
-@mixin max-breakpoint($breakpoint) {
-    @media screen and (max-width: -1 + $breakpoint) {
-        @content;
-    }
+@font-face {
+    font-family:'ubuntu';
+    src: url('/fonts/ubuntu-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-2074;
 }
 
-
-
-#grid {
-	z-index:10000;
-	position:absolute;
-	top:0;
-	left:50%;
-	transform:translateX(-50%);
-	width:1440px;
-	height:5000px;
-	background-color: transparent;
-	background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0)), linear-gradient(90deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0));
-	background-position: 5px 3px;
-	background-size: 6px 6px;
-	pointer-events: none;
-
-	display:none;
+@font-face {
+    font-family:'ubuntu';
+    src: url('/fonts/ubuntu-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-2074;
 }

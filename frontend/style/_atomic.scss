@@ -1,0 +1,64 @@
+h2, h3 {
+	font-size:17px;
+	line-height:4*$base;
+	font-weight:500;
+
+	@include breakpoint($tablet) {
+		font-size:20px;
+		font-weight:600;
+	}
+
+	&.one-line {
+		line-height: 3*$base;
+		transform:translateY(2px);
+	}
+}
+
+a {
+	display:inline-block;
+	color:$color-primary;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.one-line {
+		line-height:4*$base;
+	}
+}
+
+p {
+	font-size:14px;
+	line-height: 4*$base;
+	transform: translateY(1px);
+}
+
+small {
+	display:block;
+	font-size: 12px;
+	line-height: 3*$base;
+}
+
+main {
+	display:block;
+	
+	@include breakpoint($tablet) {
+		margin-left:40*$base;
+	}
+
+	&.full {
+		margin-left:0;
+	}
+}
+
+
+section {
+	width:calc(100% - 48px);
+	margin:2*$base auto;
+	max-width:160*$base;
+
+	@include breakpoint($tablet) {
+		margin:4*$base auto;
+	}
+}

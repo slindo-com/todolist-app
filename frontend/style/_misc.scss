@@ -1,0 +1,240 @@
+.err {
+	color:$color-red;
+	margin:2*$base 0;
+	font-size:14px;
+	line-height: 4*$base;
+}
+
+.box {
+		box-shadow:$shadow;
+		border-radius: $border-radius;
+		margin-bottom:8*$base;
+		border:$color-border 1px solid;
+		padding:-1+4*$base;
+
+		>p {
+			margin-bottom:4*$base;
+		}
+}
+
+.empty-box {
+	margin-top:8*$base;
+	position: relative;
+	background:#FFF;
+	padding:6*$base 4*$base;
+	border-radius: $border-radius;
+	box-shadow:$shadow;
+	border:$color-border 1px solid;
+	text-align: center;
+
+	&:before, &:after {
+		content:'';
+		display: block;
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background:#FFF;
+		border-radius: $border-radius;
+		box-shadow:$shadow;
+		border:$color-border 1px solid;
+		transform: rotateZ(1deg);
+		z-index:-1;
+	}
+
+	&:after {
+		transform: rotateZ(2deg);
+		z-index:-2;
+	}
+
+	span {
+		display: block;
+		position: relative;
+		z-index:100;
+	}
+}
+
+.pic {
+	width:10*$base;
+	height:10*$base;
+	float:right;
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
+	border-radius: 50%;
+	background:#EEE;
+
+	img {
+		object-fit:cover;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.message {
+	display:block;
+	box-shadow: 0 0 0 2px #68B359 inset;
+	line-height:6*$base;
+	padding:0 4*$base;
+	margin:0 0 4*$base 0;
+	color:#68B359;
+	border-radius: .5*$base; 
+	font-weight: 600;
+}
+
+
+
+li {
+	&:first-child {
+		.checkmark {
+			&:hover {
+				+a {
+					border-top:$color-primary 1px solid;
+					border-top-left-radius: $border-radius;
+					border-top-right-radius: $border-radius;
+					box-shadow:none;
+				}
+			}
+		}
+	}
+
+	.checkmark {
+		&:hover {
+			+a {
+				text-decoration:none;
+				border-color: $color-primary;
+				box-shadow: 0 -1px 0 $color-primary;
+				background:$color-background;
+			}
+		}
+	}
+}
+
+.checkmark {
+	position: absolute;
+	top:2*$base;
+	left:2*$base;
+	width:5*$base;
+	height:5*$base;
+	border-radius: 1*$base;
+	background:$color-inputbg;
+
+	iframe, form, button {
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+	}
+
+	iframe {
+		border:0;
+		border-radius: 6px;
+
+	}
+
+	form {
+		background:transparent;
+	}
+
+	button {
+		cursor: pointer;
+		border-radius: 1*$base;
+		border:transparent 1px solid;
+		background:transparent;
+		overflow: hidden;
+		text-indent: -9999px;
+		transition: all 150ms ease;
+		outline:none;
+
+		&:hover, &:focus {
+			border-color:$color-primary;
+			box-shadow: $shadow;
+		}
+	}
+}
+
+
+.checked {
+	line-height: 5*$base;
+	text-align: center;
+	font-size:14px;
+	background:$color-primary;
+	border-radius: $border-radius;
+
+	div {
+		width:6px;
+		height:12px;
+		border-bottom:#FFF 2px solid;
+		border-right:#FFF 2px solid;
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform: translateX(-50%) translateY(-50%) rotateZ(45deg);
+		margin:-1px 0 0 0;
+	}
+}
+
+.todo-form {
+	position: relative;
+	display:block;
+	height:10*$base;
+	width:100%;
+	padding:2*$base 4*$base 2*$base 4*$base;
+
+	@include breakpoint($desktop) {
+		flex-basis: 33.33333%;
+		height:6*$base;
+		width:auto;
+		padding:0;
+		z-index:1500;
+	}
+
+	input {
+		width:100%;
+		border-radius: $border-radius;
+		background:$color-inputbg;
+		border:0;
+		font-size:14px;
+		line-height: 3*$base;
+		padding:1.5*$base 4*$base;
+		outline:none;
+
+		&:focus {
+			// width:300%;
+			box-shadow: 0 0 0 1px $color-primary inset;
+
+			@include breakpoint($desktop) {
+				width:300%;
+			}
+		}
+
+		&:valid {
+			+div {
+				opacity: .5;
+				transform:translateX(0);
+			}
+		}
+
+		@include breakpoint($desktop) {
+			position: absolute;
+			top:0;
+			right:0;
+			transition: width 150ms ease;
+		}
+	}
+
+	div {
+		display:none;
+		position: absolute;
+		top:100%;
+		right:0*$base;
+		font-size:12px;
+		line-height: 3*$base;
+		opacity: 0;
+		transform: translateX(-2*$base);
+		transition: all 150ms ease;
+	}
+}
+

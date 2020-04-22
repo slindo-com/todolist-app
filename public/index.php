@@ -161,6 +161,18 @@ if (!empty($route)) {
 	sendCacheHeaders();
 	header('Content-Type: image/x-icon');
 	include __DIR__ . '/favicon.ico';
+} else if ($_SERVER['REQUEST_URI'] == '/fonts/ubuntu-regular.woff2') {
+	sendCacheHeaders();
+	header('Content-Type: font/woff2');
+	include __DIR__ . '/fonts/ubuntu-regular.woff2';
+} else if ($_SERVER['REQUEST_URI'] == '/fonts/ubuntu-medium.woff2') {
+	sendCacheHeaders();
+	header('Content-Type: font/woff2');
+	include __DIR__ . '/fonts/ubuntu-medium.woff2';
+} else if ($_SERVER['REQUEST_URI'] == '/fonts/ubuntu-bold.woff2') {
+	sendCacheHeaders();
+	header('Content-Type: font/woff2');
+	include __DIR__ . '/fonts/ubuntu-bold.woff2';
 } else {
 	if ($_SERVER['REQUEST_URI'] == '/s.css') {
 		sendCacheHeaders();

@@ -1,17 +1,3 @@
-.frame {
-	
-}
-
-main {
-	@include breakpoint($tablet) {
-		margin-left:40*$base;
-	}
-
-	&.full {
-		margin-left:0;
-	}
-}
-
 .main-nav {
 	position: fixed;
 	top:0;
@@ -109,12 +95,13 @@ main {
 				padding:0 3*$base 0 4*$base;
 				border-top-right-radius: .5*$base;
 				border-bottom-right-radius: .5*$base;
-				box-shadow: $shadow;
+				box-shadow: 0 2px 4px rgba(#000, .125);
 
 				span {
 					right:1*$base;
 					background:#FFF;
 					color:$color-primary;
+					box-shadow: 0 2px 4px rgba(#000, .125);
 				}
 			}
 
@@ -206,15 +193,21 @@ main {
 	nav {
 		position: absolute;
 		top:1*$base;
-		left:50%; // 1*$base
+		left:50%;
 		transform: translateX(-50%);
 		background:#FFF;
-		border-radius: 12px;
+		border-radius: $border-radius;
 		box-shadow: $shadow;
 		overflow: hidden;
 		z-index:2000;
-		width:calc(100% - 12px); // 38*$base
+		width:calc(100% - 12px);
 		padding:1*$base;
+
+		@include breakpoint($tablet) {
+			left:1*$base;
+			transform:none;
+			width:38*$base;
+		}
 
 		a {
 			display:block;
@@ -227,7 +220,7 @@ main {
 
 			&:hover {
 				text-decoration:none;
-				background:#EEE;
+				background:$color-grey-92;
 			}
 		}
 	}

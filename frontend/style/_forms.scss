@@ -1,9 +1,8 @@
-
 .form {
 
 	&.shadow {
 		box-shadow:$shadow;
-		border-radius: 12px;
+		border-radius: $border-radius;
 	}
 
 	>label {
@@ -20,8 +19,8 @@
 		&:first-child {
 			+input, +select {
 				border-top:$color-border 1px solid;
-				border-top-left-radius:12px;
-				border-top-right-radius:12px;
+				border-top-left-radius:$border-radius;
+				border-top-right-radius:$border-radius;
 				padding-top:6*$base - 3px;
 				padding-bottom:3*$base - 4px;
 
@@ -127,8 +126,8 @@
 		padding:2*$base;
 		border:$color-border 1px solid;
 		border-top:0;
-		border-bottom-left-radius:12px;
-		border-bottom-right-radius:12px;
+		border-bottom-left-radius:$border-radius;
+		border-bottom-right-radius:$border-radius;
 		display:flex;
 
 		@include breakpoint($tablet) {
