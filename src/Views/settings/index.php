@@ -31,8 +31,8 @@
 							<?php i18n('language');?>
 						</label>
 						<select name="language" id="la" autofocus>
-							<option value="de" <?php echo ($user->language == 'de') ? 'selected' : ''; ?>>Deutsch</option>
-							<option value="en" <?php echo ($user->language == 'en') ? 'selected' : ''; ?>>English</option>
+							<option value="de" <?php e($user->language == 'de' ? 'selected' : '');?>>Deutsch</option>
+							<option value="en" <?php e($user->language == 'en' ? 'selected' : '');?>>English</option>
 						</select>
 
 

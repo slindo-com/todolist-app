@@ -13,12 +13,12 @@
 							<?php i18n('teams');?>
 						</a>
 						→
-						<?php echo $team->title; ?>
+						<?php e($team->title);?>
 					</h2>
-					<a href="/settings/teams/<?php echo $team->slug; ?>/edit-title/" class="btn">
+					<a href="/settings/teams/<?php e($team->slug);?>/edit-title/" class="btn">
 						<?php i18n('edit_title');?>
 					</a>
-					<a href="/settings/teams/<?php echo $team->slug; ?>/invite/" class="btn">
+					<a href="/settings/teams/<?php e($team->slug);?>/invite/" class="btn">
 						<?php i18n('invite_member');?>
 					</a>
 				</div>
@@ -43,13 +43,13 @@
 						<li>
 							<div>
 								<h4>
-									<?php (sizeof($member->name) > 1 ? e2($member->name) : i18n('no_name'));?>
+									<?php (sizeof($member->name) > 1 ? e($member->name) : i18n('no_name'));?>
 								</h4>
 								<small class="published-small">
 									<?php $member->role == 1 ? i18n('admin') : i18n('member');?>
 								</small>
 								<small>
-									<?php echo e($member->email); ?>
+									<?php e($member->email);?>
 								</small>
 							</div>
 						</li>
@@ -70,13 +70,13 @@
 						<li>
 							<div>
 								<h4>
-									<?php echo e($invite->name); ?>
+									<?php e($invite->name);?>
 								</h4>
 								<small class="published-small">
 									<?php i18n('invited');?>
 								</small>
 								<small>
-									<?php echo e($invite->email); ?>
+									<?php e($invite->email);?>
 								</small>
 							<div>
 						</li>

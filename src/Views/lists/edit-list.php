@@ -11,8 +11,8 @@
 						☰
 					</a>
 					<h2>
-						<a href="/<?php echo $navData['teamSlug'] . '/' . $navData['listSlug']; ?>/">
-							<?php echo e($navData['list']->title); ?>
+						<a href="/<?php e($navData['teamSlug'] . '/' . $navData['listSlug']);?>/">
+							<?php e($navData['list']->title);?>
 						</a>
 						→
 						<?php i18n('edit');?>
@@ -35,13 +35,12 @@
 				<div class="right">
 					<form method="POST" class="form shadow">
 
-
 						<label for="ti">
 							<?php i18n('new_title');?>
 						</label>
-						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php echo e($navData['list']->title); ?>" autofocus required maxlength="30">
+						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php e($navData['list']->title);?>" autofocus required maxlength="30">
 
-						<input type="hidden" name="listId" value="<?php echo e($navData['list']->id); ?>">
+						<input type="hidden" name="listId" value="<?php e($navData['list']->id);?>">
 
 						<footer>
 							<span>

@@ -8,7 +8,7 @@
 
 	<?php if (!empty($error)): ?>
 		<p class="err">
-			<?php e2($error);?>
+			<?php e($error);?>
 		</p>
 	<?php endif;?>
 

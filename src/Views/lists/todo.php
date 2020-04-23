@@ -11,8 +11,8 @@
 						☰
 					</a>
 					<h2>
-						<a href="/<?php echo $navData['teamSlug']; ?>/<?php echo $navData['listSlug']; ?>/">
-							← <?php i18n('back_to');?> <?php e2($navData['list']->title);?>
+						<a href="/<?php e($navData['teamSlug']);?>/<?php e($navData['listSlug']);?>/">
+							← <?php i18n('back_to');?> <?php e($navData['list']->title);?>
 						</a>
 					</h2>
 				</div>
@@ -38,7 +38,7 @@
 						<label for="ti">
 							<?php i18n('task_title');?>
 						</label>
-						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php echo e($todo->title); ?>" autofocus required>
+						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php e($todo->title);?>" autofocus required>
 
 
 						<footer>

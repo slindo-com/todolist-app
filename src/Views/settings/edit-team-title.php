@@ -13,8 +13,8 @@
 							<?php i18n('teams');?>
 						</a>
 						→
-						<a href="/settings/teams/<?php echo $team->slug; ?>/">
-							<?php echo $team->title; ?>
+						<a href="/settings/teams/<?php e($team->slug);?>/">
+							<?php e($team->title);?>
 						</a>
 						→
 						<?php i18n('edit_title');?>
@@ -41,7 +41,7 @@
 						<label for="ti">
 							<?php i18n('new_title');?>
 						</label>
-						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php echo e($team->title); ?>" autofocus required>
+						<input placeholder="<?php i18n('type_here');?>" type="text" name="title" id="ti" value="<?php e($team->title);?>" autofocus required>
 
 
 						<footer>

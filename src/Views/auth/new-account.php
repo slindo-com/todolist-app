@@ -8,7 +8,7 @@
 
 	<?php if (!empty($error)): ?>
 		<p class="err">
-			<?php e2($error);?>
+			<?php e($error);?>
 		</p>
 	<?php endif;?>
 
@@ -24,12 +24,12 @@
 		<label for="e">
 			<?php i18n('email');?>
 		</label>
-		<input placeholder="<?php i18n('type_here');?>" type="email" name="email" id="e" required <?php e2($hasInvite ? 'value=' . $inviteEmail . ' disabled' : 'autofocus');?>>
+		<input placeholder="<?php i18n('type_here');?>" type="email" name="email" id="e" required <?php e($hasInvite ? 'value=' . $inviteEmail . ' disabled' : 'autofocus');?>>
 
 		<label for="p">
 			<?php i18n('password');?>
 		</label>
-		<input placeholder="<?php i18n('password_for_account');?>" type="password" name="password" id="p" minlength="6" required <?php e2($hasInvite ? 'autofocus' : '');?>>
+		<input placeholder="<?php i18n('password_for_account');?>" type="password" name="password" id="p" minlength="6" required <?php e($hasInvite ? 'autofocus' : '');?>>
 
 		<footer>
 			<span>

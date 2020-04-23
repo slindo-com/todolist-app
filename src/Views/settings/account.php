@@ -60,7 +60,7 @@ case 'change-pic':i18n('picture_updated_successfully');
 				<div class="box">
 					<?php if (!empty($user->pic)): ?>
 						<figure class="pic">
-							<img src="/pics/<?php echo $user->pic; ?>" alt="Profile Picture" />
+							<img src="/pics/<?php e($user->pic);?>" alt="Profile Picture" />
 						</figure>
 					<?php endif;?>
 
@@ -68,7 +68,7 @@ case 'change-pic':i18n('picture_updated_successfully');
 						<strong>
 							<?php i18n('email');?> &nbsp;
 						</strong>
-						<?php echo e($user->email); ?>
+						<?php e($user->email);?>
 					</p>
 					<a href="/settings/account/change-email/">
 						<?php i18n('change_email');?>
@@ -89,7 +89,7 @@ case 'change-pic':i18n('picture_updated_successfully');
 					<label for="na">
 						<?php i18n('your_name');?>
 					</label>
-					<input placeholder="<?php i18n('type_here');?>" type="text" name="name" id="na" value="<?php echo e(!empty($user->name) ? $user->name : ''); ?>">
+					<input placeholder="<?php i18n('type_here');?>" type="text" name="name" id="na" value="<?php e(!empty($user->name) ? $user->name : '');?>">
 
 					<footer>
 						<button type="submit" class="btn" name="a" value="save-name">

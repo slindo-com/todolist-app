@@ -13,8 +13,8 @@
 							<?php i18n('teams');?>
 						</a>
 						→
-						<a href="/settings/teams/<?php echo $team->slug; ?>/">
-							<?php echo $team->title; ?>
+						<a href="/settings/teams/<?php e($team->slug);?>/">
+							<?php e($team->title);?>
 						</a>
 						→
 						<?php i18n('invite_member');?>

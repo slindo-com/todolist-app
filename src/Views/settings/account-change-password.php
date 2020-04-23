@@ -29,7 +29,7 @@
 		<?php if ($error): ?>
 			<section class="container">
 				<div class="message error">
-					<?php echo e($error); ?>
+					<?php e($error);?>
 				</div>
 			</section>
 		<?php endif?>

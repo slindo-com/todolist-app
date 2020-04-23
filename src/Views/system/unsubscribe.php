@@ -19,7 +19,7 @@
         <header>
 
         </header>
-        <input type="hidden" name="token" value="<?php echo e($token); ?>">
+        <input type="hidden" name="token" value="<?php e($token);?>">
         <button type="submit" name="a" value="unsubscribe" class="btn">
           Unsubscribe From All Emails
         </button>

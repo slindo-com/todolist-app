@@ -1,0 +1,72 @@
+.clearfix:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+
+
+
+.container {
+	margin:0 auto;
+	max-width:160*$base;
+}
+
+.small-container {
+	max-width:100*$base;
+}
+
+
+
+.mt-2 {
+	margin-top:2*$base;
+}
+
+.mt-4 {
+	margin-top:4*$base;
+}
+
+.mb-2 {
+	margin-bottom:2*$base;
+}
+
+.mb-4 {
+	margin-bottom:4*$base;
+}
+
+.center {
+	text-align: center;
+}
+
+
+
+.flex {
+	display:flex;
+
+	.left {
+		flex-basis:25%;
+		padding-right:4*$base
+	}
+
+	.right {
+		flex-basis:75%;
+	}
+}
+
+
+
+#grid {
+	z-index:10000;
+	position:absolute;
+	top:0;
+	left:50%;
+	transform:translateX(-50%);
+	width:1440px;
+	height:5000px;
+	background-color: transparent;
+	background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0)), linear-gradient(90deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0));
+	background-position: 5px 3px;
+	background-size: 6px 6px;
+	pointer-events: none;
+
+	display:none;
+}

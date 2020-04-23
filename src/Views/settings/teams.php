@@ -25,11 +25,11 @@
 				<div class="box">
 					<p>
 						<?php i18n('you_are_invited');?>
-						"<strong><?php echo e($invitingTeam->title); ?></strong>"
+						"<strong><?php e($invitingTeam->title);?></strong>"
 						<?php i18n('do_you_want_to_join');?>
 					</p>
 					<form method="POST">
-						<input type="hidden" name="inviteId" value="<?php echo $invite->id; ?>">
+						<input type="hidden" name="inviteId" value="<?php e($invite->id);?>">
 						<button type="submit" name="a" value="join-team" class="btn">
 							<?php i18n('join_team');?>
 						</button>
@@ -58,15 +58,15 @@
 					<?php foreach ($teams AS $team): ?>
 
 						<li>
-							<a href="/settings/teams/<?php echo e($team->slug); ?>/">
+							<a href="/settings/teams/<?php e($team->slug);?>/">
 								<h4>
-									<?php echo e($team->title); ?>
+									<?php e($team->title);?>
 								</h4>
 								<small>
 									<?php $team->role == 1 ? i18n('admin') : i18n('member');?>
 								</small>
 								<small>
-									<?php e2($memberCounts[$team->id] . ' '); ($memberCounts[$team->id] == 1 ? i18n('member') : i18n('members'));?>
+									<?php e($memberCounts[$team->id] . ' '); ($memberCounts[$team->id] == 1 ? i18n('member') : i18n('members'));?>
 								</small>
 							</a>
 						</li>
