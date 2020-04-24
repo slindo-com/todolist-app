@@ -44,7 +44,7 @@ if (F::actionEquals('new-account')) {
 	}
 
 	if (empty($error)) {
-		$emailTemplate = EMAIL_NEW_ACCOUNT(CONFIG()['title']);
+		$emailTemplate = MAIL::NEW_ACCOUNT(CONFIG()['title']);
 
 		F::sendMail([
 			'to' => $email,

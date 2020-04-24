@@ -1,7 +1,7 @@
 <?php
 function newResetToken($email) {
 	$token = bin2hex(random_bytes(50));
-	$success = F::dbNew(M_PASSWORD_RESETS(), [
+	$success = F::dbNew(M::PASSWORD_RESETS(), [
 		'token' => $token,
 		'email' => $email,
 	]);

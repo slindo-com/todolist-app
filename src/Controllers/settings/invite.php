@@ -22,7 +22,7 @@ if (F::actionEquals('send-invitation')) {
 
 		if (!$user) {
 
-			$emailTemplate = EMAIL_INVITE(CONFIG()['title'], CONFIG()['url'], $token);
+			$emailTemplate = MAIL::INVITE(CONFIG()['title'], CONFIG()['url'], $token);
 
 			F::sendMail([
 				'to' => $_POST['email'],

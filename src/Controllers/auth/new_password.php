@@ -24,7 +24,7 @@ if (F::actionEquals('send-instructions')) {
 
 	if (!empty($token)) {
 
-		$emailTemplate = EMAIL_NEW_PASSWORD(CONFIG()['url'], $token);
+		$emailTemplate = MAIL::NEW_PASSWORD(CONFIG()['url'], $token);
 
 		F::sendMail([
 			'to' => $email,

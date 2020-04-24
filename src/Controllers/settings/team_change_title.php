@@ -6,7 +6,7 @@ $teamSlug = $attributes[0];
 $team = F::dbFindOne(M::TEAMS(), ['slug' => $teamSlug]);
 
 if (!empty($_POST['a']) && $_POST['a'] == 'edit-title') {
-	$success = F::dbUpdate(M::TEAMS(), [$team->id => $_POST['title']]);
+	$success = F::teamsModelUpdateTitle($team->id, $_POST['title']);
 
 	if ($success) {
 		$team = F::dbGet(M::TEAMS(), $team->id);

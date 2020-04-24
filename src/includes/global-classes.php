@@ -41,3 +41,14 @@ class M {
 		return call_user_func_array($m, $args);
 	}
 }
+
+//
+class MAIL {
+	public static function __callStatic($m, $args) {
+
+		if (!function_exists($m)) {
+			include_once __DIR__ . '/../templates/en/' . strtolower($m) . '.php';
+		}
+		return call_user_func_array($m, $args);
+	}
+}

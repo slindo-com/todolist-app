@@ -14,7 +14,7 @@ if (F::actionEquals('change-email')) {
 
 	if ($success) {
 
-		$emailTemplate = EMAIL_CHANGE_EMAIL(CONFIG()['title'], CONFIG()['url'], $token);
+		$emailTemplate = MAIL::CHANGE_EMAIL(CONFIG()['title'], CONFIG()['url'], $token);
 
 		F::sendMail([
 			'to' => $_POST['email'],
