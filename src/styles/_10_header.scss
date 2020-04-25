@@ -47,6 +47,12 @@
 
 		h2 {
 			flex-grow: 1;
+
+			@include max-breakpoint($desktop) {
+				&:first-child {
+					margin-left:4*$base;
+				}
+			}
 		}
 	}
 
@@ -88,6 +94,60 @@
 
 			&:hover {
 				color:$color-primary;
+			}
+		}
+	}
+}
+
+
+
+@include max-breakpoint($desktop) {
+	.secondary-nav-wrapper {
+
+		+.header-wrapper {
+			margin-bottom:4*$base;
+
+			.header {
+				position: static;
+				padding:0;
+
+				&:before {
+					display:none;
+				}
+			}
+
+			.inner {
+				position: static;
+
+				h2 {
+					font-size:14px;
+					
+					&:first-child {
+						margin-left:0;
+					}
+				}
+			}
+
+			.button-wrapper {
+				padding:1*$base 4*$base 0 0;
+			}
+		}
+	}
+}
+
+@include max-breakpoint($tablet) {
+	.secondary-nav-wrapper {
+		+.header-wrapper {
+			.inner {
+				h2 {
+					&:first-child {
+						margin-left:2*$base;
+					}
+				}
+			}
+
+			.button-wrapper {
+				padding:1*$base 1*$base 0 0;
 			}
 		}
 	}

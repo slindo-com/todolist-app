@@ -6,15 +6,22 @@
 }
 
 .box {
-		box-shadow:$shadow;
-		border-radius: $border-radius;
-		margin-bottom:8*$base;
-		border:$color-border 1px solid;
-		padding:-1+4*$base;
+	box-shadow:$shadow;
+	border-radius: $border-radius;
+	margin-bottom:8*$base;
+	border:$color-border 1px solid;
+	padding:-1+4*$base;
 
-		>p {
-			margin-bottom:4*$base;
-		}
+	>p {
+		margin-bottom:4*$base;
+	}
+}
+
+.link-wrapper {
+	a {
+		display:block;
+		line-height: 5*$base;
+	}
 }
 
 .empty-box {
@@ -75,8 +82,8 @@
 .message {
 	display:block;
 	box-shadow: 0 0 0 2px #68B359 inset;
-	line-height:6*$base;
-	padding:0 4*$base;
+	line-height:4*$base;
+	padding:1*$base 4*$base;
 	margin:0 0 4*$base 0;
 	color:#68B359;
 	border-radius: .5*$base; 
@@ -120,25 +127,31 @@ li {
 	border-radius: 1*$base;
 	background:$color-inputbg;
 
-	iframe, form, button {
+	&.checked {
+		background:$color-primary;
+
+		&:after {
+			content:'';
+			display: block;
+			width:6px;
+			height:12px;
+			border-bottom:#FFF 2px solid;
+			border-right:#FFF 2px solid;
+			position: absolute;
+			top:50%;
+			left:50%;
+			transform: translateX(-50%) translateY(-50%) rotateZ(45deg);
+			margin:-1px 0 0 0;
+			pointer-events: none;
+		}
+	}
+
+	button {
 		position: absolute;
 		top:0;
 		left:0;
 		width:100%;
 		height:100%;
-	}
-
-	iframe {
-		border:0;
-		border-radius: 6px;
-
-	}
-
-	form {
-		background:transparent;
-	}
-
-	button {
 		cursor: pointer;
 		border-radius: 1*$base;
 		border:transparent 1px solid;
@@ -155,26 +168,6 @@ li {
 	}
 }
 
-
-.checked {
-	line-height: 5*$base;
-	text-align: center;
-	font-size:14px;
-	background:$color-primary;
-	border-radius: $border-radius;
-
-	div {
-		width:6px;
-		height:12px;
-		border-bottom:#FFF 2px solid;
-		border-right:#FFF 2px solid;
-		position: absolute;
-		top:50%;
-		left:50%;
-		transform: translateX(-50%) translateY(-50%) rotateZ(45deg);
-		margin:-1px 0 0 0;
-	}
-}
 
 .todo-form {
 	position: relative;
@@ -202,11 +195,13 @@ li {
 		outline:none;
 
 		&:focus {
-			// width:300%;
 			box-shadow: 0 0 0 1px $color-primary inset;
 
-			@include breakpoint($desktop) {
-				width:300%;
+			&:valid {
+			
+				@include breakpoint($desktop) {
+					width:300%;
+				}
 			}
 		}
 
@@ -235,6 +230,10 @@ li {
 		opacity: 0;
 		transform: translateX(-2*$base);
 		transition: all 150ms ease;
+
+		@include breakpoint($desktop) {
+			display:block;
+		}
 	}
 }
 

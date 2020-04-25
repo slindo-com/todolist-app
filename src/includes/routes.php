@@ -14,7 +14,6 @@ $routes = [
 	'/unsubscribe/:token/' => 'system/unsubscribe',
 	'/:team/:list/:task/' => 'lists/todo',
 	'/settings/account/' => 'settings/account',
-	'/checkmark/:task/' => 'lists/checkmark',
 	'/settings/teams/' => 'settings/teams',
 	'/new-password/' => 'auth/new_password',
 	'/new-account/' => 'auth/new_account',

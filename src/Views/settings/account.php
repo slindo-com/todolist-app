@@ -1,33 +1,30 @@
 <?php require __DIR__ . "/../layout/header.php";?>
 
-<div class="frame">
-	<main class="full">
-		<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
+<main class="full">
+	<?php $navItemActive = 'account';require __DIR__ . "/../layout/secondary-nav.php";?>
 
 
-		<div class="header-wrapper">
-			<header class="header">
-				<div class="inner">
-					<h2>
-						<a href="/settings/account/">
-							<?php i18n('account');?>
-						</a>
-					</h2>
-					<form method="POST" class="button-wrapper">
-						<button type="submit" name="a" value="sign-out" class="btn">
-							<?php i18n('sign_out');?>
-						</button>
-					</form>
-				</div>
-			</header>
-		</div>
+	<div class="header-wrapper">
+		<header class="header">
+			<div class="inner">
+				<h2>
+					[[account]]
+				</h2>
+				<form method="POST" class="button-wrapper">
+					<button type="submit" name="a" value="sign-out" class="btn">
+						[[sign_out]]
+					</button>
+				</form>
+			</div>
+		</header>
+	</div>
 
 
 
-		<?php if ($success): ?>
-			<section class="container">
-				<div class="message">
-					<?php
+	<?php if ($success): ?>
+		<section class="container">
+			<div class="message">
+				<?php
 switch ($success) {
 case 'change-name':i18n('name_updated_successfully');
 	break;
@@ -41,64 +38,64 @@ case 'change-pic':i18n('picture_updated_successfully');
 	break;
 }
 ?>
-				</div>
-			</section>
-		<?php endif?>
-
-
-
-		<section class="container flex">
-			<div class="left">
-				<small>
-					<?php i18n('basic_account_settings');?>
-				</small>
-			</div>
-			<div class="right">
-
-
-
-				<div class="box">
-					<?php if (!empty($user->pic)): ?>
-						<figure class="pic">
-							<img src="/pics/<?php e($user->pic);?>" alt="Profile Picture" />
-						</figure>
-					<?php endif;?>
-
-					<p>
-						<strong>
-							<?php i18n('email');?> &nbsp;
-						</strong>
-						<?php e($user->email);?>
-					</p>
-					<a href="/settings/account/change-email/">
-						<?php i18n('change_email');?>
-					</a>
-					&nbsp;
-					<a href="/settings/account/change-password/">
-						<?php i18n('change_password');?>
-					</a>
-					&nbsp;
-					<a href="/settings/account/change-pic/">
-						<?php i18n('change_picture');?>
-					</a>
-				</div>
-
-
-
-				<form method="POST" class="form shadow">
-					<label for="na">
-						<?php i18n('your_name');?>
-					</label>
-					<input placeholder="<?php i18n('type_here');?>" type="text" name="name" id="na" value="<?php e(!empty($user->name) ? $user->name : '');?>">
-
-					<footer>
-						<button type="submit" class="btn" name="a" value="save-name">
-							<?php i18n('change_name');?>
-						</button>
-					</footer>
-				</form>
 			</div>
 		</section>
+	<?php endif?>
+
+
+
+	<section class="container flex">
+		<div class="left">
+			<small>
+				[[basic_account_settings]]
+			</small>
+		</div>
+		<div class="right">
+
+
+
+			<div class="box">
+				<?php if (!empty($user->pic)): ?>
+					<figure class="pic">
+						<img src="/pics/{{$user->pic}}" alt="Profile Picture" />
+					</figure>
+				<?php endif;?>
+
+				<p>
+					<strong>
+						[[email]] &nbsp;
+					</strong>
+					{{$user->email}}
+				</p>
+				<div class="link-wrapper">
+					<a href="/settings/account/change-email/">
+						[[change_email]]
+					</a>
+					<a href="/settings/account/change-password/">
+						[[change_password]]
+					</a>
+					<a href="/settings/account/change-pic/">
+						[[change_picture]]
+					</a>
+				</div>
+			</div>
+
+
+
+			<form method="POST" class="form shadow">
+				<label for="na">
+					[[your_name]]
+				</label>
+				<input placeholder="[[type_here]]" type="text" name="name" id="na" value="{{!empty($user->name) ? $user->name : ''}}">
+
+				<footer>
+					<button type="submit" class="btn" name="a" value="save-name">
+						[[change_name]]
+					</button>
+				</footer>
+			</form>
+		</div>
+	</section>
 
 
 

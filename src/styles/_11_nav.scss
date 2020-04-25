@@ -227,6 +227,21 @@
 }
 
 
+.secondary-nav-wrapper {
+	width:100%;
+
+	.back {
+		margin:.5*$base 0 0 1*$base;
+
+		@include max-breakpoint($tablet) {
+			padding:0 1.5*$base;
+		}
+		
+		@include breakpoint($desktop) {
+			margin:-1*$base 0 0 0;
+		}
+	}
+}
 
 .secondary-nav {
 
@@ -241,10 +256,13 @@
 	height:auto;
 	background:$color-background;
 	background: linear-gradient(180deg, #FFF 0%, $color-background 100%);
-	margin-top:3*$base;
 	padding:1*$base 0 0 0;
 	box-shadow: 0 -1px 0 $color-border inset;
 	overflow:hidden;
+
+	@include breakpoint($desktop){
+		margin-top:3*$base;
+	}
 
 	a {
 		display:inline-block;

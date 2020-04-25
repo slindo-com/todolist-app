@@ -1,7 +1,10 @@
-<section class="container">
+<section class="container secondary-nav-wrapper">
 	<a href="/private/" class="btn back">
 		←
-		[[back_to_todo_lists]]
+		<span>
+			&nbsp;
+			[[back_to_todo_lists]]
+		</span>
 	</a>
 
 	<nav class="secondary-nav">

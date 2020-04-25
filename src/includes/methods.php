@@ -14,7 +14,6 @@ $GLOBALS['methods'] = [
 	'getUnsubscribeLink' => 'mail/getUnsubscribeLink',
 	'listsModelChangeDoneCount' => 'models/listsModelChangeDoneCount',
 	'listsModelChangeTaskCount' => 'models/listsModelChangeTaskCount',
-	'listsModelGetUserLists' => 'models/listsModelGetUserLists',
 	'listsModelNew' => 'models/listsModelNew',
 	'listsModelUpdateTitle' => 'models/listsModelUpdateTitle',
 	'newAccount' => 'auth/newAccount',

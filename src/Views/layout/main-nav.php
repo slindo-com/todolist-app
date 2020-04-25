@@ -6,7 +6,7 @@
 			</small>
 			<?php !empty($navData['team']) ? e($navData['team']->title) : i18n('private')?>
 		</a>
-		<a href="/settings/" class="settings">
+		<a href="/settings/" class="settings" accesskey="s">
 			[[settings]]
 		</a>
 	</header>

@@ -40,15 +40,22 @@
 
 
 .flex {
-	display:flex;
 
 	.left {
-		flex-basis:25%;
-		padding-right:4*$base
+		margin-bottom:2*$base;
 	}
 
-	.right {
-		flex-basis:75%;
+	@include breakpoint($tablet) {
+		display:flex;
+
+		.left {
+			flex-basis:25%;
+			padding-right:4*$base
+		}
+
+		.right {
+			flex-basis:75%;
+		}
 	}
 }
 

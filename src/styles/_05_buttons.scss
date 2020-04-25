@@ -55,4 +55,12 @@
 	+.btn {
 		margin-left:1*$base;
 	}
+
+	span {
+		display:none;
+
+		@include breakpoint($tablet) {
+			display: inline;
+		}
+	}
 }
