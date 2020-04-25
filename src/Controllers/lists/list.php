@@ -68,7 +68,7 @@ if ($navData['list']) {
 		return !empty($asset->done) && empty($_SESSION['sameListDone'][$asset->id]);
 	}, ARRAY_FILTER_USE_BOTH);
 
-	if (sizeof($tasksDone) == 0 && $attributes[2] == 'done') {
+	if (sizeof($tasksDone) == 0 && !empty($attributes[2]) && $attributes[2] == 'done') {
 		header('Location: /' . $teamSlug . '/' . $listSlug . '/');
 		die();
 	}
