@@ -21,7 +21,10 @@ function getNav($teamSlug, $listSlug) {
 		}
 
 		if (!empty($team)) {
-			$lists = F::dbFindAll(M::LISTS(), ['team' => $team->id], 'title');
+			$lists = F::dbFindAll(M::LISTS(), [
+				'team' => $team->id,
+				'trashed' => 0,
+			], 'title');
 		}
 	}
 
@@ -33,7 +36,10 @@ function getNav($teamSlug, $listSlug) {
 	];
 
 	if (!empty($listSlug)) {
-		$list = F::dbFindOne(M::LISTS(), ['slug' => $listSlug]);
+		$list = F::dbFindOne(M::LISTS(), [
+			'slug' => $listSlug,
+			'trashed' => 0,
+		]);
 
 		if (!empty($list) && $teamSlug == 'private') {
 			if ($list->team == 0 && $list->created_by == $_SESSION['auth']) {

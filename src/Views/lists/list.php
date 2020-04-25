@@ -44,9 +44,11 @@
 						</h3>
 						<p>
 							[[you_could_either]]
+							&nbsp;
 							<a href="/{{$navData['teamSlug']}}/{{$navData['listSlug']}}/edit/">
 								[[go_to_the_edit_section]]
 							</a>
+							&nbsp;
 							[[and_trash_this]]
 						</p>
 					<?php else: ?>
@@ -61,6 +63,7 @@
 						<a href="https://todolist.one/help/" taget="_blank">
 							[[go_to_our_help_section]]
 						</a>
+						&nbsp;
 						[[if_app_is_unclear]]
 					</p>
 				</span>

@@ -10,7 +10,7 @@ $navData = F::getNav($teamSlug, $listSlug);
 
 if ($navData['list']) {
 
-	$isSameList = strpos($_SERVER['HTTP_REFERER'], $teamSlug . '/' . $navData['list']->slug) && $attributes[2] != 'done';
+	$isSameList = strpos($_SERVER['HTTP_REFERER'], $teamSlug . '/' . $navData['list']->slug) && !empty($attributes[2]) && $attributes[2] != 'done';
 	if (!$isSameList) {
 		$_SESSION['sameListDone'] = [];
 		$_SESSION['sameListImportant'] = [];

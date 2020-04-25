@@ -4,6 +4,8 @@ F::verifyAuth();
 
 $teamSlug = $attributes[0];
 
+$navData = F::getNav($teamSlug, false);
+
 if (F::actionEquals('new-list')) {
 	$slug = F::listsModelNew($teamSlug == 'private'
 		? false
@@ -11,7 +13,11 @@ if (F::actionEquals('new-list')) {
 	header('Location: /' . $teamSlug . '/' . $slug . '/');
 }
 
-F::render("lists/list", [
-	'navData' => F::getNav($teamSlug, false),
+if (sizeof($navData['lists']) > 0) {
+	header('Location: /' . $teamSlug . '/' . $navData['lists'][0]->slug . '/');
+}
+
+F::render('lists/overview', [
+	'navData' => $navData,
 	'tasks' => [],
 ]);

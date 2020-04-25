@@ -126,6 +126,11 @@
 				border-radius: 1.5*$base;
 			}
 		}
+
+		small {
+			text-align: center;
+			padding:2*$base 4*$base;
+		}
 	}
 
 	.shadow {

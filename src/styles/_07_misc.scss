@@ -60,6 +60,27 @@
 		position: relative;
 		z-index:100;
 	}
+
+	form {
+		display:inline;
+
+		button {
+			font-family:ubuntu, sans-serif;
+			-webkit-appearance:none;
+			border:0;
+			padding:0;
+			display:inline;
+			font-size:14px;
+			font-weight:400;
+			color:$color-primary;
+			cursor:pointer;
+			outline:none;
+
+			&:hover {
+				text-decoration:underline;
+			}
+		}
+	}
 }
 
 .pic {

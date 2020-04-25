@@ -20,5 +20,5 @@ $routes = [
 	'/:team/:list/' => 'lists/list',
 	'/settings/' => 'settings/general',
 	'/sign-in/' => 'auth/sign_in',
-	'/:team/' => 'lists/all',
+	'/:team/' => 'lists/overview',
 ];
