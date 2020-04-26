@@ -13,6 +13,14 @@ if (F::actionEquals('edit-general')) {
 	}
 }
 
-F::render('settings/index', [
+$trashedLists = F::listsModelGetTrashed();
+
+$trashedListCount = 0;
+foreach ($trashedLists as $key => $trashedListTeam) {
+	$trashedListCount += sizeof($trashedListTeam);
+}
+
+F::render('settings/general', [
 	'user' => $user,
+	'trashedListCount' => $trashedListCount,
 ]);

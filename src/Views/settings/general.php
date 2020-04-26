@@ -43,6 +43,18 @@
 						</span>
 					</footer>
 				</form>
+
+				<div class="center mt-4">
+					<?php if ($trashedListCount > 0): ?>
+						<a href="/settings/general/trashed-lists/">
+							[[show_trashed_lists]]
+						</a>
+					<?php else: ?>
+						<p>
+							[[no_trashed_lists]]
+						</p>
+					<?php endif;?>
+				</div>
 			</div>
 		</div>
 	</section>

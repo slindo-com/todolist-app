@@ -25,5 +25,5 @@ function pdo() {
 
 //
 function i18n($key) {
-	echo $GLOBALS['translations'][$key];
+	echo !empty($GLOBALS['translations'][$key]) ? $GLOBALS['translations'][$key] : 'Property: ' . $key;
 }

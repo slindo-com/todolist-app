@@ -3,6 +3,7 @@ $routes = [
 	'/settings/account/change-email/:token/' => 'settings/change_email_token',
 	'/settings/account/change-password/' => 'settings/change_password',
 	'/settings/teams/:team/edit-title/' => 'settings/team_change_title',
+	'/settings/general/trashed-lists/' => 'settings/trashed-lists',
 	'/settings/account/change-email/' => 'settings/change_email',
 	'/settings/account/change-pic/' => 'settings/change_pic',
 	'/settings/teams/:team/invite/' => 'settings/invite',

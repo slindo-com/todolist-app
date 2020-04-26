@@ -68,9 +68,35 @@
 
 		small {
 			margin:1*$base 0 0 0;
+			padding:0 1*$base;
+			border-radius: 1.5*$base;
+			background:$color-grey-98;
 			display:inline-block;
 			line-height: 3*$base;
-			color:#333;
+			border:$color-grey-92 1px solid;
+			color:$color-grey-50;
+
+			+small {
+				margin-left: 2*$base;
+			}
+		}
+	}
+
+	.flex-entry {
+		@include breakpoint($tablet) {
+			display:flex;
+
+			div {
+				flex-grow: 1;
+			}
+		}
+	}
+
+	.button-wrapper {
+		margin-top:2*$base;
+
+		@include breakpoint($tablet) {
+			margin-top:0;
 		}
 	}
 }

@@ -54,11 +54,12 @@ main {
 
 
 section {
-	width:calc(100% - 48px);
+	width:calc(100% - 24px);
 	margin:2*$base auto;
 	max-width:160*$base;
 
 	@include breakpoint($tablet) {
 		margin:4*$base auto;
+		width:calc(100% - 48px);
 	}
 }
