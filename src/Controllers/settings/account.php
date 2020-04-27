@@ -15,7 +15,18 @@ if (F::actionEquals('sign-out')) {
 	}
 }
 
+if ($user->pro_plan) {
+	$proPlan = F::dbFindOne(M::PRO_PLANS(), ['payed_by' => $user->id]);
+
+	if (!empty($proPlan)) {
+		$proPlanUpdates = F::dbFindAll(M::PRO_PLAN_UPDATES(), ['pro_plan' => $proPlan->id]);
+
+	}
+}
+
 F::render('settings/account', [
 	'user' => $user,
 	'success' => !empty($query['success']) ? $query['success'] : false,
+	'proPlan' => !empty($proPlan) ? $proPlan : false,
+	'proPlanUpdates' => !empty($proPlanUpdates) ? $proPlanUpdates : [],
 ]);
